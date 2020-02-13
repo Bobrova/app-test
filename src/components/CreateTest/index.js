@@ -25,6 +25,11 @@ class CreateTest extends Component {
               </div>
               <div className={styles.listItem}>
                 <p className={styles.questionName}>Name</p>
+                <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
+                <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
+              </div>
+              <div className={styles.listItem}>
+                <p className={styles.questionName}>Name</p>
               </div>
               <div className={styles.listItem}>
                 <p className={styles.questionName}>Name</p>

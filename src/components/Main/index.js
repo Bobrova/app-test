@@ -12,34 +12,29 @@ class Main extends Component {
           <Link to="/main/create-test" className={styles.btnCreateTest}>Создать тест</Link>
           <div className={styles.testList}>
             <div className={styles.listItem}>
-              <div className={styles.itemNameWrapper}>
-                <span className={styles.itemName}>Name</span>
-              </div>
-              <Link to="/main/test" className={styles.runTest}>Пройти тест</Link>
+              <Link to="/main/test" className={styles.startTest}>Name</Link>
+              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
+              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
             <div className={styles.listItem}>
-              <div className={styles.itemNameWrapper}>
-                <span className={styles.itemName}>Name</span>
-              </div>
-              <Link to="/main/test" className={styles.runTest}>Пройти тест</Link>
+              <Link to="/main/test" className={styles.startTest}>Name</Link>
+              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
+              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
             <div className={styles.listItem}>
-              <div className={styles.itemNameWrapper}>
-                <span className={styles.itemName}>Name</span>
-              </div>
-              <Link to="/main/test" className={styles.runTest}>Пройти тест</Link>
+              <Link to="/main/test" className={styles.startTest}>Name</Link>
+              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
+              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
             <div className={styles.listItem}>
-              <div className={styles.itemNameWrapper}>
-                <span className={styles.itemName}>Name</span>
-              </div>
-              <Link to="/main/test" className={styles.runTest}>Пройти тест</Link>
+              <Link to="/main/test" className={styles.startTest}>Name</Link>
+              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
+              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
             <div className={styles.listItem}>
-              <div className={styles.itemNameWrapper}>
-                <span className={styles.itemName}>Name</span>
-              </div>
-              <Link to="/main/test" className={styles.runTest}>Пройти тест</Link>
+              <Link to="/main/test" className={styles.startTest}>Name</Link>
+              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
+              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
           </div>
         </div>
