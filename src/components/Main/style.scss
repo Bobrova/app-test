@@ -1,0 +1,94 @@
+.pageWrapper {
+  // background-color: #feffed;
+  padding-top: 1px;
+}
+
+.page {
+  width: 70%;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 1px;
+  box-sizing: border-box;
+  // border: 1px solid lightgray;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 20px 20px 20px;
+}
+
+.logoTextTop {
+  display: block;
+  text-transform: uppercase;
+  color: #3d3d3d;
+  font-weight: bold;
+  text-align: center;
+  font-family: Arial;
+  font-size: 30px;
+}
+
+.logoTextBottom {
+  display: block;
+  text-transform: uppercase;
+  color: #3d3d3d;
+  font-weight: bold;
+  text-align: center;
+  font-family: Arial;
+  font-size: 20px;
+}
+
+.userData {
+  display: flex;
+  align-items: center;
+}
+
+.userGreeting {
+  display: inline-block;
+  margin: 0 20px;
+  // vertical-align: middle;
+}
+
+.greetingText {
+  vertical-align: middle;
+}
+
+.exitAccount {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.exitAccount:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.testList {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.listItem {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+}
+
+.itemNameWrapper {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.runTest {
+  display: inline-block;
+}
+
+.BtnCreateTest {
+  margin: 10px;
+}
