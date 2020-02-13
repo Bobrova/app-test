@@ -7,8 +7,8 @@ class Main extends Component {
   render() {
     return (
       <div className={styles.page}>
-        <div className={styles.pageWrapper}>
-          <Header />
+        <Header />
+        <div className={styles.mainContent}>
           <Link to="/main/create-test" className={styles.btnCreateTest}>Создать тест</Link>
           <div className={styles.testList}>
             <div className={styles.listItem}>

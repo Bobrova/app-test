@@ -1,15 +1,11 @@
 .page {
-  padding-top: 1px;
+  // padding-top: 1px;
 }
 
-.pageWrapper {
+.mainContent {
   width: 70%;
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 1px;
-  box-sizing: border-box;
+  margin: 0 auto;
 }
-
 .exitAccount:hover {
   cursor: pointer;
   transform: scale(1.05);

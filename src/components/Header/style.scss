@@ -1,25 +1,19 @@
-.pageWrapper {
-  padding-top: 1px;
-}
-
-.page {
-  width: 70%;
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 1px;
-  box-sizing: border-box;
-}
-
 .header {
+  padding: 10px;
+  background-color: #444;
+}
+
+.headerWrapper {
   display: flex;
   justify-content: space-between;
-  margin: 20px;
+  width: 70%;
+  margin: 0 auto;
 }
 
 .logoTextTop {
   display: block;
   text-transform: uppercase;
-  color: #3d3d3d;
+  color: #fff;
   font-weight: bold;
   text-align: center;
   font-family: Arial;
@@ -29,7 +23,7 @@
 .logoTextBottom {
   display: block;
   text-transform: uppercase;
-  color: #3d3d3d;
+  color: #fff;
   font-weight: bold;
   text-align: center;
   font-family: Arial;
@@ -44,7 +38,7 @@
 .userGreeting {
   display: inline-block;
   margin: 0 20px;
-  // vertical-align: middle;
+  color: #fff;
 }
 
 .greetingText {
@@ -58,6 +52,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  background-color: #fff;
 }
 
 .exitAccount:hover {
