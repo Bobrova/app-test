@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import background from 'img/wall.jpg';
 import loginImg from 'img/cat2.png';
 import styles from './style.scss';
@@ -10,7 +10,6 @@ class App extends Component {
       console.log('нет');
     } else {
       console.log('да');
-      this.props.history.push('/cources');
     }
   }
 
@@ -20,7 +19,6 @@ class App extends Component {
       return 'no';
     }
     return 'yes';
-    // <Link to="/main/" className={styles.btnLogin}>Войти</Link>
   }
 
   render() {
@@ -33,6 +31,7 @@ class App extends Component {
             <input type="password" className={styles.input} placeholder="Пароль" name="password" />
           </form>
           <div className={styles.btnLogin} onClick={this.handleClickEnter}>Войти</div>
+          <Link to="/main/" className={styles.btnLogin}>Войти</Link>
         </div>
       </div>
     );

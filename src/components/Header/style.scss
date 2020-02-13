@@ -1,8 +1,8 @@
-.page {
+.pageWrapper {
   padding-top: 1px;
 }
 
-.pageWrapper {
+.page {
   width: 70%;
   margin: 20px auto;
   background-color: #fff;
@@ -13,7 +13,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  margin: 20px 20px 20px 20px;
+  margin: 20px;
 }
 
 .logoTextTop {
@@ -63,46 +63,4 @@
 .exitAccount:hover {
   cursor: pointer;
   transform: scale(1.05);
-}
-
-.testList {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  padding: 10px;
-}
-
-.listItem {
-  border: 1px solid black;
-  padding: 10px;
-  margin: 5px;
-}
-
-.itemNameWrapper {
-  display: inline-block;
-  margin-right: 20px;
-}
-
-.runTest {
-  display: inline-block;
-}
-
-.BtnCreateTest {
-  margin: 10px;
-}
-
-.btnCreateTest {
-  display: inline-block;
-  padding: 10px;
-  border: 1px solid #88fce5;
-  text-decoration: none;
-  margin: 10px 0;
-  border-radius: 5px;
-  color: #444;
-  background: linear-gradient(to top, #88fce5, #eafcf8);
-  transition: border 0.3s ease;
-  &:hover {
-    cursor: pointer;
-    border-color: #444;
-  }
 }
