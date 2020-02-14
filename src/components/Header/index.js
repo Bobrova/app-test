@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import exit from 'img/exit.png';
+import exit from 'img/exit-white.png';
 import styles from './style.scss';
 
 class Header extends Component {

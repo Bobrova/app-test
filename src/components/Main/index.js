@@ -14,27 +14,22 @@ class Main extends Component {
             <div className={styles.listItem}>
               <Link to="/main/test" className={styles.startTest}>Name</Link>
               <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
             <div className={styles.listItem}>
               <Link to="/main/test" className={styles.startTest}>Name</Link>
               <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
             <div className={styles.listItem}>
               <Link to="/main/test" className={styles.startTest}>Name</Link>
               <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
             <div className={styles.listItem}>
               <Link to="/main/test" className={styles.startTest}>Name</Link>
               <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
             <div className={styles.listItem}>
               <Link to="/main/test" className={styles.startTest}>Name</Link>
               <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
           </div>
         </div>
