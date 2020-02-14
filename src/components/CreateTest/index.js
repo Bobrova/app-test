@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Header from 'components/Header';
 import Question from 'components/Question';
 import styles from './style.scss';
 
 class CreateTest extends Component {
+  handleClickAddQuestion = () => {
+    const { addQuestionAction } = this.props;
+    addQuestionAction();
+  }
+
   render() {
+    const { addingQuestion } = this.props;
     return (
       <div className={styles.page}>
         <Header />
@@ -23,8 +30,13 @@ class CreateTest extends Component {
               <div className={styles.type}>Численный ответ</div>
             </div>
           </div>
-          <div className={styles.btnAddQuestion}>Добавить вопрос</div>
-          <Question />
+          <div
+            className={styles.btnAddQuestion}
+            onClick={this.handleClickAddQuestion}
+          >
+            Добавить вопрос
+          </div>
+          {addingQuestion && <Question /> }
           <div className={styles.questionList}>
             <div className={styles.listItem}>
               <p className={styles.questionName}>Name</p>
@@ -61,4 +73,10 @@ class CreateTest extends Component {
     );
   }
 }
+
+CreateTest.propTypes = {
+  addingQuestion: PropTypes.bool.isRequired,
+  addQuestionAction: PropTypes.func.isRequired,
+};
+
 export default CreateTest;
