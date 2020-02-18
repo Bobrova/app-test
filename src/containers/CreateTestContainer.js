@@ -7,11 +7,18 @@ import {
   addTestNameAction,
   addTextQuestionAction,
   addTextAnswerAction,
+  addAnswerAction,
+  addInitialTwoAnswerAction,
+  addInitialNumberAnswer,
+  changeCheckAction,
+  changeRadioAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
   addingQuestion: state.first.addingQuestion,
   typeQuestion: state.first.typeQuestion,
+  listAnswer: state.intermediateValueQuestion.answerList,
+  currentId: state.intermediateValueQuestion.answerList.length,
 });
 
 
@@ -24,5 +31,10 @@ export default connect(
     addTestNameAction,
     addTextQuestionAction,
     addTextAnswerAction,
+    addAnswerAction,
+    addInitialTwoAnswerAction,
+    addInitialNumberAnswer,
+    changeCheckAction,
+    changeRadioAction,
   },
 )(CreateTest);

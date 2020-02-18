@@ -6,9 +6,20 @@ import styles from './style.scss';
 
 class CreateTest extends Component {
   handleClickAddQuestion = () => {
-    const { addQuestionAction } = this.props;
+    const {
+      addQuestionAction,
+      addInitialTwoAnswerAction,
+      typeQuestion,
+      addInitialNumberAnswer,
+    } = this.props;
+    if (typeQuestion === '') return;
     addQuestionAction();
-  }
+    if (typeQuestion !== 'Численный ответ') {
+      addInitialTwoAnswerAction();
+    } else {
+      addInitialNumberAnswer();
+    }
+  };
 
   handleChoiceOneOfList = () => {
     const { changeTypeQuestionAction } = this.props;
@@ -42,6 +53,11 @@ class CreateTest extends Component {
       typeQuestion,
       addTextQuestionAction,
       addTextAnswerAction,
+      addAnswerAction,
+      listAnswer,
+      changeCheckAction,
+      changeRadioAction,
+      currentId,
     } = this.props;
     return (
       <div className={styles.page}>
@@ -94,6 +110,11 @@ class CreateTest extends Component {
                 typeQuestion={typeQuestion}
                 addTextQuestionAction={addTextQuestionAction}
                 addTextAnswerAction={addTextAnswerAction}
+                addAnswerAction={addAnswerAction}
+                listAnswer={listAnswer}
+                changeCheckAction={changeCheckAction}
+                currentId={currentId}
+                changeRadioAction={changeRadioAction}
               />
             )
           }
@@ -146,6 +167,13 @@ CreateTest.propTypes = {
   addTestNameAction: PropTypes.func.isRequired,
   addTextQuestionAction: PropTypes.func.isRequired,
   addTextAnswerAction: PropTypes.func.isRequired,
+  addAnswerAction: PropTypes.func.isRequired,
+  addInitialTwoAnswerAction: PropTypes.func.isRequired,
+  addInitialNumberAnswer: PropTypes.func.isRequired,
+  listAnswer: PropTypes.array.isRequired,
+  changeCheckAction: PropTypes.func.isRequired,
+  changeRadioAction: PropTypes.func.isRequired,
+  currentId: PropTypes.number.isRequired,
 };
 
 export default CreateTest;

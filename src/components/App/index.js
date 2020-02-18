@@ -7,9 +7,9 @@ import styles from './style.scss';
 class App extends Component {
   handleClickEnter = () => {
     if (this.validateForm() === 'no') {
-      console.log('нет');
+      // console.log('нет');
     } else {
-      console.log('да');
+      // console.log('да');
     }
   }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Answer from 'components/Answer';
 import styles from './style.scss';
 
 class Question extends Component {
@@ -9,8 +10,31 @@ class Question extends Component {
     addTextQuestionAction(value);
   }
 
+  handleClickAddAnswer = () => {
+    const { addAnswerAction, currentId } = this.props;
+    addAnswerAction(currentId);
+  }
+
   render() {
-    const { typeQuestion } = this.props;
+    const {
+      typeQuestion,
+      listAnswer,
+      changeCheckAction,
+      addAnswerAction,
+      changeRadioAction,
+    } = this.props;
+    const answerList = listAnswer.map(item => (
+      <div key={item.id}>
+        <Answer
+          item={item}
+          typeQuestion={typeQuestion}
+          changeCheckAction={changeCheckAction}
+          key={item.id}
+          addAnswerAction={addAnswerAction}
+          changeRadioAction={changeRadioAction}
+        />
+      </div>
+    ));
     const questionOneOfList = (
       <div className={styles.addQuestion}>
         <p className={styles.typeQuestion}>{typeQuestion}</p>
@@ -18,27 +42,8 @@ class Question extends Component {
         <div className={styles.answerOptions}>
           <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
           <div className={styles.answerOptionsWrapper}>
-            <label className={styles.answerLabelRadio}>
-              <input
-                type="radio"
-                defaultChecked="checked"
-                name="radio"
-                className={styles.answerRadio}
-              />
-              <span className={styles.checkmarkRadio} />
-              <input type="text" className={styles.answerText} />
-            </label>
-            <label className={styles.answerLabelRadio}>
-              <input type="radio" name="radio" className={styles.answerRadio} />
-              <span className={styles.checkmarkRadio} />
-              <input type="text" className={styles.answerText} />
-            </label>
-            <label className={styles.answerLabelRadio}>
-              <input type="radio" name="radio" className={styles.answerRadio} />
-              <span className={styles.checkmarkRadio} />
-              <input type="text" className={styles.answerText} />
-            </label>
-            <div className={styles.btnAddQuestion}>+</div>
+            {answerList}
+            <div className={styles.btnAddQuestion} onClick={this.handleClickAddAnswer}>+</div>
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave}>Сохранить</div>
               <div className={styles.btnCancel}>Отмена</div>
@@ -47,43 +52,15 @@ class Question extends Component {
         </div>
       </div>
     );
-    const qustionFewFromList = (
+    const questionFewFromList = (
       <div className={styles.addQuestion}>
         <p className={styles.typeQuestion}>{typeQuestion}</p>
         <textarea className={styles.questionText} placeholder="Текст вопроса" onChange={this.handleChangeTextQuestion} />
         <div className={styles.answerOptions}>
           <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
           <div className={styles.answerOptionsWrapper}>
-            <label className={styles.answerLabelCheckbox}>
-              <input
-                type="checkbox"
-                defaultChecked="checked"
-                name="checkbox"
-                className={styles.answerCheckbox}
-                onChange={this.handlaChangeTextAnswer}
-              />
-              <span className={styles.checkmarkCheckbox} />
-              <input type="text" className={styles.answerText} />
-            </label>
-            <label className={styles.answerLabelCheckbox}>
-              <input
-                type="checkbox"
-                name="checkbox"
-                className={styles.answerCheckbox}
-              />
-              <span className={styles.checkmarkCheckbox} />
-              <input type="text" className={styles.answerText} />
-            </label>
-            <label className={styles.answerLabelCheckbox}>
-              <input
-                type="checkbox"
-                name="checkbox"
-                className={styles.answerCheckbox}
-              />
-              <span className={styles.checkmarkCheckbox} />
-              <input type="text" className={styles.answerText} />
-            </label>
-            <div className={styles.btnAddQuestion}>+</div>
+            {answerList}
+            <div className={styles.btnAddAnswer} onClick={this.handleClickAddAnswer}>+</div>
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave}>Сохранить</div>
               <div className={styles.btnCancel}>Отмена</div>
@@ -92,20 +69,14 @@ class Question extends Component {
         </div>
       </div>
     );
-    const qustionNumericalAnswer = (
+    const questionNumericalAnswer = (
       <div className={styles.addQuestion}>
         <p className={styles.typeQuestion}>{typeQuestion}</p>
         <textarea className={styles.questionText} placeholder="Текст вопроса" onChange={this.handleChangeTextQuestion} />
         <div className={styles.answerOptions}>
           <p className={styles.answerOptionsTitle}>Ответ:</p>
           <div className={styles.answerOptionsWrapper}>
-            <label className={styles.answerLabelCheckbox}>
-              <input
-                type="text"
-                name="number"
-                className={styles.answerNumber}
-              />
-            </label>
+            {answerList}
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave}>Сохранить</div>
               <div className={styles.btnCancel}>Отмена</div>
@@ -116,9 +87,9 @@ class Question extends Component {
     );
     return (
       <>
-        {typeQuestion === 'Один из списка' && qustionFewFromList}
-        {typeQuestion === 'Несколько из списка' && questionOneOfList}
-        {typeQuestion === 'Численный ответ' && qustionNumericalAnswer}
+        {typeQuestion === 'Несколько из списка' && questionFewFromList}
+        {typeQuestion === 'Один из списка' && questionOneOfList}
+        {typeQuestion === 'Численный ответ' && questionNumericalAnswer}
       </>
     );
   }
@@ -127,6 +98,11 @@ class Question extends Component {
 Question.propTypes = {
   typeQuestion: PropTypes.string.isRequired,
   addTextQuestionAction: PropTypes.func.isRequired,
+  addAnswerAction: PropTypes.func.isRequired,
+  listAnswer: PropTypes.array.isRequired,
+  changeCheckAction: PropTypes.func.isRequired,
+  changeRadioAction: PropTypes.func.isRequired,
+  currentId: PropTypes.number.isRequired,
 };
 
 export default Question;
