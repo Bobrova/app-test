@@ -15,6 +15,11 @@ class Question extends Component {
     addAnswerAction(currentId);
   }
 
+  handleClickCloseQuestion = () => {
+    const { closeAddingQuestionAction } = this.props;
+    closeAddingQuestionAction();
+  }
+
   render() {
     const {
       typeQuestion,
@@ -43,10 +48,10 @@ class Question extends Component {
           <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
           <div className={styles.answerOptionsWrapper}>
             {answerList}
-            <div className={styles.btnAddQuestion} onClick={this.handleClickAddAnswer}>+</div>
+            <div className={styles.btnAddAnswer} onClick={this.handleClickAddAnswer}>+</div>
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave}>Сохранить</div>
-              <div className={styles.btnCancel}>Отмена</div>
+              <div className={styles.btnCancel} onClick={this.handleClickCloseQuestion}>Отмена</div>
             </div>
           </div>
         </div>
@@ -87,8 +92,8 @@ class Question extends Component {
     );
     return (
       <>
-        {typeQuestion === 'Несколько из списка' && questionFewFromList}
         {typeQuestion === 'Один из списка' && questionOneOfList}
+        {typeQuestion === 'Несколько из списка' && questionFewFromList}
         {typeQuestion === 'Численный ответ' && questionNumericalAnswer}
       </>
     );
@@ -103,6 +108,7 @@ Question.propTypes = {
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
   currentId: PropTypes.number.isRequired,
+  closeAddingQuestionAction: PropTypes.func.isRequired,
 };
 
 export default Question;

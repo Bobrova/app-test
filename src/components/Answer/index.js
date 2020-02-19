@@ -8,9 +8,8 @@ class Answer extends Component {
     changeCheckAction(item.id);
   }
 
-  handleChangeRadio = (e) => {
+  handleChangeRadio = () => {
     const { changeRadioAction, item } = this.props;
-    console.log(e.currentTarget.value);
     changeRadioAction(item.id);
   }
 

@@ -1,7 +1,7 @@
 import {
   ADD_QUESTION,
   CHANGE_TYPE_QUESTION,
-  ADD_ANSWER,
+  CLOSE_ADDING_QUESTION,
 } from 'constants/ActionTypes';
 
 const initialState = {
@@ -15,17 +15,17 @@ export default function first(state = initialState, action) {
     case ADD_QUESTION:
       return {
         ...state,
-        addingQuestion: !state.addingQuestion,
+        addingQuestion: true,
+      };
+    case CLOSE_ADDING_QUESTION:
+      return {
+        ...state,
+        addingQuestion: false,
       };
     case CHANGE_TYPE_QUESTION:
       return {
         ...state,
         typeQuestion: action.payload,
-      };
-    case ADD_ANSWER:
-      return {
-        ...state,
-        counterAnswer: state.counterAnswer + 1,
       };
     default:
       return state;

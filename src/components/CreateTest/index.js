@@ -22,18 +22,18 @@ class CreateTest extends Component {
   };
 
   handleChoiceOneOfList = () => {
-    const { changeTypeQuestionAction } = this.props;
-    changeTypeQuestionAction('Один из списка');
+    const { changeTypeQuestionAction, addingQuestion } = this.props;
+    if (!addingQuestion) changeTypeQuestionAction('Один из списка');
   }
 
   handleChoiceFewFromList = () => {
-    const { changeTypeQuestionAction } = this.props;
-    changeTypeQuestionAction('Несколько из списка');
+    const { changeTypeQuestionAction, addingQuestion } = this.props;
+    if (!addingQuestion) changeTypeQuestionAction('Несколько из списка');
   }
 
   handleChoiceNumericalAnswer = () => {
-    const { changeTypeQuestionAction } = this.props;
-    changeTypeQuestionAction('Численный ответ');
+    const { changeTypeQuestionAction, addingQuestion } = this.props;
+    if (!addingQuestion) changeTypeQuestionAction('Численный ответ');
   }
 
   handleSaveTest = () => {
@@ -58,6 +58,7 @@ class CreateTest extends Component {
       changeCheckAction,
       changeRadioAction,
       currentId,
+      closeAddingQuestionAction,
     } = this.props;
     return (
       <div className={styles.page}>
@@ -115,6 +116,7 @@ class CreateTest extends Component {
                 changeCheckAction={changeCheckAction}
                 currentId={currentId}
                 changeRadioAction={changeRadioAction}
+                closeAddingQuestionAction={closeAddingQuestionAction}
               />
             )
           }
@@ -174,6 +176,7 @@ CreateTest.propTypes = {
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
   currentId: PropTypes.number.isRequired,
+  closeAddingQuestionAction: PropTypes.func.isRequired,
 };
 
 export default CreateTest;
