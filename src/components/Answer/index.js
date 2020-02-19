@@ -13,6 +13,12 @@ class Answer extends Component {
     changeRadioAction(item.id);
   }
 
+  handleChangeTextAnswer = (e) => {
+    const { changeTextAnswerAction, item } = this.props;
+    const { value } = e.target;
+    changeTextAnswerAction(item.id, value);
+  }
+
   render() {
     const { typeQuestion, item } = this.props;
     const answerOneOfList = (
@@ -24,7 +30,12 @@ class Answer extends Component {
           onChange={this.handleChangeRadio}
         />
         <span className={styles.checkmarkRadio} />
-        <input type="text" className={styles.answerText} value={item.text} />
+        <input
+          type="text"
+          className={styles.answerText}
+          value={item.text}
+          onChange={this.handleChangeTextAnswer}
+        />
       </label>
     );
     const answerFewFromList = (
@@ -36,7 +47,11 @@ class Answer extends Component {
           onChange={this.handleChangeCheckbox}
         />
         <span className={styles.checkmarkCheckbox} />
-        <input type="text" className={styles.answerText} />
+        <input
+          type="text"
+          className={styles.answerText}
+          value={item.text}
+        />
       </label>
     );
     const answerNumerical = (
@@ -63,6 +78,7 @@ Answer.propTypes = {
   item: PropTypes.object.isRequired,
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
+  changeTextAnswerAction: PropTypes.func.isRequired,
 };
 
 export default Answer;

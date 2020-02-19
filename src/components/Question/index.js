@@ -27,6 +27,7 @@ class Question extends Component {
       changeCheckAction,
       addAnswerAction,
       changeRadioAction,
+      changeTextAnswerAction,
     } = this.props;
     const answerList = listAnswer.map(item => (
       <div key={item.id}>
@@ -37,6 +38,7 @@ class Question extends Component {
           key={item.id}
           addAnswerAction={addAnswerAction}
           changeRadioAction={changeRadioAction}
+          changeTextAnswerAction={changeTextAnswerAction}
         />
       </div>
     ));
@@ -68,7 +70,7 @@ class Question extends Component {
             <div className={styles.btnAddAnswer} onClick={this.handleClickAddAnswer}>+</div>
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave}>Сохранить</div>
-              <div className={styles.btnCancel}>Отмена</div>
+              <div className={styles.btnCancel} onClick={this.handleClickCloseQuestion}>Отмена</div>
             </div>
           </div>
         </div>
@@ -84,7 +86,7 @@ class Question extends Component {
             {answerList}
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave}>Сохранить</div>
-              <div className={styles.btnCancel}>Отмена</div>
+              <div className={styles.btnCancel} onClick={this.handleClickCloseQuestion}>Отмена</div>
             </div>
           </div>
         </div>
@@ -109,6 +111,7 @@ Question.propTypes = {
   changeRadioAction: PropTypes.func.isRequired,
   currentId: PropTypes.number.isRequired,
   closeAddingQuestionAction: PropTypes.func.isRequired,
+  changeTextAnswerAction: PropTypes.func.isRequired,
 };
 
 export default Question;

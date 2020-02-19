@@ -13,6 +13,7 @@ import {
   changeCheckAction,
   changeRadioAction,
   closeAddingQuestionAction,
+  changeTextAnswerAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -38,5 +39,6 @@ export default connect(
     changeCheckAction,
     changeRadioAction,
     closeAddingQuestionAction,
+    changeTextAnswerAction,
   },
 )(CreateTest);

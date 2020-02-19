@@ -59,6 +59,7 @@ class CreateTest extends Component {
       changeRadioAction,
       currentId,
       closeAddingQuestionAction,
+      changeTextAnswerAction,
     } = this.props;
     return (
       <div className={styles.page}>
@@ -117,6 +118,7 @@ class CreateTest extends Component {
                 currentId={currentId}
                 changeRadioAction={changeRadioAction}
                 closeAddingQuestionAction={closeAddingQuestionAction}
+                changeTextAnswerAction={changeTextAnswerAction}
               />
             )
           }
@@ -177,6 +179,7 @@ CreateTest.propTypes = {
   changeRadioAction: PropTypes.func.isRequired,
   currentId: PropTypes.number.isRequired,
   closeAddingQuestionAction: PropTypes.func.isRequired,
+  changeTextAnswerAction: PropTypes.func.isRequired,
 };
 
 export default CreateTest;

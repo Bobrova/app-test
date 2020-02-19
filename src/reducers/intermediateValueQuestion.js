@@ -6,6 +6,7 @@ import {
   CHANGE_CHECK,
   ADD_ANSWER,
   CHANGE_RADIO,
+  CHANGE_TEXT_ANSWER_ACTION,
 } from 'constants/ActionTypes';
 
 const initialState = { answerList: [{}] };
@@ -46,6 +47,17 @@ export default function first(state = initialState, action) {
               ...item,
               check: false,
             }),
+      };
+    case CHANGE_TEXT_ANSWER_ACTION:
+      return {
+        ...state,
+        answerList:
+          state.answerList.map(item => item.id === action.id
+            ? {
+              ...item,
+              textAnswer: action.text,
+            }
+            : item),
       };
     default:
       return state;
