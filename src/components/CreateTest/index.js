@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from 'components/Header';
+import AddQuestion from 'components/AddQuestion';
 import Question from 'components/Question';
 import styles from './style.scss';
 
@@ -57,10 +58,26 @@ class CreateTest extends Component {
       listAnswer,
       changeCheckAction,
       changeRadioAction,
-      currentId,
+      answerId,
       closeAddingQuestionAction,
       changeTextAnswerAction,
+      saveQuestionAction,
+      textQuestion,
+      answerList,
+      questionList,
+      questionId,
+      deleteQuestionAction,
     } = this.props;
+
+    const questions = questionList.map(item => (
+      <div key={item.id} className={styles.listItem}>
+        <Question
+          item={item}
+          deleteQuestionAction={deleteQuestionAction}
+        />
+      </div>
+    ));
+
     return (
       <div className={styles.page}>
         <Header />
@@ -68,7 +85,13 @@ class CreateTest extends Component {
           <div className={styles.nameTest}>
             <label forhtml="nameTest" className={styles.labelNameTest}>
               Название теста
-              <input type="text" className={styles.inputNameTest} name="nameTest" placeholder="Название теста" onChange={this.handleChangeTestName} />
+              <input
+                type="text"
+                className={styles.inputNameTest}
+                name="nameTest"
+                placeholder="Название теста"
+                onChange={this.handleChangeTestName}
+              />
             </label>
           </div>
           <div className={styles.dropDown}>
@@ -108,35 +131,40 @@ class CreateTest extends Component {
           </div>
           {
             addingQuestion && (
-              <Question
+              <AddQuestion
                 typeQuestion={typeQuestion}
                 addTextQuestionAction={addTextQuestionAction}
                 addTextAnswerAction={addTextAnswerAction}
                 addAnswerAction={addAnswerAction}
                 listAnswer={listAnswer}
                 changeCheckAction={changeCheckAction}
-                currentId={currentId}
+                answerId={answerId}
                 changeRadioAction={changeRadioAction}
                 closeAddingQuestionAction={closeAddingQuestionAction}
                 changeTextAnswerAction={changeTextAnswerAction}
+                saveQuestionAction={saveQuestionAction}
+                textQuestion={textQuestion}
+                answerList={answerList}
+                questionId={questionId}
               />
             )
           }
           <div className={styles.questionList}>
+            {questions}
             <div className={styles.listItem}>
               <p className={styles.questionName}>Name</p>
-              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
+              <div className={styles.btn}>Редактировать</div>
+              <div className={styles.btn}>Удалить</div>
             </div>
             <div className={styles.listItem}>
               <p className={styles.questionName}>Name</p>
-              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
+              <div className={styles.btn}>Редактировать</div>
+              <div className={styles.btn}>Удалить</div>
             </div>
             <div className={styles.listItem}>
               <p className={styles.questionName}>Name</p>
-              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
+              <div className={styles.btn}>Редактировать</div>
+              <div className={styles.btn}>Удалить</div>
             </div>
             <div className={styles.listItem}>
               <p className={styles.questionName}>Name</p>
@@ -177,9 +205,15 @@ CreateTest.propTypes = {
   listAnswer: PropTypes.array.isRequired,
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
-  currentId: PropTypes.number.isRequired,
+  answerId: PropTypes.number.isRequired,
   closeAddingQuestionAction: PropTypes.func.isRequired,
   changeTextAnswerAction: PropTypes.func.isRequired,
+  saveQuestionAction: PropTypes.func.isRequired,
+  textQuestion: PropTypes.string.isRequired,
+  answerList: PropTypes.array.isRequired,
+  questionList: PropTypes.array.isRequired,
+  questionId: PropTypes.number.isRequired,
+  deleteQuestionAction: PropTypes.func.isRequired,
 };
 
 export default CreateTest;

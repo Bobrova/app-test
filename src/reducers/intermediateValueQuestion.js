@@ -7,9 +7,10 @@ import {
   ADD_ANSWER,
   CHANGE_RADIO,
   CHANGE_TEXT_ANSWER_ACTION,
+  ADD_TYPE_QUESTION,
 } from 'constants/ActionTypes';
 
-const initialState = { answerList: [{}] };
+const initialState = { answerList: [{}], textQuestion: '', typeQuestion: '' };
 
 export default function first(state = initialState, action) {
   switch (action.type) {
@@ -59,6 +60,8 @@ export default function first(state = initialState, action) {
             }
             : item),
       };
+    case ADD_TYPE_QUESTION:
+      return { ...state, typeQuestion: action.payload };
     default:
       return state;
   }

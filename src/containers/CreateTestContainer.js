@@ -14,13 +14,19 @@ import {
   changeRadioAction,
   closeAddingQuestionAction,
   changeTextAnswerAction,
+  saveQuestionAction,
+  deleteQuestionAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
   addingQuestion: state.first.addingQuestion,
   typeQuestion: state.first.typeQuestion,
   listAnswer: state.intermediateValueQuestion.answerList,
-  currentId: state.intermediateValueQuestion.answerList.length,
+  answerId: state.intermediateValueQuestion.answerList.length,
+  questionId: state.intermediateValueTest.questionList.length,
+  textQuestion: state.intermediateValueQuestion.textQuestion,
+  answerList: state.intermediateValueQuestion.answerList,
+  questionList: state.intermediateValueTest.questionList,
 });
 
 
@@ -40,5 +46,7 @@ export default connect(
     changeRadioAction,
     closeAddingQuestionAction,
     changeTextAnswerAction,
+    saveQuestionAction,
+    deleteQuestionAction,
   },
 )(CreateTest);

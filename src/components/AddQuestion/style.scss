@@ -1,0 +1,70 @@
+.questionText {
+  display: block;
+  padding: 10px;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btnAddAnswer {
+  display: block;
+  width: 40px;
+  height: 40px;
+  font-size: 36px;
+  background-color: #88fce5;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  color: #444;
+  margin: 10px 5px;
+  border: 1px solid #88fce5;
+  box-sizing: border-box;
+}
+
+.btnAddAnswer:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.addQuestion {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.answerOptionsTitle {
+  margin: 10px;
+}
+
+.answerOptions {
+  // border: 1px solid black;
+}
+
+.answerOptionsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnSave,
+.btnCancel {
+  padding: 10px;
+  border: 1px solid #88fce5;
+  text-decoration: none;
+  margin: 10px 10px;
+  border-radius: 5px;
+  color: #444;
+  background: linear-gradient(to top, #88fce5, #eafcf8);
+  transition: border 0.3s ease;
+  &:hover {
+    border-color: #444;
+    cursor: pointer;
+  }
+}
+
+.blockSaveCancel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blockdiv {
+  color: red;
+}

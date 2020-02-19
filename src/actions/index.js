@@ -39,6 +39,7 @@ export const addTextAnswerAction = payload => ({
   payload,
 });
 export const addAnswerAction = payload => ({ type: types.ADD_ANSWER, payload });
+export const saveQuestionAction = payload => ({ type: types.SAVE_QUESTION, payload });
 export const changeCheckAction = (id) => ({ type: types.CHANGE_CHECK, id });
 export const changeRadioAction = (id) => ({ type: types.CHANGE_RADIO, id });
 export const changeTextAnswerAction = (id, text) => ({
@@ -46,3 +47,5 @@ export const changeTextAnswerAction = (id, text) => ({
   id,
   text,
 });
+export const addTypeQuestionAction = (payload) => ({ type: types.ADD_TYPE_QUESTION, payload });
+export const deleteQuestionAction = (payload) => ({ type: types.DELETE_QUESTION, payload });
