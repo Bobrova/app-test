@@ -12,7 +12,7 @@ class AddQuestion extends Component {
 
   handleClickAddAnswer = () => {
     const { addAnswerAction, answerId } = this.props;
-    addAnswerAction(answerId);
+    addAnswerAction(answerId + 1);
   }
 
   handleClickCloseQuestion = () => {
@@ -30,7 +30,7 @@ class AddQuestion extends Component {
       questionId,
     } = this.props;
     saveQuestionAction({
-      id: questionId,
+      id: questionId + 1,
       textQuestion,
       answerList,
       typeQuestion,

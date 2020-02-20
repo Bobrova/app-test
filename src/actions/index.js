@@ -48,4 +48,4 @@ export const changeTextAnswerAction = (id, text) => ({
   text,
 });
 export const addTypeQuestionAction = (payload) => ({ type: types.ADD_TYPE_QUESTION, payload });
-export const deleteQuestionAction = (payload) => ({ type: types.DELETE_QUESTION, payload });
+export const deleteQuestionAction = id => ({ type: types.DELETE_QUESTION, id });

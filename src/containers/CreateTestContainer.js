@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import CreateTest from 'components/CreateTest';
+import { getCurrentIdAnswer, getCurrentIdQuestion } from 'selectors';
 import {
   addQuestionAction,
   changeTypeQuestionAction,
@@ -22,8 +23,8 @@ const mapStateToProps = state => ({
   addingQuestion: state.first.addingQuestion,
   typeQuestion: state.first.typeQuestion,
   listAnswer: state.intermediateValueQuestion.answerList,
-  answerId: state.intermediateValueQuestion.answerList.length,
-  questionId: state.intermediateValueTest.questionList.length,
+  answerId: getCurrentIdAnswer(state),
+  questionId: getCurrentIdQuestion(state),
   textQuestion: state.intermediateValueQuestion.textQuestion,
   answerList: state.intermediateValueQuestion.answerList,
   questionList: state.intermediateValueTest.questionList,

@@ -10,7 +10,7 @@ import {
   ADD_TYPE_QUESTION,
 } from 'constants/ActionTypes';
 
-const initialState = { answerList: [{}], textQuestion: '', typeQuestion: '' };
+const initialState = { answerList: [], textQuestion: '', typeQuestion: '' };
 
 export default function first(state = initialState, action) {
   switch (action.type) {

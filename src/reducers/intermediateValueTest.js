@@ -15,7 +15,7 @@ export default function first(state = initialState, action) {
     case DELETE_QUESTION:
       return {
         ...state,
-        questionList: state.questionList.filter(item => item.id !== action.payload),
+        questionList: state.questionList.filter(item => item.id !== action.id),
       };
     default:
       return state;
