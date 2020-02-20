@@ -11,8 +11,8 @@ class AddQuestion extends Component {
   }
 
   handleClickAddAnswer = () => {
-    const { addAnswerAction, answerId } = this.props;
-    addAnswerAction(answerId + 1);
+    const { addAnswerAction, nextIdAnswer } = this.props;
+    addAnswerAction(nextIdAnswer + 1);
   }
 
   handleClickCloseQuestion = () => {
@@ -27,14 +27,17 @@ class AddQuestion extends Component {
       answerList,
       closeAddingQuestionAction,
       typeQuestion,
-      questionId,
+      nextIdQuestion,
+      editIdQuestion,
+      setEditQuestion,
     } = this.props;
     saveQuestionAction({
-      id: questionId + 1,
+      id: editIdQuestion === -1 ? nextIdQuestion + 1 : editIdQuestion,
       textQuestion,
       answerList,
       typeQuestion,
     });
+    setEditQuestion(false);
     closeAddingQuestionAction();
   }
 
@@ -42,6 +45,7 @@ class AddQuestion extends Component {
     const {
       typeQuestion,
       listAnswer,
+      textQuestion,
       changeCheckAction,
       addAnswerAction,
       changeRadioAction,
@@ -63,7 +67,12 @@ class AddQuestion extends Component {
     const questionOneOfList = (
       <div className={styles.addQuestion}>
         <p className={styles.typeQuestion}>{typeQuestion}</p>
-        <textarea className={styles.questionText} placeholder="Текст вопроса" onChange={this.handleChangeTextQuestion} />
+        <textarea
+          className={styles.questionText}
+          placeholder="Текст вопроса"
+          onChange={this.handleChangeTextQuestion}
+          value={textQuestion}
+        />
         <div className={styles.answerOptions}>
           <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
           <div className={styles.answerOptionsWrapper}>
@@ -80,7 +89,12 @@ class AddQuestion extends Component {
     const questionFewFromList = (
       <div className={styles.addQuestion}>
         <p className={styles.typeQuestion}>{typeQuestion}</p>
-        <textarea className={styles.questionText} placeholder="Текст вопроса" onChange={this.handleChangeTextQuestion} />
+        <textarea
+          className={styles.questionText}
+          placeholder="Текст вопроса"
+          onChange={this.handleChangeTextQuestion}
+          value={textQuestion}
+        />
         <div className={styles.answerOptions}>
           <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
           <div className={styles.answerOptionsWrapper}>
@@ -97,7 +111,12 @@ class AddQuestion extends Component {
     const questionNumericalAnswer = (
       <div className={styles.addQuestion}>
         <p className={styles.typeQuestion}>{typeQuestion}</p>
-        <textarea className={styles.questionText} placeholder="Текст вопроса" onChange={this.handleChangeTextQuestion} />
+        <textarea
+          className={styles.questionText}
+          placeholder="Текст вопроса"
+          onChange={this.handleChangeTextQuestion}
+          value={textQuestion}
+        />
         <div className={styles.answerOptions}>
           <p className={styles.answerOptionsTitle}>Ответ:</p>
           <div className={styles.answerOptionsWrapper}>
@@ -127,13 +146,15 @@ AddQuestion.propTypes = {
   listAnswer: PropTypes.array.isRequired,
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
-  answerId: PropTypes.number.isRequired,
+  nextIdAnswer: PropTypes.number.isRequired,
   closeAddingQuestionAction: PropTypes.func.isRequired,
   changeTextAnswerAction: PropTypes.func.isRequired,
   saveQuestionAction: PropTypes.func.isRequired,
   textQuestion: PropTypes.string.isRequired,
   answerList: PropTypes.array.isRequired,
-  questionId: PropTypes.number.isRequired,
+  nextIdQuestion: PropTypes.number.isRequired,
+  editIdQuestion: PropTypes.number.isRequired,
+  setEditQuestion: PropTypes.func.isRequired,
 };
 
 export default AddQuestion;

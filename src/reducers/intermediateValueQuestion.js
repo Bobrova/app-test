@@ -8,6 +8,7 @@ import {
   CHANGE_RADIO,
   CHANGE_TEXT_ANSWER_ACTION,
   ADD_TYPE_QUESTION,
+  EDIT_QUESTION,
 } from 'constants/ActionTypes';
 
 const initialState = { answerList: [], textQuestion: '', typeQuestion: '' };
@@ -15,15 +16,17 @@ const initialState = { answerList: [], textQuestion: '', typeQuestion: '' };
 export default function first(state = initialState, action) {
   switch (action.type) {
     case ADD_INITIAL_TWO_ANSWER:
-      return { ...state, answerList: [{ id: 0, textAnswer: '', check: true }, { id: 1, textAnswer: '', check: false }] };
+      return { ...state, answerList: [{ id: 0, textAnswer: '', check: true }, { id: 1, textAnswer: '', check: false }], textQuestion: '' };
     case ADD_INITIAL_NUMBER_ANSWER:
-      return { ...state, answerList: [{ id: 0, textAnswer: '', check: false }] };
+      return { ...state, answerList: [{ id: 0, textAnswer: '', check: false }], textQuestion: '' };
     case ADD_TEXT_QUESTION:
       return { ...state, textQuestion: action.payload };
     case ADD_TEXT_ANSWER:
       return { ...state, textAnswer: [...state.textAnswer, action.payload] };
     case ADD_ANSWER:
       return { ...state, answerList: [...state.answerList, { id: action.payload, textAnswer: '', check: false }] };
+    case EDIT_QUESTION:
+      return action.item;
     case CHANGE_CHECK:
       return {
         ...state,

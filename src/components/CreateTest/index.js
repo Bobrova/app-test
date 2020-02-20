@@ -58,15 +58,20 @@ class CreateTest extends Component {
       listAnswer,
       changeCheckAction,
       changeRadioAction,
-      answerId,
+      nextIdAnswer,
       closeAddingQuestionAction,
       changeTextAnswerAction,
       saveQuestionAction,
       textQuestion,
       answerList,
       questionList,
-      questionId,
+      nextIdQuestion,
       deleteQuestionAction,
+      editQuestionAction,
+      addQuestionAction,
+      changeIdEditQuestion,
+      editIdQuestion,
+      setEditQuestion,
     } = this.props;
 
     const questions = questionList.map(item => (
@@ -74,6 +79,10 @@ class CreateTest extends Component {
         <Question
           item={item}
           deleteQuestionAction={deleteQuestionAction}
+          editQuestionAction={editQuestionAction}
+          addQuestionAction={addQuestionAction}
+          changeIdEditQuestion={changeIdEditQuestion}
+          setEditQuestion={setEditQuestion}
         />
       </div>
     ));
@@ -138,14 +147,16 @@ class CreateTest extends Component {
                 addAnswerAction={addAnswerAction}
                 listAnswer={listAnswer}
                 changeCheckAction={changeCheckAction}
-                answerId={answerId}
+                nextIdAnswer={nextIdAnswer}
                 changeRadioAction={changeRadioAction}
                 closeAddingQuestionAction={closeAddingQuestionAction}
                 changeTextAnswerAction={changeTextAnswerAction}
                 saveQuestionAction={saveQuestionAction}
                 textQuestion={textQuestion}
                 answerList={answerList}
-                questionId={questionId}
+                nextIdQuestion={nextIdQuestion}
+                editIdQuestion={editIdQuestion}
+                setEditQuestion={setEditQuestion}
               />
             )
           }
@@ -165,16 +176,6 @@ class CreateTest extends Component {
               <p className={styles.questionName}>Name</p>
               <div className={styles.btn}>Редактировать</div>
               <div className={styles.btn}>Удалить</div>
-            </div>
-            <div className={styles.listItem}>
-              <p className={styles.questionName}>Name</p>
-              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
-            </div>
-            <div className={styles.listItem}>
-              <p className={styles.questionName}>Name</p>
-              <div className={`${styles.btnEdit} ${styles.btn}`}>Редактировать</div>
-              <div className={`${styles.btnDelete} ${styles.btn}`}>Удалить</div>
             </div>
           </div>
           <div className={styles.blockControlBtn}>
@@ -205,15 +206,19 @@ CreateTest.propTypes = {
   listAnswer: PropTypes.array.isRequired,
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
-  answerId: PropTypes.number.isRequired,
+  nextIdAnswer: PropTypes.number.isRequired,
   closeAddingQuestionAction: PropTypes.func.isRequired,
   changeTextAnswerAction: PropTypes.func.isRequired,
   saveQuestionAction: PropTypes.func.isRequired,
   textQuestion: PropTypes.string.isRequired,
   answerList: PropTypes.array.isRequired,
   questionList: PropTypes.array.isRequired,
-  questionId: PropTypes.number.isRequired,
+  nextIdQuestion: PropTypes.number.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
+  editQuestionAction: PropTypes.func.isRequired,
+  changeIdEditQuestion: PropTypes.func.isRequired,
+  editIdQuestion: PropTypes.number.isRequired,
+  setEditQuestion: PropTypes.func.isRequired,
 };
 
 export default CreateTest;

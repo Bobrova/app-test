@@ -17,17 +17,21 @@ import {
   changeTextAnswerAction,
   saveQuestionAction,
   deleteQuestionAction,
+  editQuestionAction,
+  changeIdEditQuestion,
+  setEditQuestion,
 } from 'actions';
 
 const mapStateToProps = state => ({
   addingQuestion: state.first.addingQuestion,
   typeQuestion: state.first.typeQuestion,
   listAnswer: state.intermediateValueQuestion.answerList,
-  answerId: getCurrentIdAnswer(state),
-  questionId: getCurrentIdQuestion(state),
+  nextIdAnswer: getCurrentIdAnswer(state),
+  nextIdQuestion: getCurrentIdQuestion(state),
   textQuestion: state.intermediateValueQuestion.textQuestion,
   answerList: state.intermediateValueQuestion.answerList,
   questionList: state.intermediateValueTest.questionList,
+  editIdQuestion: state.first.editIdQuestion,
 });
 
 
@@ -49,5 +53,8 @@ export default connect(
     changeTextAnswerAction,
     saveQuestionAction,
     deleteQuestionAction,
+    editQuestionAction,
+    changeIdEditQuestion,
+    setEditQuestion,
   },
 )(CreateTest);

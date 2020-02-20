@@ -21,6 +21,7 @@ class Answer extends Component {
 
   render() {
     const { typeQuestion, item } = this.props;
+    console.log(item);
     const answerOneOfList = (
       <label className={styles.answerLabelRadio}>
         <input
@@ -33,7 +34,7 @@ class Answer extends Component {
         <input
           type="text"
           className={styles.answerText}
-          value={item.text}
+          value={item.textAnswer}
           onChange={this.handleChangeTextAnswer}
         />
       </label>
@@ -50,7 +51,8 @@ class Answer extends Component {
         <input
           type="text"
           className={styles.answerText}
-          value={item.text}
+          value={item.textQnswer}
+          onChange={this.handleChangeTextAnswer}
         />
       </label>
     );
@@ -60,6 +62,8 @@ class Answer extends Component {
           type="text"
           name="number"
           className={styles.answerNumber}
+          value={item.textAnswer}
+          onChange={this.handleChangeTextAnswer}
         />
       </label>
     );
