@@ -6,6 +6,7 @@ import {
 
 const mapStateToProps = state => ({
   first: state.first,
+  testListMain: state.listTest,
 });
 
 export default connect(

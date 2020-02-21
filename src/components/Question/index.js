@@ -13,13 +13,13 @@ class Question extends Component {
       editQuestionAction,
       addQuestionAction,
       item,
-      changeIdEditQuestion,
-      setEditQuestion,
+      changeIdEditQuestionAction,
+      setEditQuestionAction,
     } = this.props;
     editQuestionAction(item);
     addQuestionAction();
-    changeIdEditQuestion(item.id);
-    setEditQuestion(true);
+    changeIdEditQuestionAction(item.id);
+    setEditQuestionAction(true);
   }
 
   render() {
@@ -39,8 +39,8 @@ Question.propTypes = {
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,
   addQuestionAction: PropTypes.func.isRequired,
-  changeIdEditQuestion: PropTypes.func.isRequired,
-  setEditQuestion: PropTypes.func.isRequired,
+  changeIdEditQuestionAction: PropTypes.func.isRequired,
+  setEditQuestionAction: PropTypes.func.isRequired,
 };
 
 export default Question;

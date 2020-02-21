@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import exit from 'img/exit-white.png';
+import PropTypes from 'prop-types';
 import styles from './style.scss';
 
 class Header extends Component {
+  handleClickExit = () => {
+    const { history } = this.props;
+    history.push('/');
+  };
+
   render() {
     return (
       <div className={styles.header}>
@@ -15,11 +21,16 @@ class Header extends Component {
             <div className={styles.userGreeting}>
               <p className={styles.greetingText}>Добро пожаловать Name</p>
             </div>
-            <div className={styles.exitAccount} style={{ backgroundImage: `url("${exit}")` }} />
+            <div className={styles.exitAccount} onClick={this.handleClickExit} style={{ backgroundImage: `url("${exit}")` }} />
           </div>
         </div>
       </div>
     );
   }
 }
+
+Header.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
 export default Header;

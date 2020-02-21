@@ -10,8 +10,8 @@ import {
   closeAddingQuestionAction,
   changeTextAnswerAction,
   saveQuestionAction,
-  setEditQuestion,
-  clearIntermediateValueQuestion,
+  setEditQuestionAction,
+  clearIntermediateValueQuestionAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -38,7 +38,7 @@ export default connect(
     closeAddingQuestionAction,
     changeTextAnswerAction,
     saveQuestionAction,
-    setEditQuestion,
-    clearIntermediateValueQuestion,
+    setEditQuestionAction,
+    clearIntermediateValueQuestionAction,
   },
 )(CreateQuestion);

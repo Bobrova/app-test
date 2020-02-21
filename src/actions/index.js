@@ -13,7 +13,7 @@ export const changeTypeQuestionAction = payload => ({
   type: types.CHANGE_TYPE_QUESTION,
   payload,
 });
-export const addTestAction = payload => ({ type: types.ADD_TEST, payload });
+export const saveTestAction = payload => ({ type: types.SAVE_TEST, payload });
 export const closeAddingQuestionAction = payload => ({
   type: types.CLOSE_ADDING_QUESTION,
   payload,
@@ -50,8 +50,16 @@ export const changeTextAnswerAction = (id, text) => ({
 export const addTypeQuestionAction = (payload) => ({ type: types.ADD_TYPE_QUESTION, payload });
 export const deleteQuestionAction = id => ({ type: types.DELETE_QUESTION, id });
 export const editQuestionAction = item => ({ type: types.EDIT_QUESTION, item });
-export const changeIdEditQuestion = id => ({ type: types.CHANGE_ID_EDIT_QUESTION, id });
-export const setEditQuestion = payload => ({ type: types.SET_EDIT_QUESTION, payload });
-export const clearIntermediateValueQuestion = () => ({
+export const changeIdEditQuestionAction = id => ({ type: types.CHANGE_ID_EDIT_QUESTION, id });
+export const setEditQuestionAction = payload => ({
+  type: types.SET_EDIT_QUESTION,
+  payload,
+});
+export const clearIntermediateValueQuestionAction = payload => ({
   type: types.CLEAR_INTERMEDIATE_VALUE_QUESTION,
+  payload,
+});
+export const clearIntermediateValueTestAction = payload => ({
+  type: types.CLEAR_INTERMEDIATE_VALUE_TEST,
+  payload,
 });

@@ -21,7 +21,6 @@ class Answer extends Component {
 
   render() {
     const { typeQuestion, item } = this.props;
-    console.log(item);
     const answerOneOfList = (
       <label className={styles.answerLabelRadio}>
         <input

@@ -1,7 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import {
+  HashRouter,
+  Switch,
+  Route,
+} from 'react-router-dom';
 import App from 'components/App';
 import MainContainer from 'containers/MainContainer';
 import CreateTestContainer from 'containers/CreateTestContainer';

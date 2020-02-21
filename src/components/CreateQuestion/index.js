@@ -12,7 +12,7 @@ class CreateQuestion extends Component {
 
   handleClickAddAnswer = () => {
     const { addAnswerAction, nextIdAnswer } = this.props;
-    addAnswerAction(nextIdAnswer + 1);
+    addAnswerAction(nextIdAnswer);
   }
 
   handleClickCloseQuestion = () => {
@@ -29,19 +29,19 @@ class CreateQuestion extends Component {
       typeQuestion,
       nextIdQuestion,
       isEditQuestion,
-      setEditQuestion,
+      setEditQuestionAction,
       editIdQuestion,
-      clearIntermediateValueQuestion,
+      clearIntermediateValueQuestionAction,
     } = this.props;
     saveQuestionAction({
-      id: isEditQuestion === false ? nextIdQuestion + 1 : editIdQuestion,
+      id: isEditQuestion === false ? nextIdQuestion : editIdQuestion,
       textQuestion,
       answerList,
       typeQuestion,
     });
-    if (isEditQuestion) setEditQuestion(false);
+    if (isEditQuestion === true) setEditQuestionAction(false);
     closeAddingQuestionAction();
-    clearIntermediateValueQuestion();
+    clearIntermediateValueQuestionAction();
   }
 
   render() {
@@ -158,8 +158,8 @@ CreateQuestion.propTypes = {
   nextIdQuestion: PropTypes.number.isRequired,
   editIdQuestion: PropTypes.number.isRequired,
   isEditQuestion: PropTypes.bool.isRequired,
-  setEditQuestion: PropTypes.func.isRequired,
-  clearIntermediateValueQuestion: PropTypes.func.isRequired,
+  setEditQuestionAction: PropTypes.func.isRequired,
+  clearIntermediateValueQuestionAction: PropTypes.func.isRequired,
 };
 
 export default CreateQuestion;

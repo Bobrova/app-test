@@ -38,8 +38,15 @@ class CreateTest extends Component {
   }
 
   handleSaveTest = () => {
-    const { addTestAction } = this.props;
-    addTestAction({ name: 'hhh', id: 1 });
+    const {
+      saveTestAction,
+      nameTest,
+      questionList,
+      nextIdTest,
+      history,
+    } = this.props;
+    saveTestAction({ id: nextIdTest, nameTest, questionList });
+    history.push('/main/');
   }
 
   handleChangeTestName = (e) => {
@@ -56,10 +63,11 @@ class CreateTest extends Component {
       deleteQuestionAction,
       editQuestionAction,
       addQuestionAction,
-      changeIdEditQuestion,
-      setEditQuestion,
+      changeIdEditQuestionAction,
+      setEditQuestionAction,
+      history,
     } = this.props;
-
+    console.log(history);
     const questions = questionList.map(item => (
       <div key={item.id} className={styles.listItem}>
         <Question
@@ -67,15 +75,15 @@ class CreateTest extends Component {
           deleteQuestionAction={deleteQuestionAction}
           editQuestionAction={editQuestionAction}
           addQuestionAction={addQuestionAction}
-          changeIdEditQuestion={changeIdEditQuestion}
-          setEditQuestion={setEditQuestion}
+          changeIdEditQuestionAction={changeIdEditQuestionAction}
+          setEditQuestionAction={setEditQuestionAction}
         />
       </div>
     ));
 
     return (
       <div className={styles.page}>
-        <Header />
+        <Header history={history} />
         <div className={styles.mainCreateTest}>
           <div className={styles.nameTest}>
             <label forhtml="nameTest" className={styles.labelNameTest}>
@@ -150,7 +158,6 @@ class CreateTest extends Component {
           <div className={styles.blockControlBtn}>
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave} onClick={this.handleSaveTest}>Сохранить</div>
-              <div className={styles.btnCancel}>Отмена</div>
             </div>
             <div className={styles.btnDeleteTest}>Удалить тест</div>
           </div>
@@ -165,15 +172,18 @@ CreateTest.propTypes = {
   addQuestionAction: PropTypes.func.isRequired,
   typeQuestion: PropTypes.string.isRequired,
   changeTypeQuestionAction: PropTypes.func.isRequired,
-  addTestAction: PropTypes.func.isRequired,
+  saveTestAction: PropTypes.func.isRequired,
   addTestNameAction: PropTypes.func.isRequired,
   addInitialTwoAnswerAction: PropTypes.func.isRequired,
   addInitialNumberAnswer: PropTypes.func.isRequired,
   questionList: PropTypes.array.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,
-  changeIdEditQuestion: PropTypes.func.isRequired,
-  setEditQuestion: PropTypes.func.isRequired,
+  changeIdEditQuestionAction: PropTypes.func.isRequired,
+  setEditQuestionAction: PropTypes.func.isRequired,
+  nameTest: PropTypes.string.isRequired,
+  nextIdTest: PropTypes.number.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default CreateTest;

@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import background from 'img/wall.jpg';
 import loginImg from 'img/cat2.png';
 import styles from './style.scss';
 
 class App extends Component {
   handleClickEnter = () => {
-    if (this.validateForm() === 'no') {
-      // console.log('нет');
-    } else {
-      // console.log('да');
-    }
+    const { history } = this.props;
+    if (this.validateForm()) history.push('/main/');
   }
 
   validateForm = () => {
-    const x = document.forms.myForm.login.value;
-    if (x === '') {
-      return 'no';
+    const login = document.forms.myForm.login.value;
+    const password = document.forms.myForm.password.value;
+    if (login === '') {
+      console.log('Вы не ввели логин');
+      alert('Необходимо ввести имя');
+      return false;
     }
-    return 'yes';
+    if (password === '') {
+      console.log('Вы не ввели пароль');
+      alert('Необходимо ввести пароль');
+      return false;
+    }
+    return true;
   }
 
   render() {
@@ -30,11 +35,15 @@ class App extends Component {
             <input type="text" className={styles.input} placeholder="Логин" name="login" />
             <input type="password" className={styles.input} placeholder="Пароль" name="password" />
           </form>
-          <div className={styles.btnLogin} onClick={this.handleClickEnter}>Войти</div>
-          <Link to="/main/" className={styles.btnLogin}>Войти</Link>
+          <div className={styles.btnAuthorization} onClick={this.handleClickEnter}>Войти</div>
         </div>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
 export default App;

@@ -1,0 +1,20 @@
+.startTest {
+  display: block;
+  width: 80%;
+  height: 100%;
+  padding: 10px;
+  margin: 0 10px;
+  box-sizing: border-box;
+  color: #444;
+  border: 1px solid black;
+  border-radius: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn {
+  border: 1px solid black;
+  border-radius: 2px;
+  margin: 0 10px;
+  padding: 10px;
+}

@@ -1,5 +1,5 @@
 import {
-  ADD_TEST,
+  SAVE_TEST,
 } from 'constants/ActionTypes';
 
 const data = [];
@@ -11,7 +11,7 @@ const initialState = localStorage.getItem('app-test')
 
 export default function first(state = initialState, action) {
   switch (action.type) {
-    case ADD_TEST:
+    case SAVE_TEST:
       return [...state, action.payload];
     default:
       return state;

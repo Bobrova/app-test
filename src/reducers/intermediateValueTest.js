@@ -2,6 +2,7 @@ import {
   ADD_TEST_NAME,
   SAVE_QUESTION,
   DELETE_QUESTION,
+  CLEAR_INTERMEDIATE_VALUE_TEST,
 } from 'constants/ActionTypes';
 
 const initialState = { nameTest: '', questionList: [] };
@@ -24,6 +25,8 @@ export default function first(state = initialState, action) {
         ...state,
         questionList: state.questionList.filter(item => item.id !== action.id),
       };
+    case CLEAR_INTERMEDIATE_VALUE_TEST:
+      return { nameTest: '', questionList: [] };
     default:
       return state;
   }
