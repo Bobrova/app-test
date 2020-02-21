@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Answer from 'components/Answer';
 import styles from './style.scss';
 
-class AddQuestion extends Component {
+class CreateQuestion extends Component {
   handleChangeTextQuestion = (e) => {
     const { addTextQuestionAction } = this.props;
     const { value } = e.target;
@@ -28,17 +28,20 @@ class AddQuestion extends Component {
       closeAddingQuestionAction,
       typeQuestion,
       nextIdQuestion,
-      editIdQuestion,
+      isEditQuestion,
       setEditQuestion,
+      editIdQuestion,
+      clearIntermediateValueQuestion,
     } = this.props;
     saveQuestionAction({
-      id: editIdQuestion === -1 ? nextIdQuestion + 1 : editIdQuestion,
+      id: isEditQuestion === false ? nextIdQuestion + 1 : editIdQuestion,
       textQuestion,
       answerList,
       typeQuestion,
     });
-    setEditQuestion(false);
+    if (isEditQuestion) setEditQuestion(false);
     closeAddingQuestionAction();
+    clearIntermediateValueQuestion();
   }
 
   render() {
@@ -139,7 +142,7 @@ class AddQuestion extends Component {
   }
 }
 
-AddQuestion.propTypes = {
+CreateQuestion.propTypes = {
   typeQuestion: PropTypes.string.isRequired,
   addTextQuestionAction: PropTypes.func.isRequired,
   addAnswerAction: PropTypes.func.isRequired,
@@ -154,7 +157,9 @@ AddQuestion.propTypes = {
   answerList: PropTypes.array.isRequired,
   nextIdQuestion: PropTypes.number.isRequired,
   editIdQuestion: PropTypes.number.isRequired,
+  isEditQuestion: PropTypes.bool.isRequired,
   setEditQuestion: PropTypes.func.isRequired,
+  clearIntermediateValueQuestion: PropTypes.func.isRequired,
 };
 
-export default AddQuestion;
+export default CreateQuestion;

@@ -1,6 +1,6 @@
 .questionName {
   display: block;
-  width: 100%;
+  width: 80%;
   height: 100%;
   padding: 10px;
   margin: 0 10px;
@@ -8,12 +8,8 @@
   color: #444;
   border: 1px solid black;
   border-radius: 3px;
-}
-
-.listItem {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn {

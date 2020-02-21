@@ -34,8 +34,16 @@
 }
 
 .questionList {
+  width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.listItem {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
 }
 
 .blockControlBtn {
@@ -74,18 +82,6 @@
   }
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 20px 20px 20px;
-}
-
-.listItem {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px;
-}
-
 .btn {
   border: 1px solid black;
   border-radius: 2px;
@@ -103,11 +99,15 @@
   color: #444;
   border: 1px solid black;
   border-radius: 3px;
+  text-overflow: ellipsis;
 }
 
 .dropDown {
   position: relative;
   display: inline-block;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .dropDown_content {
@@ -120,10 +120,6 @@
   min-width: 105px;
   z-index: 1;
   box-sizing: border-box;
-}
-
-.dropDown:hover {
-  cursor: pointer;
 }
 
 .dropDown:hover .dropDown_content {

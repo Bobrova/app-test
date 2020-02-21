@@ -26,7 +26,7 @@ class Question extends Component {
     const { item } = this.props;
     return (
       <>
-        <p className={styles.questionName}>{item.textQuestion}</p>
+        <div className={styles.questionName}>{item.textQuestion}</div>
         <div className={styles.btn} onClick={this.handleClickEditQuestion}>Редактировать</div>
         <div className={styles.btn} onClick={this.handleClickDeleteQuestion}>Удалить</div>
       </>

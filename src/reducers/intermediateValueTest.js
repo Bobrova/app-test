@@ -11,7 +11,6 @@ export default function first(state = initialState, action) {
     case ADD_TEST_NAME:
       return { ...state, nameTest: action.payload };
     case SAVE_QUESTION:
-      console.log(state.questionList.filter(item => item.id === action.item.id));
       return {
         ...state,
         questionList: state.questionList.filter(item => item.id === action.item.id).length !== 0

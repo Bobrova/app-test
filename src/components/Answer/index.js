@@ -51,7 +51,7 @@ class Answer extends Component {
         <input
           type="text"
           className={styles.answerText}
-          value={item.textQnswer}
+          value={item.textAnswer}
           onChange={this.handleChangeTextAnswer}
         />
       </label>

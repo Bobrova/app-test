@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from 'components/Header';
-import AddQuestion from 'components/AddQuestion';
+import CreateQuestionContainer from 'containers/CreateQuestionContainer';
 import Question from 'components/Question';
 import styles from './style.scss';
 
@@ -52,25 +52,11 @@ class CreateTest extends Component {
     const {
       addingQuestion,
       typeQuestion,
-      addTextQuestionAction,
-      addTextAnswerAction,
-      addAnswerAction,
-      listAnswer,
-      changeCheckAction,
-      changeRadioAction,
-      nextIdAnswer,
-      closeAddingQuestionAction,
-      changeTextAnswerAction,
-      saveQuestionAction,
-      textQuestion,
-      answerList,
       questionList,
-      nextIdQuestion,
       deleteQuestionAction,
       editQuestionAction,
       addQuestionAction,
       changeIdEditQuestion,
-      editIdQuestion,
       setEditQuestion,
     } = this.props;
 
@@ -140,24 +126,7 @@ class CreateTest extends Component {
           </div>
           {
             addingQuestion && (
-              <AddQuestion
-                typeQuestion={typeQuestion}
-                addTextQuestionAction={addTextQuestionAction}
-                addTextAnswerAction={addTextAnswerAction}
-                addAnswerAction={addAnswerAction}
-                listAnswer={listAnswer}
-                changeCheckAction={changeCheckAction}
-                nextIdAnswer={nextIdAnswer}
-                changeRadioAction={changeRadioAction}
-                closeAddingQuestionAction={closeAddingQuestionAction}
-                changeTextAnswerAction={changeTextAnswerAction}
-                saveQuestionAction={saveQuestionAction}
-                textQuestion={textQuestion}
-                answerList={answerList}
-                nextIdQuestion={nextIdQuestion}
-                editIdQuestion={editIdQuestion}
-                setEditQuestion={setEditQuestion}
-              />
+              <CreateQuestionContainer />
             )
           }
           <div className={styles.questionList}>
@@ -198,26 +167,12 @@ CreateTest.propTypes = {
   changeTypeQuestionAction: PropTypes.func.isRequired,
   addTestAction: PropTypes.func.isRequired,
   addTestNameAction: PropTypes.func.isRequired,
-  addTextQuestionAction: PropTypes.func.isRequired,
-  addTextAnswerAction: PropTypes.func.isRequired,
-  addAnswerAction: PropTypes.func.isRequired,
   addInitialTwoAnswerAction: PropTypes.func.isRequired,
   addInitialNumberAnswer: PropTypes.func.isRequired,
-  listAnswer: PropTypes.array.isRequired,
-  changeCheckAction: PropTypes.func.isRequired,
-  changeRadioAction: PropTypes.func.isRequired,
-  nextIdAnswer: PropTypes.number.isRequired,
-  closeAddingQuestionAction: PropTypes.func.isRequired,
-  changeTextAnswerAction: PropTypes.func.isRequired,
-  saveQuestionAction: PropTypes.func.isRequired,
-  textQuestion: PropTypes.string.isRequired,
-  answerList: PropTypes.array.isRequired,
   questionList: PropTypes.array.isRequired,
-  nextIdQuestion: PropTypes.number.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,
   changeIdEditQuestion: PropTypes.func.isRequired,
-  editIdQuestion: PropTypes.number.isRequired,
   setEditQuestion: PropTypes.func.isRequired,
 };
 

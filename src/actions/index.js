@@ -52,3 +52,6 @@ export const deleteQuestionAction = id => ({ type: types.DELETE_QUESTION, id });
 export const editQuestionAction = item => ({ type: types.EDIT_QUESTION, item });
 export const changeIdEditQuestion = id => ({ type: types.CHANGE_ID_EDIT_QUESTION, id });
 export const setEditQuestion = payload => ({ type: types.SET_EDIT_QUESTION, payload });
+export const clearIntermediateValueQuestion = () => ({
+  type: types.CLEAR_INTERMEDIATE_VALUE_QUESTION,
+});

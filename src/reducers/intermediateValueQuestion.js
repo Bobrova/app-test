@@ -9,6 +9,7 @@ import {
   CHANGE_TEXT_ANSWER_ACTION,
   ADD_TYPE_QUESTION,
   EDIT_QUESTION,
+  CLEAR_INTERMEDIATE_VALUE_QUESTION,
 } from 'constants/ActionTypes';
 
 const initialState = { answerList: [], textQuestion: '', typeQuestion: '' };
@@ -65,6 +66,8 @@ export default function first(state = initialState, action) {
       };
     case ADD_TYPE_QUESTION:
       return { ...state, typeQuestion: action.payload };
+    case CLEAR_INTERMEDIATE_VALUE_QUESTION:
+      return { answerList: [], textQuestion: '', typeQuestion: '' };
     default:
       return state;
   }
