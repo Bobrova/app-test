@@ -12,7 +12,11 @@ const initialState = localStorage.getItem('app-test')
 export default function first(state = initialState, action) {
   switch (action.type) {
     case SAVE_TEST:
-      return [...state, action.payload];
+      return state.filter(item => item.id === action.item.id).length !== 0
+        ? state.map(item => item.id === action.item.id
+          ? action.item
+          : item)
+        : [...state, action.item];
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from 'components/Header';
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
 import Question from 'components/Question';
+import ModalWindow from 'components/ModalWindow';
 import styles from './style.scss';
 
 class CreateTest extends Component {
@@ -44,8 +45,18 @@ class CreateTest extends Component {
       questionList,
       nextIdTest,
       history,
+      clearIntermediateValueTestAction,
+      isEditTest,
+      editIdTest,
+      setEditTestAction,
     } = this.props;
-    saveTestAction({ id: nextIdTest, nameTest, questionList });
+    saveTestAction({
+      id: isEditTest === false ? nextIdTest : editIdTest,
+      nameTest,
+      questionList,
+    });
+    if (isEditTest === true) setEditTestAction(false);
+    clearIntermediateValueTestAction();
     history.push('/main/');
   }
 
@@ -53,6 +64,11 @@ class CreateTest extends Component {
     const { addTestNameAction } = this.props;
     const { value } = e.target;
     addTestNameAction(value);
+  }
+
+  handleDeleteTest = () => {
+    const { showModalWindowAction } = this.props;
+    showModalWindowAction();
   }
 
   render() {
@@ -66,8 +82,10 @@ class CreateTest extends Component {
       changeIdEditQuestionAction,
       setEditQuestionAction,
       history,
+      nameTest,
+      isModalWindow,
+      showModalWindowAction,
     } = this.props;
-    console.log(history);
     const questions = questionList.map(item => (
       <div key={item.id} className={styles.listItem}>
         <Question
@@ -80,6 +98,7 @@ class CreateTest extends Component {
         />
       </div>
     ));
+    const isEmptyQuestionList = questions.length === 0;
 
     return (
       <div className={styles.page}>
@@ -93,6 +112,7 @@ class CreateTest extends Component {
                 className={styles.inputNameTest}
                 name="nameTest"
                 placeholder="Название теста"
+                value={nameTest}
                 onChange={this.handleChangeTestName}
               />
             </label>
@@ -138,28 +158,17 @@ class CreateTest extends Component {
             )
           }
           <div className={styles.questionList}>
-            {questions}
-            <div className={styles.listItem}>
-              <p className={styles.questionName}>Name</p>
-              <div className={styles.btn}>Редактировать</div>
-              <div className={styles.btn}>Удалить</div>
-            </div>
-            <div className={styles.listItem}>
-              <p className={styles.questionName}>Name</p>
-              <div className={styles.btn}>Редактировать</div>
-              <div className={styles.btn}>Удалить</div>
-            </div>
-            <div className={styles.listItem}>
-              <p className={styles.questionName}>Name</p>
-              <div className={styles.btn}>Редактировать</div>
-              <div className={styles.btn}>Удалить</div>
-            </div>
+            {isEmptyQuestionList ? <div className={styles.emptyList}>Ничего нет</div> : questions}
           </div>
           <div className={styles.blockControlBtn}>
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave} onClick={this.handleSaveTest}>Сохранить</div>
             </div>
-            <div className={styles.btnDeleteTest}>Удалить тест</div>
+            <div className={styles.btnDeleteTest} onClick={this.handleDeleteTest}>Удалить тест</div>
+            {isModalWindow && <ModalWindow
+              contentModalWindow="sdjbsdsdgsuvhdsh"
+              showModalWindowAction={showModalWindowAction}
+            />}
           </div>
         </div>
       </div>
@@ -184,6 +193,12 @@ CreateTest.propTypes = {
   nameTest: PropTypes.string.isRequired,
   nextIdTest: PropTypes.number.isRequired,
   history: PropTypes.object.isRequired,
+  clearIntermediateValueTestAction: PropTypes.func.isRequired,
+  isEditTest: PropTypes.bool.isRequired,
+  editIdTest: PropTypes.number.isRequired,
+  setEditTestAction: PropTypes.func.isRequired,
+  showModalWindowAction: PropTypes.func.isRequired,
+  isModalWindow: PropTypes.bool.isRequired,
 };
 
 export default CreateTest;

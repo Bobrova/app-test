@@ -4,6 +4,9 @@ import {
   CLOSE_ADDING_QUESTION,
   CHANGE_ID_EDIT_QUESTION,
   SET_EDIT_QUESTION,
+  CHANGE_ID_EDIT_TEST,
+  SET_EDIT_TEST,
+  SHOW_MODAL_WINDOW,
 } from 'constants/ActionTypes';
 
 const initialState = {
@@ -12,6 +15,9 @@ const initialState = {
   counterAnswer: 0,
   editIdQuestion: -1,
   isEditQuestion: false,
+  editIdTest: -1,
+  isEditTest: false,
+  isModalWindow: false,
 };
 
 export default function first(state = initialState, action) {
@@ -40,6 +46,21 @@ export default function first(state = initialState, action) {
       return {
         ...state,
         isEditQuestion: action.payload,
+      };
+    case CHANGE_ID_EDIT_TEST:
+      return {
+        ...state,
+        editIdTest: action.id,
+      };
+    case SET_EDIT_TEST:
+      return {
+        ...state,
+        isEditTest: action.payload,
+      };
+    case SHOW_MODAL_WINDOW:
+      return {
+        ...state,
+        isModalWindow: !state.isModalWindow,
       };
     default:
       return state;

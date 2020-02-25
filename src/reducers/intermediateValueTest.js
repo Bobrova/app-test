@@ -3,6 +3,7 @@ import {
   SAVE_QUESTION,
   DELETE_QUESTION,
   CLEAR_INTERMEDIATE_VALUE_TEST,
+  EDIT_TEST,
 } from 'constants/ActionTypes';
 
 const initialState = { nameTest: '', questionList: [] };
@@ -27,6 +28,8 @@ export default function first(state = initialState, action) {
       };
     case CLEAR_INTERMEDIATE_VALUE_TEST:
       return { nameTest: '', questionList: [] };
+    case EDIT_TEST:
+      return action.item;
     default:
       return state;
   }

@@ -2,6 +2,9 @@ import { connect } from 'react-redux';
 import Main from 'components/Main';
 import {
   addFirstAction,
+  editTestAction,
+  changeIdEditTestAction,
+  setEditTestAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -13,5 +16,8 @@ export default connect(
   mapStateToProps,
   {
     addFirstAction,
+    editTestAction,
+    changeIdEditTestAction,
+    setEditTestAction,
   },
 )(Main);

@@ -13,6 +13,8 @@ import {
   changeIdEditQuestionAction,
   setEditQuestionAction,
   clearIntermediateValueTestAction,
+  setEditTestAction,
+  showModalWindowAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -21,6 +23,9 @@ const mapStateToProps = state => ({
   questionList: state.intermediateValueTest.questionList,
   nameTest: state.intermediateValueTest.nameTest,
   nextIdTest: getCurrentIdTest(state),
+  isEditTest: state.first.isEditTest,
+  editIdTest: state.first.editIdTest,
+  isModalWindow: state.first.isModalWindow,
 });
 
 
@@ -38,5 +43,7 @@ export default connect(
     changeIdEditQuestionAction,
     setEditQuestionAction,
     clearIntermediateValueTestAction,
+    setEditTestAction,
+    showModalWindowAction,
   },
 )(CreateTest);
