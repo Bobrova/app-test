@@ -25,3 +25,4 @@ export const EDIT_TEST = 'EDIT_TEST';
 export const SET_EDIT_TEST = 'SET_EDIT_TEST';
 export const CHANGE_ID_EDIT_TEST = 'CHANGE_ID_EDIT_TEST';
 export const SHOW_MODAL_WINDOW = 'SHOW_MODAL_WINDOW';
+export const DELETE_TEST = 'DELETE_TEST';

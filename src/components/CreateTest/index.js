@@ -66,9 +66,23 @@ class CreateTest extends Component {
     addTestNameAction(value);
   }
 
+  clickConfirm = () => {
+    const {
+      clearIntermediateValueTestAction,
+      deleteTestAction,
+      history,
+      editIdTest,
+    } = this.props;
+    deleteTestAction(editIdTest);
+    clearIntermediateValueTestAction();
+    history.push('/main/');
+  }
+
   handleDeleteTest = () => {
-    const { showModalWindowAction } = this.props;
-    showModalWindowAction();
+    const {
+      showModalWindowAction,
+    } = this.props;
+    showModalWindowAction(true);
   }
 
   render() {
@@ -166,8 +180,9 @@ class CreateTest extends Component {
             </div>
             <div className={styles.btnDeleteTest} onClick={this.handleDeleteTest}>Удалить тест</div>
             {isModalWindow && <ModalWindow
-              contentModalWindow="sdjbsdsdgsuvhdsh"
+              contentModalWindow="Тест будет удален!!! Вы уверены что вы в трезвом уме и с чистой памятью?"
               showModalWindowAction={showModalWindowAction}
+              clickConfirm={this.clickConfirm}
             />}
           </div>
         </div>
@@ -199,6 +214,7 @@ CreateTest.propTypes = {
   setEditTestAction: PropTypes.func.isRequired,
   showModalWindowAction: PropTypes.func.isRequired,
   isModalWindow: PropTypes.bool.isRequired,
+  deleteTestAction: PropTypes.func.isRequired,
 };
 
 export default CreateTest;

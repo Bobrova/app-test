@@ -18,6 +18,8 @@ const initialState = {
   editIdTest: -1,
   isEditTest: false,
   isModalWindow: false,
+  isModalConfirm: false,
+  isModalCancel: false,
 };
 
 export default function first(state = initialState, action) {
@@ -60,7 +62,7 @@ export default function first(state = initialState, action) {
     case SHOW_MODAL_WINDOW:
       return {
         ...state,
-        isModalWindow: !state.isModalWindow,
+        isModalWindow: action.payload,
       };
     default:
       return state;

@@ -69,4 +69,5 @@ export const setEditTestAction = payload => ({
   type: types.SET_EDIT_TEST,
   payload,
 });
-export const showModalWindowAction = () => ({ type: types.SHOW_MODAL_WINDOW });
+export const showModalWindowAction = payload => ({ type: types.SHOW_MODAL_WINDOW, payload });
+export const deleteTestAction = id => ({ type: types.DELETE_TEST, id });

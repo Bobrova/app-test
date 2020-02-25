@@ -1,5 +1,6 @@
 import {
   SAVE_TEST,
+  DELETE_TEST,
 } from 'constants/ActionTypes';
 
 const data = [];
@@ -17,6 +18,9 @@ export default function first(state = initialState, action) {
           ? action.item
           : item)
         : [...state, action.item];
+    case DELETE_TEST:
+      console.log(action.id);
+      return state.filter(item => item.id !== action.id);
     default:
       return state;
   }

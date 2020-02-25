@@ -15,6 +15,7 @@ import {
   clearIntermediateValueTestAction,
   setEditTestAction,
   showModalWindowAction,
+  deleteTestAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -45,5 +46,6 @@ export default connect(
     clearIntermediateValueTestAction,
     setEditTestAction,
     showModalWindowAction,
+    deleteTestAction,
   },
 )(CreateTest);
