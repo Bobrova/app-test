@@ -17,13 +17,19 @@ class Test extends Component {
     history.push('/main/create-test');
   }
 
+  handleClickTest = () => {
+    const { item, history, changeTakingTest } = this.props;
+    changeTakingTest(item);
+    history.push(`/main/test-${item.id}`);
+  }
+
   render() {
     const { item } = this.props;
     return (
-      <>
-        <div className={styles.startTest}>{item.nameTest}</div>
+      <div className={styles.listItem}>
+        <div className={styles.startTest} onClick={this.handleClickTest}>{item.nameTest}</div>
         <div className={`${styles.btnEdit} ${styles.btn}`} onClick={this.handleClickEditTest}>Редактировать</div>
-      </>
+      </div>
     );
   }
 }
@@ -35,6 +41,7 @@ Test.propTypes = {
   history: PropTypes.object.isRequired,
   changeIdEditTestAction: PropTypes.func.isRequired,
   setEditTestAction: PropTypes.func.isRequired,
+  changeTakingTest: PropTypes.func.isRequired,
 };
 
 export default Test;

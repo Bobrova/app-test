@@ -15,15 +15,15 @@ import {
 } from 'actions';
 
 const mapStateToProps = state => ({
-  typeQuestion: state.first.typeQuestion,
+  typeQuestion: state.intermediateValueQuestion.typeQuestion === '' ? state.common.typeQuestion : state.intermediateValueQuestion.typeQuestion,
   listAnswer: state.intermediateValueQuestion.answerList,
   nextIdAnswer: getCurrentIdAnswer(state),
   nextIdQuestion: getCurrentIdQuestion(state),
   textQuestion: state.intermediateValueQuestion.textQuestion,
   answerList: state.intermediateValueQuestion.answerList,
   questionList: state.intermediateValueTest.questionList,
-  isEditQuestion: state.first.isEditQuestion,
-  editIdQuestion: state.first.editIdQuestion,
+  isEditQuestion: state.common.isEditQuestion,
+  editIdQuestion: state.common.editIdQuestion,
 });
 
 

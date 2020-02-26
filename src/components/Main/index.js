@@ -13,17 +13,18 @@ class Main extends Component {
       editTestAction,
       setEditTestAction,
       changeIdEditTestAction,
+      changeTakingTest,
     } = this.props;
     const listTest = testListMain.map(item => (
-      <div key={item.id} className={styles.listItem}>
-        <Test
-          item={item}
-          editTestAction={editTestAction}
-          history={history}
-          setEditTestAction={setEditTestAction}
-          changeIdEditTestAction={changeIdEditTestAction}
-        />
-      </div>
+      <Test
+        key={item.id}
+        item={item}
+        editTestAction={editTestAction}
+        history={history}
+        setEditTestAction={setEditTestAction}
+        changeIdEditTestAction={changeIdEditTestAction}
+        changeTakingTest={changeTakingTest}
+      />
     ));
     const isEmptyList = listTest.length === 0;
     return (
@@ -51,6 +52,7 @@ Main.propTypes = {
   editTestAction: PropTypes.func.isRequired,
   changeIdEditTestAction: PropTypes.func.isRequired,
   setEditTestAction: PropTypes.func.isRequired,
+  changeTakingTest: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 
-import first from './first';
+import common from './common';
 import listTest from './listTest';
 import intermediateValueTest from './intermediateValueTest';
 import intermediateValueQuestion from './intermediateValueQuestion';
+import takingTest from './takingTest';
 
 export default combineReducers({
-  first,
+  common,
   listTest,
   intermediateValueTest,
   intermediateValueQuestion,
+  takingTest,
 });

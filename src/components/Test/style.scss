@@ -10,6 +10,10 @@
   border-radius: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 5px 1px gray;
+  }
 }
 
 .btn {
@@ -21,4 +25,11 @@
     cursor: pointer;
     background-color: green;
   }
+}
+
+.listItem {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
 }

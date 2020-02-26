@@ -9,7 +9,7 @@ import {
 import App from 'components/App';
 import MainContainer from 'containers/MainContainer';
 import CreateTestContainer from 'containers/CreateTestContainer';
-import PassingTheTest from 'components/PassingTheTest';
+import TakingTestContainer from 'containers/TakingTestContainer';
 import store from './store/configureStore';
 
 render(
@@ -32,8 +32,8 @@ render(
           exact
         />
         <Route
-          path="/main/test"
-          component={PassingTheTest}
+          path="/main/test-:id"
+          component={TakingTestContainer}
           exact
         />
       </Switch>

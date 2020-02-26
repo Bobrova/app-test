@@ -5,10 +5,11 @@ import {
   editTestAction,
   changeIdEditTestAction,
   setEditTestAction,
+  changeTakingTest,
 } from 'actions';
 
 const mapStateToProps = state => ({
-  first: state.first,
+  first: state.common,
   testListMain: state.listTest,
 });
 
@@ -19,5 +20,6 @@ export default connect(
     editTestAction,
     changeIdEditTestAction,
     setEditTestAction,
+    changeTakingTest,
   },
 )(Main);

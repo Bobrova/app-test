@@ -49,6 +49,7 @@ class CreateTest extends Component {
       isEditTest,
       editIdTest,
       setEditTestAction,
+      clearTypeQuestionAction,
     } = this.props;
     saveTestAction({
       id: isEditTest === false ? nextIdTest : editIdTest,
@@ -57,6 +58,7 @@ class CreateTest extends Component {
     });
     if (isEditTest === true) setEditTestAction(false);
     clearIntermediateValueTestAction();
+    clearTypeQuestionAction();
     history.push('/main/');
   }
 
@@ -99,17 +101,23 @@ class CreateTest extends Component {
       nameTest,
       isModalWindow,
       showModalWindowAction,
+      isEditQuestion,
+      editIdQuestion,
     } = this.props;
     const questions = questionList.map(item => (
       <div key={item.id} className={styles.listItem}>
-        <Question
-          item={item}
-          deleteQuestionAction={deleteQuestionAction}
-          editQuestionAction={editQuestionAction}
-          addQuestionAction={addQuestionAction}
-          changeIdEditQuestionAction={changeIdEditQuestionAction}
-          setEditQuestionAction={setEditQuestionAction}
-        />
+        {editIdQuestion === item.id && isEditQuestion ? (
+          <CreateQuestionContainer />
+        ) : (
+          <Question
+            item={item}
+            deleteQuestionAction={deleteQuestionAction}
+            editQuestionAction={editQuestionAction}
+            addQuestionAction={addQuestionAction}
+            changeIdEditQuestionAction={changeIdEditQuestionAction}
+            setEditQuestionAction={setEditQuestionAction}
+          />
+        )}
       </div>
     ));
     const isEmptyQuestionList = questions.length === 0;
@@ -167,9 +175,7 @@ class CreateTest extends Component {
             Добавить вопрос
           </div>
           {
-            addingQuestion && (
-              <CreateQuestionContainer />
-            )
+            (addingQuestion && !isEditQuestion) && (<CreateQuestionContainer />)
           }
           <div className={styles.questionList}>
             {isEmptyQuestionList ? <div className={styles.emptyList}>Ничего нет</div> : questions}
@@ -215,6 +221,9 @@ CreateTest.propTypes = {
   showModalWindowAction: PropTypes.func.isRequired,
   isModalWindow: PropTypes.bool.isRequired,
   deleteTestAction: PropTypes.func.isRequired,
+  isEditQuestion: PropTypes.bool.isRequired,
+  editIdQuestion: PropTypes.number.isRequired,
+  clearTypeQuestionAction: PropTypes.func.isRequired,
 };
 
 export default CreateTest;

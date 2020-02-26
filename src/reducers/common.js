@@ -7,22 +7,20 @@ import {
   CHANGE_ID_EDIT_TEST,
   SET_EDIT_TEST,
   SHOW_MODAL_WINDOW,
+  CLEAR_TYPE_QUESTION,
 } from 'constants/ActionTypes';
 
 const initialState = {
   addingQuestion: false,
   typeQuestion: '',
-  counterAnswer: 0,
   editIdQuestion: -1,
   isEditQuestion: false,
   editIdTest: -1,
   isEditTest: false,
   isModalWindow: false,
-  isModalConfirm: false,
-  isModalCancel: false,
 };
 
-export default function first(state = initialState, action) {
+export default function common(state = initialState, action) {
   switch (action.type) {
     case ADD_QUESTION:
       return {
@@ -63,6 +61,11 @@ export default function first(state = initialState, action) {
       return {
         ...state,
         isModalWindow: action.payload,
+      };
+    case CLEAR_TYPE_QUESTION:
+      return {
+        ...state,
+        typeQuestion: '',
       };
     default:
       return state;
