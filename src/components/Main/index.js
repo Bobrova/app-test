@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Header from 'components/Header';
+import HeaderContainer from 'containers/HeaderContainer';
 import Test from 'components/Test';
 import styles from './style.scss';
 
@@ -14,6 +14,7 @@ class Main extends Component {
       setEditTestAction,
       changeIdEditTestAction,
       changeTakingTest,
+      isAdmin,
     } = this.props;
     const listTest = testListMain.map(item => (
       <Test
@@ -24,14 +25,15 @@ class Main extends Component {
         setEditTestAction={setEditTestAction}
         changeIdEditTestAction={changeIdEditTestAction}
         changeTakingTest={changeTakingTest}
+        isAdmin={isAdmin}
       />
     ));
     const isEmptyList = listTest.length === 0;
     return (
       <div className={styles.page}>
-        <Header history={history} />
+        <HeaderContainer history={history} />
         <div className={styles.mainContent}>
-          <Link to="/main/create-test" className={styles.btnCreateTest}>Создать тест</Link>
+          {isAdmin && <Link to="/main/create-test" className={styles.btnCreateTest}>Создать тест</Link>}
           {
             isEmptyList ? (
               <div className={styles.emptyList}>Ничего нет</div>
@@ -45,7 +47,6 @@ class Main extends Component {
   }
 }
 
-
 Main.propTypes = {
   testListMain: PropTypes.array.isRequired,
   history: PropTypes.object.isRequired,
@@ -53,6 +54,7 @@ Main.propTypes = {
   changeIdEditTestAction: PropTypes.func.isRequired,
   setEditTestAction: PropTypes.func.isRequired,
   changeTakingTest: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
 };
 
 export default Main;

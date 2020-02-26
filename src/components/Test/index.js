@@ -24,16 +24,15 @@ class Test extends Component {
   }
 
   render() {
-    const { item } = this.props;
+    const { item, isAdmin } = this.props;
     return (
       <div className={styles.listItem}>
         <div className={styles.startTest} onClick={this.handleClickTest}>{item.nameTest}</div>
-        <div className={`${styles.btnEdit} ${styles.btn}`} onClick={this.handleClickEditTest}>Редактировать</div>
+        {isAdmin && <div className={`${styles.btnEdit} ${styles.btn}`} onClick={this.handleClickEditTest}>Редактировать</div>}
       </div>
     );
   }
 }
-
 
 Test.propTypes = {
   item: PropTypes.object.isRequired,
@@ -42,6 +41,7 @@ Test.propTypes = {
   changeIdEditTestAction: PropTypes.func.isRequired,
   setEditTestAction: PropTypes.func.isRequired,
   changeTakingTest: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
 };
 
 export default Test;

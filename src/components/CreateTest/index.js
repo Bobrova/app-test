@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Header from 'components/Header';
+import HeaderContainer from 'containers/HeaderContainer';
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
 import Question from 'components/Question';
 import ModalWindow from 'components/ModalWindow';
@@ -124,7 +124,7 @@ class CreateTest extends Component {
 
     return (
       <div className={styles.page}>
-        <Header history={history} />
+        <HeaderContainer history={history} />
         <div className={styles.mainCreateTest}>
           <div className={styles.nameTest}>
             <label forhtml="nameTest" className={styles.labelNameTest}>

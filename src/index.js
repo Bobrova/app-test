@@ -6,7 +6,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import App from 'components/App';
+import AppContainer from 'containers/AppContainer';
 import MainContainer from 'containers/MainContainer';
 import CreateTestContainer from 'containers/CreateTestContainer';
 import TakingTestContainer from 'containers/TakingTestContainer';
@@ -18,7 +18,7 @@ render(
       <Switch>
         <Route
           path="/"
-          component={App}
+          component={AppContainer}
           exact
         />
         <Route

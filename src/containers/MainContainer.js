@@ -11,6 +11,7 @@ import {
 const mapStateToProps = state => ({
   first: state.common,
   testListMain: state.listTest,
+  isAdmin: state.common.isAdmin,
 });
 
 export default connect(

@@ -10,6 +10,7 @@ class Header extends Component {
   };
 
   render() {
+    const { userName } = this.props;
     return (
       <div className={styles.header}>
         <div className={styles.headerWrapper}>
@@ -19,7 +20,10 @@ class Header extends Component {
           </div>
           <div className={styles.userData}>
             <div className={styles.userGreeting}>
-              <p className={styles.greetingText}>Добро пожаловать Name</p>
+              <p className={styles.greetingText}>
+                Добро пожаловать
+                <span className={styles.userName}>{userName}</span>
+              </p>
             </div>
             <div className={styles.exitAccount} onClick={this.handleClickExit} style={{ backgroundImage: `url("${exit}")` }} />
           </div>
@@ -31,6 +35,7 @@ class Header extends Component {
 
 Header.propTypes = {
   history: PropTypes.object.isRequired,
+  userName: PropTypes.string.isRequired,
 };
 
 export default Header;

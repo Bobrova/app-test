@@ -74,3 +74,5 @@ export const setEditTestAction = payload => ({
 });
 export const showModalWindowAction = payload => ({ type: types.SHOW_MODAL_WINDOW, payload });
 export const deleteTestAction = id => ({ type: types.DELETE_TEST, id });
+export const changeAccessRights = payload => ({ type: types.CHANGE_ACCESS_RIGHTS, payload });
+export const addDataUser = payload => ({ type: types.ADD_DATA_USER, payload });
