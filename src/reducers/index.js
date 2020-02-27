@@ -5,6 +5,7 @@ import listTest from './listTest';
 import intermediateValueTest from './intermediateValueTest';
 import intermediateValueQuestion from './intermediateValueQuestion';
 import takingTest from './takingTest';
+import userData from './userData';
 
 export default combineReducers({
   common,
@@ -12,4 +13,5 @@ export default combineReducers({
   intermediateValueTest,
   intermediateValueQuestion,
   takingTest,
+  userData,
 });

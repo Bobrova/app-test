@@ -9,7 +9,6 @@ import {
   SHOW_MODAL_WINDOW,
   CLEAR_TYPE_QUESTION,
   CHANGE_ACCESS_RIGHTS,
-  ADD_DATA_USER,
 } from 'constants/ActionTypes';
 
 const initialState = {
@@ -21,7 +20,6 @@ const initialState = {
   isEditTest: false,
   isModalWindow: false,
   isAdmin: false,
-  userData: {},
 };
 
 export default function common(state = initialState, action) {
@@ -75,11 +73,6 @@ export default function common(state = initialState, action) {
       return {
         ...state,
         isAdmin: action.payload,
-      };
-    case ADD_DATA_USER:
-      return {
-        ...state,
-        userData: action.payload,
       };
     default:
       return state;
