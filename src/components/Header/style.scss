@@ -62,3 +62,9 @@
 .userName {
   margin: 5px;
 }
+
+.mainName {
+  &:hover {
+    cursor: pointer;
+  }
+}

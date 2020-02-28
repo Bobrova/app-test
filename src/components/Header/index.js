@@ -9,14 +9,21 @@ class Header extends Component {
     history.push('/');
   };
 
+  handleClickMainName = () => {
+    const { history } = this.props;
+    history.push('/main');
+  }
+
   render() {
     const { userName } = this.props;
     return (
       <div className={styles.header}>
         <div className={styles.headerWrapper}>
           <div className={styles.logo}>
-            <span className={styles.logoTextTop}>test</span>
-            <span className={styles.logoTextBottom}>pro</span>
+            <div className={styles.mainName} onClick={this.handleClickMainName}>
+              <span className={styles.logoTextTop}>test</span>
+              <span className={styles.logoTextBottom}>pro</span>
+            </div>
           </div>
           <div className={styles.userData}>
             <div className={styles.userGreeting}>

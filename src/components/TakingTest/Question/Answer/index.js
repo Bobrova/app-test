@@ -13,6 +13,12 @@ class Answer extends Component {
     changeRadioAnswerAction({ idQuestion, idAnswer: item.id });
   }
 
+  handleChangeTextAnswer = e => {
+    const { changeTextAnswerAction, item, idQuestion } = this.props;
+    const { value } = e.target;
+    changeTextAnswerAction(item.id, value, idQuestion);
+  }
+
   render() {
     const { item, typeQuestion } = this.props;
     const answerOneOfList = (
@@ -66,6 +72,7 @@ Answer.propTypes = {
   changeCheckboxAnswerAction: PropTypes.func.isRequired,
   changeRadioAnswerAction: PropTypes.func.isRequired,
   idQuestion: PropTypes.number.isRequired,
+  changeTextAnswerAction: PropTypes.func.isRequired,
 };
 
 export default Answer;

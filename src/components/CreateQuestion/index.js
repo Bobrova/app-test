@@ -59,7 +59,7 @@ class CreateQuestion extends Component {
       changeCheckAction,
       addAnswerAction,
       changeRadioAction,
-      changeTextAnswerAction,
+      changeTextAnswerCreateAction,
     } = this.props;
     const answerList = listAnswer.map(item => (
       <div key={item.id}>
@@ -70,7 +70,7 @@ class CreateQuestion extends Component {
           key={item.id}
           addAnswerAction={addAnswerAction}
           changeRadioAction={changeRadioAction}
-          changeTextAnswerAction={changeTextAnswerAction}
+          changeTextAnswerCreateAction={changeTextAnswerCreateAction}
         />
       </div>
     ));
@@ -158,7 +158,7 @@ CreateQuestion.propTypes = {
   changeRadioAction: PropTypes.func.isRequired,
   nextIdAnswer: PropTypes.number.isRequired,
   closeAddingQuestionAction: PropTypes.func.isRequired,
-  changeTextAnswerAction: PropTypes.func.isRequired,
+  changeTextAnswerCreateAction: PropTypes.func.isRequired,
   saveQuestionAction: PropTypes.func.isRequired,
   textQuestion: PropTypes.string.isRequired,
   answerList: PropTypes.array.isRequired,

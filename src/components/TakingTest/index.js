@@ -11,6 +11,7 @@ class TakingTest extends Component {
       history,
       changeCheckboxAnswerAction,
       changeRadioAnswerAction,
+      changeTextAnswerAction,
     } = this.props;
     const listTest = itemTakingTest.questionList.map(item => (
       <div key={item.id} className={styles.listItem}>
@@ -18,6 +19,7 @@ class TakingTest extends Component {
           question={item}
           changeCheckboxAnswerAction={changeCheckboxAnswerAction}
           changeRadioAnswerAction={changeRadioAnswerAction}
+          changeTextAnswerAction={changeTextAnswerAction}
         />
       </div>
     ));
@@ -40,6 +42,7 @@ TakingTest.propTypes = {
   history: PropTypes.object.isRequired,
   changeCheckboxAnswerAction: PropTypes.func.isRequired,
   changeRadioAnswerAction: PropTypes.func.isRequired,
+  changeTextAnswerAction: PropTypes.func.isRequired,
 };
 
 export default TakingTest;

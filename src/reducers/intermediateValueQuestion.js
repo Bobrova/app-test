@@ -6,15 +6,20 @@ import {
   CHANGE_CHECK,
   ADD_ANSWER,
   CHANGE_RADIO,
-  CHANGE_TEXT_ANSWER_ACTION,
+  CHANGE_TEXT_ANSWER_CREATE,
   ADD_TYPE_QUESTION,
   EDIT_QUESTION,
   CLEAR_INTERMEDIATE_VALUE_QUESTION,
 } from 'constants/ActionTypes';
 
-const initialState = { answerList: [], textQuestion: '', typeQuestion: '' };
+const data = { answerList: [], textQuestion: '', typeQuestion: '' };
 
-export default function first(state = initialState, action) {
+const initialState = localStorage.getItem('app-test')
+  && JSON.parse(localStorage.getItem('app-test')).intermediateValueQuestion.length !== 0
+  ? JSON.parse(localStorage.getItem('app-test')).intermediateValueQuestion
+  : data;
+
+export default function intermediateValueQuestion(state = initialState, action) {
   switch (action.type) {
     case ADD_INITIAL_TWO_ANSWER:
       return { ...state, answerList: [{ id: 0, textAnswer: '', check: true }, { id: 1, textAnswer: '', check: false }], textQuestion: '' };
@@ -53,7 +58,7 @@ export default function first(state = initialState, action) {
               check: false,
             }),
       };
-    case CHANGE_TEXT_ANSWER_ACTION:
+    case CHANGE_TEXT_ANSWER_CREATE:
       return {
         ...state,
         answerList:

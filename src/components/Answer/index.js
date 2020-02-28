@@ -14,9 +14,9 @@ class Answer extends Component {
   }
 
   handleChangeTextAnswer = (e) => {
-    const { changeTextAnswerAction, item } = this.props;
+    const { changeTextAnswerCreateAction, item } = this.props;
     const { value } = e.target;
-    changeTextAnswerAction(item.id, value);
+    changeTextAnswerCreateAction(item.id, value);
   }
 
   render() {
@@ -81,7 +81,7 @@ Answer.propTypes = {
   item: PropTypes.object.isRequired,
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
-  changeTextAnswerAction: PropTypes.func.isRequired,
+  changeTextAnswerCreateAction: PropTypes.func.isRequired,
 };
 
 export default Answer;

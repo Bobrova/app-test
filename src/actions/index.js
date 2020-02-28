@@ -37,10 +37,16 @@ export const changeTypeQuestionAction = payload => ({
 });
 export const changeCheckAction = (id) => ({ type: types.CHANGE_CHECK, id });
 export const changeRadioAction = (id) => ({ type: types.CHANGE_RADIO, id });
-export const changeTextAnswerAction = (id, text) => ({
-  type: types.CHANGE_TEXT_ANSWER_ACTION,
+export const changeTextAnswerCreateAction = (id, text) => ({
+  type: types.CHANGE_TEXT_ANSWER_CREATE,
   id,
   text,
+});
+export const changeTextAnswerAction = (id, text, idQuestion) => ({
+  type: types.CHANGE_TEXT_ANSWER,
+  id,
+  text,
+  idQuestion,
 });
 export const changeIdEditTestAction = id => ({ type: types.CHANGE_ID_EDIT_TEST, id });
 export const changeIdEditQuestionAction = id => ({ type: types.CHANGE_ID_EDIT_QUESTION, id });

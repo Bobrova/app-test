@@ -10,7 +10,7 @@ const initialState = localStorage.getItem('app-test')
   ? JSON.parse(localStorage.getItem('app-test')).listTest
   : data;
 
-export default function first(state = initialState, action) {
+export default function listTest(state = initialState, action) {
   switch (action.type) {
     case SAVE_TEST:
       return state.filter(item => item.id === action.item.id).length !== 0

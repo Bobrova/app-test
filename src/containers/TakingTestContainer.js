@@ -4,6 +4,7 @@ import {
   changeTakingTest,
   changeRadioAnswerAction,
   changeCheckboxAnswerAction,
+  changeTextAnswerAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -16,5 +17,6 @@ export default connect(
     changeTakingTest,
     changeRadioAnswerAction,
     changeCheckboxAnswerAction,
+    changeTextAnswerAction,
   },
 )(TakingTest);

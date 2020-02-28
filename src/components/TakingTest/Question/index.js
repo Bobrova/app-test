@@ -9,6 +9,7 @@ class Question extends Component {
       question,
       changeCheckboxAnswerAction,
       changeRadioAnswerAction,
+      changeTextAnswerAction,
     } = this.props;
     const answerList = question.answerList.map(item => (
       <div key={item.id} className={styles.listItem}>
@@ -18,6 +19,7 @@ class Question extends Component {
           typeQuestion={question.typeQuestion}
           changeRadioAnswerAction={changeRadioAnswerAction}
           changeCheckboxAnswerAction={changeCheckboxAnswerAction}
+          changeTextAnswerAction={changeTextAnswerAction}
         />
       </div>
     ));
@@ -40,6 +42,7 @@ Question.propTypes = {
   question: PropTypes.object.isRequired,
   changeCheckboxAnswerAction: PropTypes.func.isRequired,
   changeRadioAnswerAction: PropTypes.func.isRequired,
+  changeTextAnswerAction: PropTypes.func.isRequired,
 };
 
 export default Question;

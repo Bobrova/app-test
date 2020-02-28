@@ -6,9 +6,14 @@ import {
   EDIT_TEST,
 } from 'constants/ActionTypes';
 
-const initialState = { nameTest: '', questionList: [] };
+const data = { nameTest: '', questionList: [] };
 
-export default function first(state = initialState, action) {
+const initialState = localStorage.getItem('app-test')
+  && JSON.parse(localStorage.getItem('app-test')).intermediateValueTest.length !== 0
+  ? JSON.parse(localStorage.getItem('app-test')).intermediateValueTest
+  : data;
+
+export default function intermediateValueTest(state = initialState, action) {
   switch (action.type) {
     case ADD_TEST_NAME:
       return { ...state, nameTest: action.payload };

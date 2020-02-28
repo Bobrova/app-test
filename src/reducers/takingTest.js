@@ -2,6 +2,7 @@ import {
   CHANGE_TAKING_TEST,
   CHANGE_CHECKBOX_ANSWER,
   CHANGE_RADIO_ANSWER,
+  CHANGE_TEXT_ANSWER,
 } from 'constants/ActionTypes';
 
 const data = [];
@@ -51,6 +52,25 @@ export default function takingTest(state = initialState, action) {
                     ...item,
                     check: false,
                   }),
+              }
+              : {
+                ...item,
+              }),
+      };
+    case CHANGE_TEXT_ANSWER:
+      return {
+        ...state,
+        questionList:
+            state.questionList.map(item => item.id === action.id.idQuestion
+              ? {
+                ...item,
+                answerList:
+                  state.answerList.map(item => item.id === action.id
+                    ? {
+                      ...item,
+                      textAnswer: action.text,
+                    }
+                    : item),
               }
               : {
                 ...item,
