@@ -19,7 +19,6 @@ export default function first(state = initialState, action) {
           : item)
         : [...state, action.item];
     case DELETE_TEST:
-      console.log(action.id);
       return state.filter(item => item.id !== action.id);
     default:
       return state;

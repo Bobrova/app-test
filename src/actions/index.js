@@ -76,3 +76,9 @@ export const showModalWindowAction = payload => ({ type: types.SHOW_MODAL_WINDOW
 export const deleteTestAction = id => ({ type: types.DELETE_TEST, id });
 export const changeAccessRights = payload => ({ type: types.CHANGE_ACCESS_RIGHTS, payload });
 export const addDataUser = payload => ({ type: types.ADD_DATA_USER, payload });
+export const changeRadioAnswerAction = id => ({ type: types.CHANGE_RADIO_ANSWER, id });
+export const changeCheckboxAnswerAction = id => ({
+  type: types.CHANGE_CHECKBOX_ANSWER,
+  id,
+});
+export const addRightAnswer = payload => ({ type: types.ADD_RIGHT_ANSWER, payload });

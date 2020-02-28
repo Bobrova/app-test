@@ -1,4 +1,19 @@
 .page {
-  padding: 20px;
+
+}
+
+.content {
+  width: 70%;
+  margin: 20px auto;
+}
+
+.listTest {
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
+}
+
+.listItem {
+  border: 1px solid black;
+  margin: 10px;
 }

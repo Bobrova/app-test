@@ -27,7 +27,6 @@ class App extends Component {
     } else {
       changeAccessRights(false);
       addDataUser({ login, password });
-      console.log(login, password);
     }
   }
 
@@ -53,7 +52,6 @@ class App extends Component {
       }
     }
     this.authorization(login, password);
-    console.log(e.keyCode);
   }
 
   render() {

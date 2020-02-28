@@ -52,7 +52,6 @@ class CreateQuestion extends Component {
   }
 
   render() {
-    console.log('createQuestion');
     const {
       typeQuestion,
       listAnswer,
@@ -62,7 +61,6 @@ class CreateQuestion extends Component {
       changeRadioAction,
       changeTextAnswerAction,
     } = this.props;
-    console.log(typeQuestion);
     const answerList = listAnswer.map(item => (
       <div key={item.id}>
         <Answer

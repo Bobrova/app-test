@@ -1,0 +1,115 @@
+.answerLabelRadio {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.answerLabelCheckbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.answerLabelRadio .answerRadio {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.answerLabelCheckbox .answerCheckbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmarkRadio {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  height: 24px;
+  width: 24px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.checkmarkCheckbox {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  height: 24px;
+  width: 24px;
+  background-color: #eee;
+}
+
+.answerLabelRadio:hover .answerRadio ~ .checkmarkRadio {
+  background-color: #ccc;
+}
+
+.answerLabelRadio .answerRadio:checked ~ .checkmarkRadio {
+  background-color: #2196F3;
+}
+
+.answerLabelCheckbox:hover .answerCheckbox ~ .checkmarkCheckbox {
+  background-color: #ccc;
+}
+
+.answerLabelCheckbox .answerCheckbox:checked ~ .checkmarkCheckbox {
+  background-color: #2196F3;
+}
+
+.checkmarkRadio:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.answerLabelRadio .answerRadio:checked ~ .checkmarkRadio:after {
+  display: block;
+}
+
+.checkmarkCheckbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.answerLabelCheckbox .answerCheckbox:checked ~ .checkmarkCheckbox:after {
+  display: block;
+}
+
+.answerLabelRadio .checkmarkRadio:after {
+ 	top: 8px;
+	left: 8px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+.answerLabelCheckbox .checkmarkCheckbox:after {
+  top: 5px;
+	left: 9px;
+	width: 5px;
+	height: 9px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff; 
+  transform: rotate(45deg);
+}
+
+.answerNumber {
+  margin-left: 10px;
+}

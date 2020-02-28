@@ -18,8 +18,25 @@ class Test extends Component {
   }
 
   handleClickTest = () => {
-    const { item, history, changeTakingTest } = this.props;
-    changeTakingTest(item);
+    const {
+      item,
+      history,
+      changeTakingTest,
+      addRightAnswer,
+    } = this.props;
+    const listWithoutAnswer = {
+      ...item,
+      questionList:
+        item.questionList.map(item => ({
+          ...item,
+          answerList: item.answerList.map(item => ({ ...item, check: false })),
+        })),
+    };
+    changeTakingTest(listWithoutAnswer);
+    const rightAnswer = item.questionList.map(item => (
+      { answer: item.answerList.map(item => (item.check)), id: item.id }
+    ));
+    addRightAnswer(rightAnswer);
     history.push(`/main/test-${item.id}`);
   }
 
@@ -42,6 +59,7 @@ Test.propTypes = {
   setEditTestAction: PropTypes.func.isRequired,
   changeTakingTest: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
+  addRightAnswer: PropTypes.func.isRequired,
 };
 
 export default Test;
