@@ -42,11 +42,14 @@ export const changeTextAnswerCreateAction = (id, text) => ({
   id,
   text,
 });
-export const changeTextAnswerAction = (id, text, idQuestion) => ({
+export const changeTextAnswerAction = payload => ({
   type: types.CHANGE_TEXT_ANSWER,
-  id,
-  text,
-  idQuestion,
+  payload,
+});
+export const changeRadioAnswerAction = payload => ({ type: types.CHANGE_RADIO_ANSWER, payload });
+export const changeCheckboxAnswerAction = payload => ({
+  type: types.CHANGE_CHECKBOX_ANSWER,
+  payload,
 });
 export const changeIdEditTestAction = id => ({ type: types.CHANGE_ID_EDIT_TEST, id });
 export const changeIdEditQuestionAction = id => ({ type: types.CHANGE_ID_EDIT_QUESTION, id });
@@ -59,7 +62,6 @@ export const closeAddingQuestionAction = payload => ({
 export const saveQuestionAction = item => ({ type: types.SAVE_QUESTION, item });
 export const deleteQuestionAction = id => ({ type: types.DELETE_QUESTION, id });
 export const editQuestionAction = item => ({ type: types.EDIT_QUESTION, item });
-
 export const setEditQuestionAction = payload => ({
   type: types.SET_EDIT_QUESTION,
   payload,
@@ -82,9 +84,9 @@ export const showModalWindowAction = payload => ({ type: types.SHOW_MODAL_WINDOW
 export const deleteTestAction = id => ({ type: types.DELETE_TEST, id });
 export const changeAccessRights = payload => ({ type: types.CHANGE_ACCESS_RIGHTS, payload });
 export const addDataUser = payload => ({ type: types.ADD_DATA_USER, payload });
-export const changeRadioAnswerAction = id => ({ type: types.CHANGE_RADIO_ANSWER, id });
-export const changeCheckboxAnswerAction = id => ({
-  type: types.CHANGE_CHECKBOX_ANSWER,
-  id,
-});
 export const addRightAnswer = payload => ({ type: types.ADD_RIGHT_ANSWER, payload });
+export const addTextResultModalAction = payload => ({ type: types.ADD_TEXT_RESULT_MODAL, payload });
+export const changeTypeModalWindowAction = payload => ({
+  type: types.CHANGE_TYPE_MODAL_WINDOW,
+  payload,
+});

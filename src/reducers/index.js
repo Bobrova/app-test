@@ -7,6 +7,7 @@ import intermediateValueQuestion from './intermediateValueQuestion';
 import takingTest from './takingTest';
 import userData from './userData';
 import rightAnswersList from './rightAnswersList';
+import modalWindow from './modalWindow';
 
 export default combineReducers({
   common,
@@ -16,4 +17,5 @@ export default combineReducers({
   takingTest,
   userData,
   rightAnswersList,
+  modalWindow,
 });

@@ -16,7 +16,7 @@ class Answer extends Component {
   handleChangeTextAnswer = e => {
     const { changeTextAnswerAction, item, idQuestion } = this.props;
     const { value } = e.target;
-    changeTextAnswerAction(item.id, value, idQuestion);
+    changeTextAnswerAction({ idAnswer: item.id, text: value, idQuestion });
   }
 
   render() {

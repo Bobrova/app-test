@@ -5,10 +5,16 @@ import {
   changeRadioAnswerAction,
   changeCheckboxAnswerAction,
   changeTextAnswerAction,
+  addTextResultModalAction,
+  changeTypeModalWindowAction,
+  showModalWindowAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
-  itemTakingTest: state.takingTest,
+  takingTest: state.takingTest,
+  rightAnswersList: state.rightAnswersList,
+  numberCorrectQuestion: state.modalWindow.number,
+  typeModalWindow: state.modalWindow.typeModalWindow,
 });
 
 export default connect(
@@ -18,5 +24,8 @@ export default connect(
     changeRadioAnswerAction,
     changeCheckboxAnswerAction,
     changeTextAnswerAction,
+    addTextResultModalAction,
+    changeTypeModalWindowAction,
+    showModalWindowAction,
   },
 )(TakingTest);

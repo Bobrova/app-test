@@ -24,7 +24,7 @@ export default function intermediateValueQuestion(state = initialState, action) 
     case ADD_INITIAL_TWO_ANSWER:
       return { ...state, answerList: [{ id: 0, textAnswer: '', check: true }, { id: 1, textAnswer: '', check: false }], textQuestion: '' };
     case ADD_INITIAL_NUMBER_ANSWER:
-      return { ...state, answerList: [{ id: 0, textAnswer: '', check: false }], textQuestion: '' };
+      return { ...state, answerList: [{ id: 0, textAnswer: '' }], textQuestion: '' };
     case ADD_TEXT_QUESTION:
       return { ...state, textQuestion: action.payload };
     case ADD_TEXT_ANSWER:

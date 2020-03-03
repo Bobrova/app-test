@@ -20,10 +20,10 @@ export default function takingTest(state = initialState, action) {
       return {
         ...state,
         questionList:
-            state.questionList.map(item => item.id === action.id.idQuestion
+            state.questionList.map(item => item.id === action.payload.idQuestion
               ? {
                 ...item,
-                answerList: item.answerList.map(item => item.id === action.id.idAnswer
+                answerList: item.answerList.map(item => item.id === action.payload.idAnswer
                   ? {
                     ...item,
                     check: !item.check,
@@ -40,10 +40,10 @@ export default function takingTest(state = initialState, action) {
       return {
         ...state,
         questionList:
-            state.questionList.map(item => item.id === action.id.idQuestion
+            state.questionList.map(item => item.id === action.payload.idQuestion
               ? {
                 ...item,
-                answerList: item.answerList.map(item => item.id === action.id.idAnswer
+                answerList: item.answerList.map(item => item.id === action.payload.idAnswer
                   ? {
                     ...item,
                     check: true,
@@ -60,21 +60,23 @@ export default function takingTest(state = initialState, action) {
     case CHANGE_TEXT_ANSWER:
       return {
         ...state,
-        questionList:
-            state.questionList.map(item => item.id === action.id.idQuestion
-              ? {
-                ...item,
-                answerList:
-                  state.answerList.map(item => item.id === action.id
-                    ? {
-                      ...item,
-                      textAnswer: action.text,
-                    }
-                    : item),
-              }
-              : {
-                ...item,
-              }),
+        questionList: state.questionList.map(
+          itemQuestion => itemQuestion.id === action.payload.idQuestion
+            ? {
+              ...itemQuestion,
+              answerList: itemQuestion.answerList.map(
+                itemAnswer => itemAnswer.id === action.payload.idAnswer
+                  ? {
+                    ...itemAnswer,
+                    textAnswer: action.payload.text,
+                  }
+                  : itemAnswer,
+              ),
+            }
+            : {
+              ...itemQuestion,
+            },
+        ),
       };
     default:
       return state;

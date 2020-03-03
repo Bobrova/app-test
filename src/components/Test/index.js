@@ -33,9 +33,11 @@ class Test extends Component {
         })),
     };
     changeTakingTest(listWithoutAnswer);
-    const rightAnswer = item.questionList.map(item => (
-      { answer: item.answerList.map(item => (item.check)), id: item.id }
-    ));
+    const rightAnswer = item.questionList.map(itemQuestion => ({
+      answer: itemQuestion.answerList.map(itemAnswer => (itemQuestion.typeQuestion === 'Численный ответ' ? itemAnswer.textAnswer : itemAnswer.check)),
+      id: itemQuestion.id,
+      typeQuestion: itemQuestion.typeQuestion,
+    }));
     addRightAnswer(rightAnswer);
     history.push(`/main/test-${item.id}`);
   }

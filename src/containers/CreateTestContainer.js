@@ -17,6 +17,7 @@ import {
   showModalWindowAction,
   deleteTestAction,
   clearTypeQuestionAction,
+  changeTypeModalWindowAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -51,5 +52,6 @@ export default connect(
     showModalWindowAction,
     deleteTestAction,
     clearTypeQuestionAction,
+    changeTypeModalWindowAction,
   },
 )(CreateTest);

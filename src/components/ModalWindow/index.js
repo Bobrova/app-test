@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
 import styles from './style.scss';
 
@@ -20,13 +21,26 @@ class ModalWindow extends Component {
   }
 
   render() {
-    const { contentModalWindow } = this.props;
-    return (
+    const { contentModalWindow, typeModalWindow } = this.props;
+    const modalResultTest = (
       <div className={styles.modalWindow}>
         <div className={styles.modalContent}>
           <div className={styles.btnClose} onClick={this.handleClickClose}>&times;</div>
-          Модальное окно
-          { contentModalWindow }
+          <div className={styles.modalText}>
+            Количество правильных ответов:
+            {contentModalWindow.text}
+          </div>
+          <div className={styles.controlBtn}>
+            <div className={styles.btn} onClick={this.handleClickConfirm}>Подтвердить</div>
+          </div>
+        </div>
+      </div>
+    );
+    const modalConfirm = (
+      <div className={styles.modalWindow}>
+        <div className={styles.modalContent}>
+          <div className={styles.btnClose} onClick={this.handleClickClose}>&times;</div>
+          <div className={styles.modalText}>{contentModalWindow.text}</div>
           <div className={styles.controlBtn}>
             <div className={styles.btn} onClick={this.handleClickConfirm}>Подтвердить</div>
             <div className={styles.btn} onClick={this.handleClickCancel}>Отмена</div>
@@ -34,13 +48,21 @@ class ModalWindow extends Component {
         </div>
       </div>
     );
+    return ReactDom.createPortal(
+      <>
+        {typeModalWindow === 'Результаты' && modalResultTest}
+        {typeModalWindow === 'Подтверждение' && modalConfirm}
+      </>,
+      document.getElementById('modal-root'),
+    );
   }
 }
 
 ModalWindow.propTypes = {
-  contentModalWindow: PropTypes.string.isRequired,
+  contentModalWindow: PropTypes.object.isRequired,
   showModalWindowAction: PropTypes.func.isRequired,
   clickConfirm: PropTypes.func.isRequired,
+  typeModalWindow: PropTypes.string.isRequired,
 };
 
 export default ModalWindow;
