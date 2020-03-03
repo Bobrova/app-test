@@ -90,3 +90,7 @@ export const changeTypeModalWindowAction = payload => ({
   type: types.CHANGE_TYPE_MODAL_WINDOW,
   payload,
 });
+export const validationBlankFieldsAction = payload => ({
+  type: types.VALIDATION_BLANK_FIELD,
+  payload,
+});

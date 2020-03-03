@@ -6,6 +6,7 @@ import {
   setEditTestAction,
   changeTakingTest,
   addRightAnswer,
+  validationBlankFieldsAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -22,5 +23,6 @@ export default connect(
     setEditTestAction,
     changeTakingTest,
     addRightAnswer,
+    validationBlankFieldsAction,
   },
 )(Main);

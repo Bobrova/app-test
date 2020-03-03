@@ -23,13 +23,14 @@ class Test extends Component {
       history,
       changeTakingTest,
       addRightAnswer,
+      validationBlankFieldsAction,
     } = this.props;
     const listWithoutAnswer = {
       ...item,
       questionList:
-        item.questionList.map(item => ({
-          ...item,
-          answerList: item.answerList.map(item => ({ ...item, check: false })),
+        item.questionList.map(questionItem => ({
+          ...questionItem,
+          answerList: questionItem.answerList.map(item => (questionItem.typeQuestion === 'Численный ответ' ? { ...item, textAnswer: '' } : { ...item, check: false })),
         })),
     };
     changeTakingTest(listWithoutAnswer);
@@ -39,6 +40,7 @@ class Test extends Component {
       typeQuestion: itemQuestion.typeQuestion,
     }));
     addRightAnswer(rightAnswer);
+    validationBlankFieldsAction([]);
     history.push(`/main/test-${item.id}`);
   }
 
@@ -62,6 +64,7 @@ Test.propTypes = {
   changeTakingTest: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
   addRightAnswer: PropTypes.func.isRequired,
+  validationBlankFieldsAction: PropTypes.func.isRequired,
 };
 
 export default Test;

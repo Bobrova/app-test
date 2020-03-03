@@ -8,6 +8,7 @@ import takingTest from './takingTest';
 import userData from './userData';
 import rightAnswersList from './rightAnswersList';
 import modalWindow from './modalWindow';
+import validationTakingTest from './validationTakingTest';
 
 export default combineReducers({
   common,
@@ -18,4 +19,5 @@ export default combineReducers({
   userData,
   rightAnswersList,
   modalWindow,
+  validationTakingTest,
 });

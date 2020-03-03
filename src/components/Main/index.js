@@ -16,6 +16,7 @@ class Main extends Component {
       changeTakingTest,
       isAdmin,
       addRightAnswer,
+      validationBlankFieldsAction,
     } = this.props;
     const listTest = testListMain.map(item => (
       <Test
@@ -28,6 +29,7 @@ class Main extends Component {
         changeTakingTest={changeTakingTest}
         isAdmin={isAdmin}
         addRightAnswer={addRightAnswer}
+        validationBlankFieldsAction={validationBlankFieldsAction}
       />
     ));
     const isEmptyList = listTest.length === 0;
@@ -58,6 +60,7 @@ Main.propTypes = {
   changeTakingTest: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
   addRightAnswer: PropTypes.func.isRequired,
+  validationBlankFieldsAction: PropTypes.func.isRequired,
 };
 
 export default Main;

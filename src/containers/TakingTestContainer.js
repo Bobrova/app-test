@@ -8,6 +8,7 @@ import {
   addTextResultModalAction,
   changeTypeModalWindowAction,
   showModalWindowAction,
+  validationBlankFieldsAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -15,6 +16,7 @@ const mapStateToProps = state => ({
   rightAnswersList: state.rightAnswersList,
   numberCorrectQuestion: state.modalWindow.number,
   typeModalWindow: state.modalWindow.typeModalWindow,
+  listBlankFields: state.validationTakingTest.listBlankFields,
 });
 
 export default connect(
@@ -27,5 +29,6 @@ export default connect(
     addTextResultModalAction,
     changeTypeModalWindowAction,
     showModalWindowAction,
+    validationBlankFieldsAction,
   },
 )(TakingTest);

@@ -11,8 +11,9 @@ class Question extends Component {
       changeRadioAnswerAction,
       changeTextAnswerAction,
     } = this.props;
+
     const answerList = question.answerList.map(item => (
-      <div key={item.id} className={styles.listItem}>
+      <div key={item.id}>
         <Answer
           item={item}
           idQuestion={question.id}
