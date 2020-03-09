@@ -94,3 +94,19 @@ export const validationBlankFieldsAction = payload => ({
   type: types.VALIDATION_BLANK_FIELD,
   payload,
 });
+export const validationTextQuestionAction = payload => ({
+  type: types.VALIDATION_TEXT_QUESTION,
+  payload,
+});
+export const validationQuestionAnswersAction = payload => ({
+  type: types.VALIDATION_QUESTION_ANSWERS,
+  payload,
+});
+export const setSortName = payload => ({
+  type: types.SET_SORT_NAME,
+  payload,
+});
+export const setSortDate = payload => ({
+  type: types.SET_SORT_DATE,
+  payload,
+});

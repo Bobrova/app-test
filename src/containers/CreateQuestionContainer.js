@@ -12,11 +12,12 @@ import {
   saveQuestionAction,
   setEditQuestionAction,
   clearIntermediateValueQuestionAction,
+  validationTextQuestionAction,
+  validationQuestionAnswersAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
   typeQuestion: state.intermediateValueQuestion.typeQuestion === '' ? state.common.typeQuestion : state.intermediateValueQuestion.typeQuestion,
-  listAnswer: state.intermediateValueQuestion.answerList,
   nextIdAnswer: getCurrentIdAnswer(state),
   nextIdQuestion: getCurrentIdQuestion(state),
   textQuestion: state.intermediateValueQuestion.textQuestion,
@@ -24,6 +25,9 @@ const mapStateToProps = state => ({
   questionList: state.intermediateValueTest.questionList,
   isEditQuestion: state.common.isEditQuestion,
   editIdQuestion: state.common.editIdQuestion,
+  isTextQuestion: state.validation.isTextQuestion,
+  isAnswer: state.validation.isAnswer,
+  listBlankFields: state.validation.listBlankFields,
 });
 
 
@@ -40,5 +44,7 @@ export default connect(
     saveQuestionAction,
     setEditQuestionAction,
     clearIntermediateValueQuestionAction,
+    validationTextQuestionAction,
+    validationQuestionAnswersAction,
   },
 )(CreateQuestion);

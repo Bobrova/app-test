@@ -1,8 +1,12 @@
 import {
   ADD_DATA_USER,
+  CHANGE_ACCESS_RIGHTS,
 } from 'constants/ActionTypes';
 
-const data = { userData: {} };
+const data = {
+  userData: {},
+  isAdmin: false,
+};
 
 const initialState = localStorage.getItem('app-test')
   && JSON.parse(localStorage.getItem('app-test')).userData.length !== 0
@@ -12,7 +16,15 @@ const initialState = localStorage.getItem('app-test')
 export default function userData(state = initialState, action) {
   switch (action.type) {
     case ADD_DATA_USER:
-      return action.payload;
+      return {
+        ...state,
+        userData: action.payload,
+      };
+    case CHANGE_ACCESS_RIGHTS:
+      return {
+        ...state,
+        isAdmin: action.payload,
+      };
     default:
       return state;
   }

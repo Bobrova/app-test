@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import HeaderContainer from 'containers/HeaderContainer';
 import Question from 'components/TakingTest/Question';
 import ModalWindow from 'components/ModalWindow';
+import Footer from 'components/Footer';
 import styles from './style.scss';
 
 class TakingTest extends Component {
@@ -114,6 +115,7 @@ class TakingTest extends Component {
           typeModalWindow={typeModalWindow}
           showModalWindowAction={showModalWindowAction}
         />
+        <Footer />
       </div>
     );
   }

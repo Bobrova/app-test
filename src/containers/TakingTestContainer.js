@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
   rightAnswersList: state.rightAnswersList,
   numberCorrectQuestion: state.modalWindow.number,
   typeModalWindow: state.modalWindow.typeModalWindow,
-  listBlankFields: state.validationTakingTest.listBlankFields,
+  listBlankFields: state.validation.listBlankFields,
 });
 
 export default connect(

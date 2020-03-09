@@ -20,7 +20,7 @@ class Answer extends Component {
   }
 
   render() {
-    const { typeQuestion, item } = this.props;
+    const { typeQuestion, item, answerClass } = this.props;
     const answerOneOfList = (
       <label className={styles.answerLabelRadio}>
         <input
@@ -32,7 +32,7 @@ class Answer extends Component {
         <span className={styles.checkmarkRadio} />
         <input
           type="text"
-          className={styles.answerText}
+          className={answerClass}
           value={item.textAnswer}
           onChange={this.handleChangeTextAnswer}
         />
@@ -49,7 +49,7 @@ class Answer extends Component {
         <span className={styles.checkmarkCheckbox} />
         <input
           type="text"
-          className={styles.answerText}
+          className={answerClass}
           value={item.textAnswer}
           onChange={this.handleChangeTextAnswer}
         />
@@ -82,6 +82,7 @@ Answer.propTypes = {
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
   changeTextAnswerCreateAction: PropTypes.func.isRequired,
+  answerClass: PropTypes.string.isRequired,
 };
 
 export default Answer;

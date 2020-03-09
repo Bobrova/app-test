@@ -1,24 +1,38 @@
 .startTest {
-  display: block;
-  width: 80%;
+  display: flex;
+  align-items: center;
+  width: 100%;
   height: 100%;
   padding: 10px;
-  margin: 0 10px;
   box-sizing: border-box;
-  color: #444;
-  border: 1px solid black;
-  border-radius: 3px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  border-bottom: 1px solid lightgray;
+  // border-radius: 3px;
   &:hover {
     cursor: pointer;
     box-shadow: 1px 1px 5px 1px gray;
+    border-color: #630caf;
   }
 }
 
+.nameTest {
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgb(10, 80, 107);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.btnEdit {
+  width: 20%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  // height: 100px;
+}
+
 .btn {
-  border: 1px solid black;
-  border-radius: 2px;
+  // border: 1px solid black;
+  // border-radius: 2px;
   margin: 0 10px;
   padding: 10px;
   &:hover {
@@ -28,8 +42,20 @@
 }
 
 .listItem {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  margin: 5px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.itemTest {
+  width: 70%;
+  margin-right: 5px;
+}
+
+.itemDateCreate {
+  width: 30%;
+  border-bottom: 1px solid lightgray;
+  padding: 5px;
 }

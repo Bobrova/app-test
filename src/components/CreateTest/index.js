@@ -50,8 +50,9 @@ class CreateTest extends Component {
       editIdTest,
       setEditTestAction,
       clearTypeQuestionAction,
+      oldDateCreate,
     } = this.props;
-    const dateCreate = new Date();
+    const dateCreate = (isEditTest === true) ? oldDateCreate : new Date();
     saveTestAction({
       id: isEditTest === false ? nextIdTest : editIdTest,
       nameTest,
@@ -107,6 +108,7 @@ class CreateTest extends Component {
       showModalWindowAction,
       isEditQuestion,
       editIdQuestion,
+      typeModalWindow,
     } = this.props;
     const questions = questionList.map(item => (
       <div key={item.id} className={styles.listItem}>
@@ -193,6 +195,7 @@ class CreateTest extends Component {
               contentModalWindow={{ text: 'Тест будет удален!!! Вы уверены что вы в трезвом уме и с чистой памятью?' }}
               showModalWindowAction={showModalWindowAction}
               clickConfirm={this.clickConfirm}
+              typeModalWindow={typeModalWindow}
             />}
           </div>
         </div>
@@ -229,6 +232,8 @@ CreateTest.propTypes = {
   editIdQuestion: PropTypes.number.isRequired,
   clearTypeQuestionAction: PropTypes.func.isRequired,
   changeTypeModalWindowAction: PropTypes.func.isRequired,
+  typeModalWindow: PropTypes.string.isRequired,
+  oldDateCreate: PropTypes.string.isRequired,
 };
 
 export default CreateTest;

@@ -8,7 +8,8 @@ import {
   SET_EDIT_TEST,
   SHOW_MODAL_WINDOW,
   CLEAR_TYPE_QUESTION,
-  CHANGE_ACCESS_RIGHTS,
+  SET_SORT_NAME,
+  SET_SORT_DATE,
 } from 'constants/ActionTypes';
 
 const initialState = {
@@ -19,7 +20,8 @@ const initialState = {
   editIdTest: -1,
   isEditTest: false,
   isModalWindow: false,
-  isAdmin: false,
+  isSortName: false,
+  isSortDate: false,
 };
 
 export default function common(state = initialState, action) {
@@ -69,10 +71,15 @@ export default function common(state = initialState, action) {
         ...state,
         typeQuestion: '',
       };
-    case CHANGE_ACCESS_RIGHTS:
+    case SET_SORT_NAME:
       return {
         ...state,
-        isAdmin: action.payload,
+        isSortName: action.payload,
+      };
+    case SET_SORT_DATE:
+      return {
+        ...state,
+        isSortDate: action.payload,
       };
     default:
       return state;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import iconEdit from 'img/edit-icon2.png';
+import { day, month } from 'constants/constants';
 import styles from './style.scss';
 
 class Test extends Component {
@@ -46,10 +48,32 @@ class Test extends Component {
 
   render() {
     const { item, isAdmin } = this.props;
+    const oDate = new Date(item.dateCreate);
+    console.log(oDate.getDate());
+    const dateCreate = `${
+      day[oDate.getDate() - 1]
+    } ${oDate.getDate()} ${
+      month[oDate.getMonth()]
+    } ${oDate.getFullYear()} г.`;
     return (
       <div className={styles.listItem}>
-        <div className={styles.startTest} onClick={this.handleClickTest}>{item.nameTest}</div>
-        {isAdmin && <div className={`${styles.btnEdit} ${styles.btn}`} onClick={this.handleClickEditTest}>Редактировать</div>}
+        <div className={styles.itemTest}>
+          <div className={styles.startTest} onClick={this.handleClickTest}>
+            <div className={styles.nameTest}>
+              <p>{item.nameTest}</p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.itemDateCreate}>{dateCreate}</div>
+        {
+          isAdmin && (
+            <div
+              className={styles.btnEdit}
+              onClick={this.handleClickEditTest}
+              style={{ backgroundImage: `URL("${iconEdit}")` }}
+            />
+          )
+        }
       </div>
     );
   }

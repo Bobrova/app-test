@@ -1,9 +1,62 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Answer from 'components/Answer';
 import styles from './style.scss';
 
 class CreateQuestion extends Component {
+  validationQuestion = () => {
+    const { validationTextQuestionAction, textQuestion } = this.props;
+    if (textQuestion === '') {
+      validationTextQuestionAction(false);
+      return false;
+    }
+    validationTextQuestionAction(true);
+    return true;
+  }
+
+  validationAnswer = () => {
+    const { validationQuestionAnswersAction, answerList, typeQuestion } = this.props;
+    let isAnswer = false;
+    let isTextAnswer = false;
+    let counterRightAnswers = 0;
+    const arrayBlankFields = [];
+    switch (typeQuestion) {
+      case 'Численный ответ':
+        for (let i = 0; i < answerList.length; i += 1) {
+          isTextAnswer = !(answerList[i].textAnswer === '');
+        }
+        isAnswer = isTextAnswer;
+        break;
+      case 'Несколько из списка':
+        for (let i = 0; i < answerList.length; i += 1) {
+          if (answerList[i].check) counterRightAnswers += 1;
+          if (counterRightAnswers > 1) {
+            isAnswer = true;
+          }
+          isTextAnswer = !(answerList[i].textAnswer === '');
+          if (isTextAnswer === false) arrayBlankFields.push(answerList[i].id);
+        }
+        break;
+      case 'Один из списка':
+        for (let i = 0; i < answerList.length; i += 1) {
+          if (answerList[i].check) {
+            isAnswer = true;
+          }
+          isTextAnswer = !(answerList[i].textAnswer === '');
+          if (isTextAnswer === false) arrayBlankFields.push(answerList[i].id);
+        }
+        break;
+      default: break;
+    }
+    if (isAnswer && isTextAnswer) {
+      validationQuestionAnswersAction({ isAnswer: true, blankFields: [] });
+      return true;
+    }
+    validationQuestionAnswersAction({ isAnswer, blankFields: arrayBlankFields });
+    return false;
+  }
+
   handleChangeTextQuestion = (e) => {
     const { addTextQuestionAction } = this.props;
     const { value } = e.target;
@@ -40,6 +93,7 @@ class CreateQuestion extends Component {
       editIdQuestion,
       clearIntermediateValueQuestionAction,
     } = this.props;
+    if (!(this.validationQuestion()) || !(this.validationAnswer())) return;
     saveQuestionAction({
       id: isEditQuestion === false ? nextIdQuestion : editIdQuestion,
       textQuestion,
@@ -54,31 +108,44 @@ class CreateQuestion extends Component {
   render() {
     const {
       typeQuestion,
-      listAnswer,
+      answerList,
       textQuestion,
       changeCheckAction,
       addAnswerAction,
       changeRadioAction,
       changeTextAnswerCreateAction,
+      isTextQuestion,
+      listBlankFields,
     } = this.props;
-    const answerList = listAnswer.map(item => (
-      <div key={item.id}>
-        <Answer
-          item={item}
-          typeQuestion={typeQuestion}
-          changeCheckAction={changeCheckAction}
-          key={item.id}
-          addAnswerAction={addAnswerAction}
-          changeRadioAction={changeRadioAction}
-          changeTextAnswerCreateAction={changeTextAnswerCreateAction}
-        />
-      </div>
-    ));
+    const answers = answerList.map(item => {
+      const validationError = listBlankFields.includes(item.id, 0);
+      const answerClass = classNames(
+        styles.answerText,
+        { [styles.validationErrorAnswerText]: validationError },
+      );
+      return (
+        <div key={item.id}>
+          <Answer
+            item={item}
+            typeQuestion={typeQuestion}
+            changeCheckAction={changeCheckAction}
+            key={item.id}
+            addAnswerAction={addAnswerAction}
+            changeRadioAction={changeRadioAction}
+            changeTextAnswerCreateAction={changeTextAnswerCreateAction}
+            answerClass={answerClass}
+          />
+        </div>);
+    });
+    const questionClass = classNames(
+      styles.questionText,
+      { [styles.validationErrorTextQuestion]: !isTextQuestion },
+    );
     const questionOneOfList = (
       <div className={styles.addQuestion}>
         <p className={styles.typeQuestion}>{typeQuestion}</p>
         <textarea
-          className={styles.questionText}
+          className={questionClass}
           placeholder="Текст вопроса"
           onChange={this.handleChangeTextQuestion}
           value={textQuestion}
@@ -86,7 +153,7 @@ class CreateQuestion extends Component {
         <div className={styles.answerOptions}>
           <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
           <div className={styles.answerOptionsWrapper}>
-            {answerList}
+            {answers}
             <div className={styles.btnAddAnswer} onClick={this.handleClickAddAnswer}>+</div>
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave} onClick={this.handleCkickSaveQuestion}>Сохранить</div>
@@ -100,7 +167,7 @@ class CreateQuestion extends Component {
       <div className={styles.addQuestion}>
         <p className={styles.typeQuestion}>{typeQuestion}</p>
         <textarea
-          className={styles.questionText}
+          className={questionClass}
           placeholder="Текст вопроса"
           onChange={this.handleChangeTextQuestion}
           value={textQuestion}
@@ -108,7 +175,7 @@ class CreateQuestion extends Component {
         <div className={styles.answerOptions}>
           <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
           <div className={styles.answerOptionsWrapper}>
-            {answerList}
+            {answers}
             <div className={styles.btnAddAnswer} onClick={this.handleClickAddAnswer}>+</div>
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave} onClick={this.handleCkickSaveQuestion}>Сохранить</div>
@@ -122,7 +189,7 @@ class CreateQuestion extends Component {
       <div className={styles.addQuestion}>
         <p className={styles.typeQuestion}>{typeQuestion}</p>
         <textarea
-          className={styles.questionText}
+          className={questionClass}
           placeholder="Текст вопроса"
           onChange={this.handleChangeTextQuestion}
           value={textQuestion}
@@ -130,7 +197,7 @@ class CreateQuestion extends Component {
         <div className={styles.answerOptions}>
           <p className={styles.answerOptionsTitle}>Ответ:</p>
           <div className={styles.answerOptionsWrapper}>
-            {answerList}
+            {answers}
             <div className={styles.blockSaveCancel}>
               <div className={styles.btnSave} onClick={this.handleCkickSaveQuestion}>Сохранить</div>
               <div className={styles.btnCancel} onClick={this.handleClickCloseQuestion}>Отмена</div>
@@ -153,7 +220,6 @@ CreateQuestion.propTypes = {
   typeQuestion: PropTypes.string.isRequired,
   addTextQuestionAction: PropTypes.func.isRequired,
   addAnswerAction: PropTypes.func.isRequired,
-  listAnswer: PropTypes.array.isRequired,
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
   nextIdAnswer: PropTypes.number.isRequired,
@@ -167,6 +233,10 @@ CreateQuestion.propTypes = {
   isEditQuestion: PropTypes.bool.isRequired,
   setEditQuestionAction: PropTypes.func.isRequired,
   clearIntermediateValueQuestionAction: PropTypes.func.isRequired,
+  validationTextQuestionAction: PropTypes.func.isRequired,
+  validationQuestionAnswersAction: PropTypes.func.isRequired,
+  isTextQuestion: PropTypes.bool.isRequired,
+  listBlankFields: PropTypes.array.isRequired,
 };
 
 export default CreateQuestion;

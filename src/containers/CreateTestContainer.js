@@ -25,12 +25,14 @@ const mapStateToProps = state => ({
   typeQuestion: state.common.typeQuestion,
   questionList: state.intermediateValueTest.questionList,
   nameTest: state.intermediateValueTest.nameTest,
+  oldDateCreate: state.intermediateValueTest.dateCreate,
   nextIdTest: getCurrentIdTest(state),
   isEditTest: state.common.isEditTest,
   isEditQuestion: state.common.isEditQuestion,
   editIdTest: state.common.editIdTest,
   editIdQuestion: state.common.editIdQuestion,
   isModalWindow: state.common.isModalWindow,
+  typeModalWindow: state.modalWindow.typeModalWindow,
 });
 
 
