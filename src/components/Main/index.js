@@ -34,7 +34,6 @@ class Main extends Component {
       isSortDate,
     } = this.props;
     if (isSortName) {
-      console.log('а что вы тут делаете?');
       testListMain.sort((a, b) => {
         const nameA = a.nameTest.toLowerCase();
         const nameB = b.nameTest.toLowerCase();
@@ -47,12 +46,9 @@ class Main extends Component {
       testListMain.sort((a, b) => {
         const dateA = new Date(a.dateCreate);
         const dateB = new Date(b.dateCreate);
-        console.log(dateA, 'dateA');
-        console.log(dateB, 'dateB');
         return dateB - dateA;
       });
     }
-    console.log(testListMain);
     const listTest = testListMain.map(item => (
       <Test
         key={item.id}

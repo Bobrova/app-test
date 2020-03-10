@@ -13,7 +13,7 @@ class Question extends Component {
     } = this.props;
 
     const answerList = question.answerList.map(item => (
-      <div key={item.id}>
+      <div key={item.id} className={styles.answerItem}>
         <Answer
           item={item}
           idQuestion={question.id}

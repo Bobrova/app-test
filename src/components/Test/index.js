@@ -49,7 +49,6 @@ class Test extends Component {
   render() {
     const { item, isAdmin } = this.props;
     const oDate = new Date(item.dateCreate);
-    console.log(oDate.getDate());
     const dateCreate = `${
       day[oDate.getDate() - 1]
     } ${oDate.getDate()} ${

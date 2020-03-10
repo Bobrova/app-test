@@ -82,7 +82,7 @@ class TakingTest extends Component {
       showModalWindowAction,
       listBlankFields,
     } = this.props;
-    const listTest = takingTest.questionList.map(item => {
+    const test = takingTest.questionList.map(item => {
       const validationError = listBlankFields.includes(item.id, 0);
       const questionClass = classNames(
         styles.listItem,
@@ -103,9 +103,8 @@ class TakingTest extends Component {
       <div className={styles.page}>
         <HeaderContainer history={history} />
         <div className={styles.content}>
-          <div className={styles.listTest}>
-            <span>Здесь проходим тесты</span>
-            {listTest}
+          <div className={styles.test}>
+            {test}
           </div>
           <div className={styles.btnTestCheck} onClick={this.handleClickTestCheck}>Закончить</div>
         </div>

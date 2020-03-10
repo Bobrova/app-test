@@ -30,7 +30,7 @@ class Answer extends Component {
           onChange={this.handleChangeRadio}
         />
         <span className={styles.checkmarkRadio} />
-        <span className={styles.answerText}>{item.textAnswer}</span>
+        <p className={styles.answerText}>{item.textAnswer}</p>
       </label>
     );
     const answerFewFromList = (
@@ -42,11 +42,11 @@ class Answer extends Component {
           onChange={this.handleChangeCheckbox}
         />
         <span className={styles.checkmarkCheckbox} />
-        <span className={styles.answerText}>{item.textAnswer}</span>
+        <p className={styles.answerText}>{item.textAnswer}</p>
       </label>
     );
     const answerNumerical = (
-      <label className={styles.answerLabelCheckbox}>
+      <label className={styles.answerLabelNumberAnswer}>
         Ответ:
         <input
           type="text"

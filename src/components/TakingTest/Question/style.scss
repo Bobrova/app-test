@@ -1,5 +1,5 @@
 .textQuestion {
-  color: blue;
+  color: #444444;
   margin: 10px;
 }
 
@@ -10,4 +10,14 @@
 
 .listItem {
   margin: 10px;
+}
+
+.question {
+  box-shadow: 1px 1px 2px 1px lightgray;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.answerItem {
+  margin: 5px 0;
 }

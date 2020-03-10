@@ -23,10 +23,10 @@ class App extends Component {
     const { changeAccessRights, addDataUser } = this.props;
     if (adminData.login === login && adminData.password === password) {
       changeAccessRights(true);
-      addDataUser({ login, password });
+      addDataUser({ login });
     } else {
       changeAccessRights(false);
-      addDataUser({ login, password });
+      addDataUser({ login });
     }
   }
 

@@ -4,7 +4,7 @@ import {
 } from 'constants/ActionTypes';
 
 const data = {
-  userData: {},
+  login: '',
   isAdmin: false,
 };
 
@@ -18,7 +18,7 @@ export default function userData(state = initialState, action) {
     case ADD_DATA_USER:
       return {
         ...state,
-        userData: action.payload,
+        login: action.payload.login,
       };
     case CHANGE_ACCESS_RIGHTS:
       return {

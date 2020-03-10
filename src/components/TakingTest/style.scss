@@ -11,27 +11,28 @@
   margin: 20px auto;
 }
 
-.listTest {
+.test {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  padding: 10px;
 }
 
 .listItem {
-  border: 1px solid black;
   margin: 10px;
 }
 
 .btnTestCheck {
-  display: inline-block;
   padding: 10px;
   border: 1px solid #88fce5;
   text-decoration: none;
-  margin: 10px 0;
+  margin: 20px 0;
   border-radius: 5px;
   color: #444;
   background: linear-gradient(to top, #88fce5, #eafcf8);
   transition: border 0.3s ease;
+  text-align: center;
   &:hover {
     cursor: pointer;
     border-color: #444;
