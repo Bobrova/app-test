@@ -1,0 +1,62 @@
+.root {
+  position: relative;
+  display: inline-block;
+  margin: 0 10px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.dropDown_content {
+  display: none;
+  position: absolute;
+  top: 38px;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  min-width: 105px;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.root:hover .dropDown_content {
+  display: block;
+}
+
+.root:hover .dropDown_label {
+  border-bottom: none;
+}
+
+.dropDown_label {
+  min-width: 105px;
+  border-right: 1px solid #88fce5;
+  border-left: 1px solid #88fce5;
+  border-bottom: 2px solid #88fce5;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.type {
+  border-bottom: 1px solid #88fce5;
+  padding: 5px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.type:hover {
+  cursor: pointer;
+  background-color: #f2f2f2;
+}
+
+.questionText {
+  display: block;
+  padding: 10px;
+  resize: none;
+}
+
+.emptyList {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  color: gray;
+}

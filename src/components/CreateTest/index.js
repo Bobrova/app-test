@@ -4,6 +4,7 @@ import HeaderContainer from 'containers/HeaderContainer';
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
 import Question from 'components/Question';
 import ModalWindow from 'components/ModalWindow';
+import DropDawn from 'components/DropDown';
 import Footer from 'components/Footer';
 import styles from './style.scss';
 
@@ -23,21 +24,6 @@ class CreateTest extends Component {
       addInitialNumberAnswer();
     }
   };
-
-  handleChoiceOneOfList = () => {
-    const { changeTypeQuestionAction, addingQuestion } = this.props;
-    if (!addingQuestion) changeTypeQuestionAction('Один из списка');
-  }
-
-  handleChoiceFewFromList = () => {
-    const { changeTypeQuestionAction, addingQuestion } = this.props;
-    if (!addingQuestion) changeTypeQuestionAction('Несколько из списка');
-  }
-
-  handleChoiceNumericalAnswer = () => {
-    const { changeTypeQuestionAction, addingQuestion } = this.props;
-    if (!addingQuestion) changeTypeQuestionAction('Численный ответ');
-  }
 
   handleSaveTest = () => {
     const {
@@ -110,6 +96,7 @@ class CreateTest extends Component {
       isEditQuestion,
       editIdQuestion,
       typeModalWindow,
+      changeTypeQuestionAction,
     } = this.props;
     const questions = questionList.map(item => (
       <div key={item.id} className={styles.listItem}>
@@ -146,35 +133,11 @@ class CreateTest extends Component {
               />
             </label>
           </div>
-          <div className={styles.dropDown}>
-            {
-            typeQuestion !== '' ? (
-              <div className={styles.dropDown_label}>{typeQuestion}</div>
-            ) : (
-              <div className={styles.dropDown_label}>Выберете тип вопроса</div>
-            )
-            }
-            <div className={styles.dropDown_content}>
-              <div
-                className={styles.type}
-                onClick={this.handleChoiceOneOfList}
-              >
-                Один из списка
-              </div>
-              <div
-                className={styles.type}
-                onClick={this.handleChoiceFewFromList}
-              >
-                Несколько из списка
-              </div>
-              <div
-                className={styles.type}
-                onClick={this.handleChoiceNumericalAnswer}
-              >
-                Численный ответ
-              </div>
-            </div>
-          </div>
+          <DropDawn
+            changeTypeQuestionAction={changeTypeQuestionAction}
+            addingQuestion={addingQuestion}
+            typeQuestion={typeQuestion}
+          />
           <div
             className={styles.btnAddQuestion}
             onClick={this.handleClickAddQuestion}
