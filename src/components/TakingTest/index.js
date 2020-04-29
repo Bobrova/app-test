@@ -10,13 +10,28 @@ import styles from './style.scss';
 class TakingTest extends Component {
   validationTest = testAnswer => {
     const { validationBlankFieldsAction } = this.props;
-    let isBlankField = false;
     const arrayBlankFields = [];
     for (let i = 0; i < testAnswer.length; i += 1) {
-      if (testAnswer[i].typeQuestion === 'Численный ответ') {
-        isBlankField = testAnswer[i].answer.includes('', 0);
-      } else {
-        isBlankField = !(testAnswer[i].answer.includes(true, 0));
+      let counterRightAnswers = 0;
+      let isBlankField = false;
+      switch (testAnswer[i].typeQuestion) {
+        case 'Численный ответ':
+          isBlankField = testAnswer[i].answer.includes('', 0);
+          break;
+        case 'Несколько из списка':
+          for (let j = 0; j < testAnswer[i].answer.length; j += 1) {
+            if (testAnswer[i].answer[j]) counterRightAnswers += 1;
+            if (counterRightAnswers > 1) {
+              isBlankField = false;
+            } else {
+              isBlankField = true;
+            }
+          }
+          break;
+        case 'Один из списка':
+          isBlankField = !(testAnswer[i].answer.includes(true, 0));
+          break;
+        default: break;
       }
       if (isBlankField) arrayBlankFields.push(testAnswer[i].id);
     }
@@ -30,20 +45,8 @@ class TakingTest extends Component {
     return result;
   }
 
-  handleClickTestCheck = () => {
-    const {
-      rightAnswersList,
-      takingTest,
-      addTextResultModalAction,
-      changeTypeModalWindowAction,
-      showModalWindowAction,
-    } = this.props;
-    const takingTestAnswer = takingTest.questionList.map(itemQuestion => ({
-      answer: itemQuestion.answerList.map(itemAnswer => (itemQuestion.typeQuestion === 'Численный ответ' ? itemAnswer.textAnswer : itemAnswer.check)),
-      id: itemQuestion.id,
-      typeQuestion: itemQuestion.typeQuestion,
-    }));
-    if (!(this.validationTest(takingTestAnswer))) return;
+  testCheck = (takingTestAnswer) => {
+    const { rightAnswersList } = this.props;
     let numberCorrectQuestion = 0;
     const arrayWrongQuestions = [];
     for (let i = 0; i < takingTestAnswer.length; i += 1) {
@@ -59,7 +62,28 @@ class TakingTest extends Component {
         arrayWrongQuestions.push(takingTestAnswer[i].id);
       }
     }
-    addTextResultModalAction(numberCorrectQuestion);
+    return numberCorrectQuestion;
+  }
+
+  handleClickTestCheck = () => {
+    const {
+      takingTest,
+      addResultModalAction,
+      changeTypeModalWindowAction,
+      showModalWindowAction,
+    } = this.props;
+    const takingTestAnswer = takingTest.questionList.map(itemQuestion => ({
+      answer: itemQuestion.answerList.map(itemAnswer => itemQuestion.typeQuestion === 'Численный ответ'
+        ? itemAnswer.textAnswer
+        : itemAnswer.check),
+      id: itemQuestion.id,
+      typeQuestion: itemQuestion.typeQuestion,
+    }));
+    if (!(this.validationTest(takingTestAnswer))) {
+      return;
+    }
+    const result = this.testCheck(takingTestAnswer);
+    addResultModalAction(result);
     changeTypeModalWindowAction('Результаты');
     showModalWindowAction(true);
   }
@@ -81,6 +105,7 @@ class TakingTest extends Component {
       typeModalWindow,
       showModalWindowAction,
       listBlankFields,
+      isModalWindow,
     } = this.props;
     const test = takingTest.questionList.map(item => {
       const validationError = listBlankFields.includes(item.id, 0);
@@ -108,12 +133,13 @@ class TakingTest extends Component {
           </div>
           <div className={styles.btnTestCheck} onClick={this.handleClickTestCheck}>Закончить</div>
         </div>
-        <ModalWindow
+        {isModalWindow && <ModalWindow
+          title="Результаты теста"
           contentModalWindow={{ text: numberCorrectQuestion }}
           clickConfirm={this.handleClickConfirm}
           typeModalWindow={typeModalWindow}
           showModalWindowAction={showModalWindowAction}
-        />
+        />}
         <Footer />
       </div>
     );
@@ -127,13 +153,14 @@ TakingTest.propTypes = {
   changeRadioAnswerAction: PropTypes.func.isRequired,
   changeTextAnswerAction: PropTypes.func.isRequired,
   rightAnswersList: PropTypes.array.isRequired,
-  addTextResultModalAction: PropTypes.func.isRequired,
+  addResultModalAction: PropTypes.func.isRequired,
   numberCorrectQuestion: PropTypes.number.isRequired,
   changeTypeModalWindowAction: PropTypes.func.isRequired,
   showModalWindowAction: PropTypes.func.isRequired,
   typeModalWindow: PropTypes.string.isRequired,
   validationBlankFieldsAction: PropTypes.func.isRequired,
   listBlankFields: PropTypes.array.isRequired,
+  isModalWindow: PropTypes.bool.isRequired,
 };
 
 export default TakingTest;

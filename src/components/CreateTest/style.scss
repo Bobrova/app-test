@@ -1,20 +1,35 @@
 .page {
-  padding-top: 1px;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+	min-height: 100vh;
 }
 
 .inputNameTest {
-  margin: 0 10px;
+  // margin: 0 10px;
   padding: 5px;
-  border-radius: 5px;
-  border: 1px solid gray;
+  border: none;
+  outline: none;
+  width: 300px;
+  border-bottom: 1px solid gray;
+  &:focus {
+    border-color: rgb(164, 30, 241);
+  }
 }
 
 .mainCreateTest {
   width: 70%;
+  flex: 1 0 auto;
   margin: 20px auto;
-  border: 1px solid gray;
   margin-top: 40px;
   padding: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 2px 1px lightgray;
+  border-radius: 5px;
+}
+
+.nameTest {
+  margin: 10px;
 }
 
 .btnAddQuestion {
@@ -43,15 +58,10 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 5px;
+  margin: 5px 0;
 }
 
 .blockControlBtn {
-  display: flex;
-  justify-content: space-between;
-}
-
-.blockSaveCancel {
   display: flex;
   justify-content: space-between;
 }
@@ -105,6 +115,7 @@
 .dropDown {
   position: relative;
   display: inline-block;
+  margin: 0 10px;
   &:hover {
     cursor: pointer;
   }
@@ -158,5 +169,8 @@
 }
 
 .emptyList {
-  color: red;
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  color: gray;
 }

@@ -85,7 +85,7 @@ export const deleteTestAction = id => ({ type: types.DELETE_TEST, id });
 export const changeAccessRights = payload => ({ type: types.CHANGE_ACCESS_RIGHTS, payload });
 export const addDataUser = payload => ({ type: types.ADD_DATA_USER, payload });
 export const addRightAnswer = payload => ({ type: types.ADD_RIGHT_ANSWER, payload });
-export const addTextResultModalAction = payload => ({ type: types.ADD_TEXT_RESULT_MODAL, payload });
+export const addResultModalAction = payload => ({ type: types.ADD_TEXT_RESULT_MODAL, payload });
 export const changeTypeModalWindowAction = payload => ({
   type: types.CHANGE_TYPE_MODAL_WINDOW,
   payload,
@@ -108,5 +108,9 @@ export const setSortName = payload => ({
 });
 export const setSortDate = payload => ({
   type: types.SET_SORT_DATE,
+  payload,
+});
+export const addDateCreate = payload => ({
+  type: types.ADD_DATE_CREATE,
   payload,
 });

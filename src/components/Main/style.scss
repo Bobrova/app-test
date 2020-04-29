@@ -1,12 +1,19 @@
 .page {
   background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+	min-height: 100vh;
 }
 
 .mainContent {
   width: 70%;
   margin: 20px auto;
-  border: 1px solid lightgray;
   box-sizing: border-box;
+  flex: 1 0 auto;
+}
+
+.list {
+  border: 1px solid lightgray;
 }
 
 .testList {
@@ -55,9 +62,7 @@
 .sortMenu {
   width: 100%;
   display: flex;
-  padding: 10px;
-  // border-left: 1px solid #ade8ea;
-  // border-right: 1px solid #ade8ea;
+  padding: 5px 0;
   border-bottom: 1px solid #ade8ea;
   box-sizing: border-box;
   background-color: #fff;
@@ -66,13 +71,29 @@
 .sortName {
   width: 70%;
   color: gray;
-  padding: 5px 10px;
+  padding: 10px 20px;
   box-sizing: border-box;
+  &:hover {
+    cursor: pointer;
+    background-color: #dffff8;
+  }
 }
 
 .sortDate {
   width: 30%;
   color: gray;
-  padding: 5px;
+  padding: 10px;
   box-sizing: border-box;
+  border-left: 1px solid gray;
+  &:hover {
+    cursor: pointer;
+    background-color: #dffff8;
+  }
+}
+
+.emptyList {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+  color: gray;
 }

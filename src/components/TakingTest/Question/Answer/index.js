@@ -49,7 +49,7 @@ class Answer extends Component {
       <label className={styles.answerLabelNumberAnswer}>
         Ответ:
         <input
-          type="text"
+          type="number"
           name="number"
           className={styles.answerNumber}
           onChange={this.handleChangeTextAnswer}

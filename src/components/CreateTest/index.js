@@ -4,6 +4,7 @@ import HeaderContainer from 'containers/HeaderContainer';
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
 import Question from 'components/Question';
 import ModalWindow from 'components/ModalWindow';
+import Footer from 'components/Footer';
 import styles from './style.scss';
 
 class CreateTest extends Component {
@@ -50,9 +51,9 @@ class CreateTest extends Component {
       editIdTest,
       setEditTestAction,
       clearTypeQuestionAction,
-      oldDateCreate,
+      dateCreate,
     } = this.props;
-    const dateCreate = (isEditTest === true) ? oldDateCreate : new Date();
+
     saveTestAction({
       id: isEditTest === false ? nextIdTest : editIdTest,
       nameTest,
@@ -134,10 +135,10 @@ class CreateTest extends Component {
         <div className={styles.mainCreateTest}>
           <div className={styles.nameTest}>
             <label forhtml="nameTest" className={styles.labelNameTest}>
-              Название теста
               <input
                 type="text"
                 className={styles.inputNameTest}
+                autoComplete="off"
                 name="nameTest"
                 placeholder="Название теста"
                 value={nameTest}
@@ -184,21 +185,25 @@ class CreateTest extends Component {
             (addingQuestion && !isEditQuestion) && (<CreateQuestionContainer />)
           }
           <div className={styles.questionList}>
-            {isEmptyQuestionList ? <div className={styles.emptyList}>Ничего нет</div> : questions}
+            {
+            (isEmptyQuestionList && !addingQuestion)
+              ? <div className={styles.emptyList}>Добавьте вопросы</div>
+              : questions
+            }
           </div>
           <div className={styles.blockControlBtn}>
-            <div className={styles.blockSaveCancel}>
-              <div className={styles.btnSave} onClick={this.handleSaveTest}>Сохранить</div>
-            </div>
+            <div className={styles.btnSave} onClick={this.handleSaveTest}>Сохранить</div>
             <div className={styles.btnDeleteTest} onClick={this.handleDeleteTest}>Удалить тест</div>
-            {isModalWindow && <ModalWindow
-              contentModalWindow={{ text: 'Тест будет удален!!! Вы уверены что вы в трезвом уме и с чистой памятью?' }}
-              showModalWindowAction={showModalWindowAction}
-              clickConfirm={this.clickConfirm}
-              typeModalWindow={typeModalWindow}
-            />}
           </div>
         </div>
+        <Footer />
+        {isModalWindow && <ModalWindow
+          typeModalWindow={typeModalWindow}
+          title="Удаление теста"
+          contentModalWindow={{ text: 'Тест будет удален!!! Вы уверены что вы в трезвом уме и с чистой памятью?' }}
+          showModalWindowAction={showModalWindowAction}
+          clickConfirm={this.clickConfirm}
+        />}
       </div>
     );
   }
@@ -233,7 +238,7 @@ CreateTest.propTypes = {
   clearTypeQuestionAction: PropTypes.func.isRequired,
   changeTypeModalWindowAction: PropTypes.func.isRequired,
   typeModalWindow: PropTypes.string.isRequired,
-  oldDateCreate: PropTypes.string.isRequired,
+  dateCreate: PropTypes.string.isRequired,
 };
 
 export default CreateTest;

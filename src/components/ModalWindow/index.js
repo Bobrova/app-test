@@ -21,17 +21,24 @@ class ModalWindow extends Component {
   }
 
   render() {
-    const { contentModalWindow, typeModalWindow } = this.props;
+    const {
+      contentModalWindow,
+      typeModalWindow,
+      title,
+    } = this.props;
     const modalResultTest = (
       <div className={styles.modalWindow}>
         <div className={styles.modalContent}>
           <div className={styles.btnClose} onClick={this.handleClickClose}>&times;</div>
+          <div className={styles.titleModal}>{title}</div>
           <div className={styles.modalText}>
             Количество правильных ответов:
             {contentModalWindow.text}
           </div>
           <div className={styles.controlBtn}>
-            <div className={styles.btn} onClick={this.handleClickConfirm}>Подтвердить</div>
+            <div className={styles.btn} onClick={this.handleClickConfirm}>
+              Вурнуться к списку тестов
+            </div>
           </div>
         </div>
       </div>
@@ -39,6 +46,7 @@ class ModalWindow extends Component {
     const modalConfirm = (
       <div className={styles.modalWindow}>
         <div className={styles.modalContent}>
+          <div className={styles.titleModal}>{title}</div>
           <div className={styles.btnClose} onClick={this.handleClickClose}>&times;</div>
           <div className={styles.modalText}>{contentModalWindow.text}</div>
           <div className={styles.controlBtn}>
@@ -63,6 +71,7 @@ ModalWindow.propTypes = {
   showModalWindowAction: PropTypes.func.isRequired,
   clickConfirm: PropTypes.func.isRequired,
   typeModalWindow: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default ModalWindow;

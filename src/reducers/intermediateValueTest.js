@@ -1,5 +1,6 @@
 import {
   ADD_TEST_NAME,
+  ADD_DATE_CREATE,
   SAVE_QUESTION,
   DELETE_QUESTION,
   CLEAR_INTERMEDIATE_VALUE_TEST,
@@ -17,6 +18,8 @@ export default function intermediateValueTest(state = initialState, action) {
   switch (action.type) {
     case ADD_TEST_NAME:
       return { ...state, nameTest: action.payload };
+    case ADD_DATE_CREATE:
+      return { ...state, dateCreate: action.payload };
     case SAVE_QUESTION:
       return {
         ...state,

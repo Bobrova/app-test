@@ -35,6 +35,7 @@ class Answer extends Component {
           className={answerClass}
           value={item.textAnswer}
           onChange={this.handleChangeTextAnswer}
+          placeholder="Текст ответа"
         />
       </label>
     );
@@ -58,11 +59,13 @@ class Answer extends Component {
     const answerNumerical = (
       <label className={styles.answerLabelCheckbox}>
         <input
-          type="text"
+          type="number"
           name="number"
-          className={styles.answerNumber}
+          className={styles.answerNumberInput}
           value={item.textAnswer}
           onChange={this.handleChangeTextAnswer}
+          autoComplete="off"
+          placeholder="Текст ответа"
         />
       </label>
     );

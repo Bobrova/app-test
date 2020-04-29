@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import HeaderContainer from 'containers/HeaderContainer';
+import { day, month } from 'constants/constants';
 import Footer from 'components/Footer';
 import Test from 'components/Test';
 import styles from './style.scss';
@@ -17,6 +17,23 @@ class Main extends Component {
     const { setSortDate, setSortName } = this.props;
     setSortName(false);
     setSortDate(true);
+  }
+
+  handleClickCreateTest = () => {
+    const { history, addDateCreate } = this.props;
+    const dateCreate = this.createDate();
+    addDateCreate(dateCreate);
+    history.push('/main/create-test');
+  }
+
+  createDate = () => {
+    const date = new Date();
+    const dateCreate = `${
+      day[date.getDay()]
+    } ${date.getDate()} ${
+      month[date.getMonth()]
+    } ${date.getFullYear()} г.`;
+    return dateCreate;
   }
 
   render() {
@@ -68,18 +85,28 @@ class Main extends Component {
       <div className={styles.page}>
         <HeaderContainer history={history} />
         <div className={styles.mainContent}>
-          {isAdmin && <Link to="/main/create-test" className={styles.btnCreateTest}>Создать тест</Link>}
-          <div className={styles.sortMenu}>
-            <div className={styles.sortName} onClick={this.handleClickSortName}>Название</div>
-            <div className={styles.sortDate} onClick={this.handleClickSortDate}>Дата создания</div>
-          </div>
           {
-            isEmptyList ? (
-              <div className={styles.emptyList}>Ничего нет</div>
-            ) : (
-              <div className={styles.testList}>{listTest}</div>
+            isAdmin && (
+              <div className={styles.btnCreateTest} onClick={this.handleClickCreateTest}>
+                Создать тест
+              </div>
             )
           }
+          <div className={styles.list}>
+            <div className={styles.sortMenu}>
+              <div className={styles.sortName} onClick={this.handleClickSortName}>
+                Название
+              </div>
+              <div className={styles.sortDate} onClick={this.handleClickSortDate}>
+                Дата создания
+              </div>
+            </div>
+            {isEmptyList ? (
+              <div className={styles.emptyList}>Добавьте тестики</div>
+            ) : (
+              <div className={styles.testList}>{listTest}</div>
+            )}
+          </div>
         </div>
         <Footer />
       </div>
@@ -101,6 +128,7 @@ Main.propTypes = {
   setSortName: PropTypes.func.isRequired,
   isSortDate: PropTypes.bool.isRequired,
   setSortDate: PropTypes.func.isRequired,
+  addDateCreate: PropTypes.func.isRequired,
 };
 
 export default Main;

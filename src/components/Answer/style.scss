@@ -109,3 +109,21 @@
   border-bottom: 2px solid #fff; 
   transform: rotate(45deg);
 }
+
+.answerNumberInput {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+  padding: 5px;
+  &:focus {
+    border-color: rgb(164, 30, 241);
+  }
+}
+
+.answerText {
+
+}
+
+.validationErrorAnswerText {
+  border: 1px solid red;
+}

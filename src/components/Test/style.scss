@@ -1,17 +1,28 @@
 .startTest {
   display: flex;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
+  padding: 20px;
+  font-size: 16px;
   box-sizing: border-box;
-  border-bottom: 1px solid lightgray;
-  // border-radius: 3px;
+  border-bottom: 1px solid transparent;
+  background-color: #fff;
+  z-index: 1;
   &:hover {
     cursor: pointer;
-    box-shadow: 1px 1px 5px 1px gray;
-    border-color: #630caf;
+    background-color: #f2f2f2;
   }
+}
+
+.itemTest {
+  position: relative;
+  width: 70%;
+}
+
+.itemDateCreate {
+  width: 30%;
+  border-left: 1px solid lightgray;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .nameTest {
@@ -24,15 +35,23 @@
 }
 
 .btnEdit {
-  width: 20%;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 7%;
+  height: 70%;
+  z-index: 2;
   background-repeat: no-repeat;
   background-size: contain;
-  // height: 100px;
+  transform: translateY(-50%);
+  border-bottom: 1px solid transparent;
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid gray;
+  }
 }
 
 .btn {
-  // border: 1px solid black;
-  // border-radius: 2px;
   margin: 0 10px;
   padding: 10px;
   &:hover {
@@ -44,18 +63,8 @@
 .listItem {
   display: flex;
   width: 100%;
-  padding: 10px;
+  // padding: 10px;
+  border-bottom: 1px solid lightgray;
   box-sizing: border-box;
   background-color: #fff;
-}
-
-.itemTest {
-  width: 70%;
-  margin-right: 5px;
-}
-
-.itemDateCreate {
-  width: 30%;
-  border-bottom: 1px solid lightgray;
-  padding: 5px;
 }

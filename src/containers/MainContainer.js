@@ -9,6 +9,7 @@ import {
   validationBlankFieldsAction,
   setSortName,
   setSortDate,
+  addDateCreate,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -30,5 +31,6 @@ export default connect(
     validationBlankFieldsAction,
     setSortName,
     setSortDate,
+    addDateCreate,
   },
 )(Main);

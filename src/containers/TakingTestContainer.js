@@ -5,7 +5,7 @@ import {
   changeRadioAnswerAction,
   changeCheckboxAnswerAction,
   changeTextAnswerAction,
-  addTextResultModalAction,
+  addResultModalAction,
   changeTypeModalWindowAction,
   showModalWindowAction,
   validationBlankFieldsAction,
@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   numberCorrectQuestion: state.modalWindow.number,
   typeModalWindow: state.modalWindow.typeModalWindow,
   listBlankFields: state.validation.listBlankFields,
+  isModalWindow: state.common.isModalWindow,
 });
 
 export default connect(
@@ -26,7 +27,7 @@ export default connect(
     changeRadioAnswerAction,
     changeCheckboxAnswerAction,
     changeTextAnswerAction,
-    addTextResultModalAction,
+    addResultModalAction,
     changeTypeModalWindowAction,
     showModalWindowAction,
     validationBlankFieldsAction,
