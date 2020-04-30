@@ -2,17 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.scss';
 
-const DropDown = ({ changeTypeQuestionAction, addingQuestion, typeQuestion }) => {
+const DropDown = ({
+  addingQuestion,
+  typeQuestion,
+  setTypeQuestion,
+}) => {
   const handleChoiceOneOfList = () => {
-    if (!addingQuestion) changeTypeQuestionAction('Один из списка');
+    if (!addingQuestion) {
+      setTypeQuestion('Один из списка');
+    }
   };
 
   const handleChoiceFewFromList = () => {
-    if (!addingQuestion) changeTypeQuestionAction('Несколько из списка');
+    if (!addingQuestion) {
+      setTypeQuestion('Несколько из списка');
+    }
   };
 
   const handleChoiceNumericalAnswer = () => {
-    if (!addingQuestion) changeTypeQuestionAction('Численный ответ');
+    if (!addingQuestion) {
+      setTypeQuestion('Численный ответ');
+    }
   };
 
   return (
@@ -51,7 +61,7 @@ const DropDown = ({ changeTypeQuestionAction, addingQuestion, typeQuestion }) =>
 DropDown.propTypes = {
   addingQuestion: PropTypes.bool.isRequired,
   typeQuestion: PropTypes.string.isRequired,
-  changeTypeQuestionAction: PropTypes.func.isRequired,
+  setTypeQuestion: PropTypes.func.isRequired,
 };
 
 export default DropDown;

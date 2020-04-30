@@ -1,21 +1,43 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import HeaderContainer from 'containers/HeaderContainer';
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
-import Question from 'components/Question';
+import Question from 'components/CreateTest/Question';
 import ModalWindow from 'components/ModalWindow';
 import DropDawn from 'components/DropDown';
 import Footer from 'components/Footer';
 import styles from './style.scss';
 
-class CreateTest extends Component {
-  handleClickAddQuestion = () => {
-    const {
-      addQuestionAction,
-      addInitialTwoAnswerAction,
-      typeQuestion,
-      addInitialNumberAnswer,
-    } = this.props;
+const CreateTest = ({
+  addingQuestion,
+  questionList,
+  deleteQuestionAction,
+  editQuestionAction,
+  addQuestionAction,
+  changeIdEditQuestionAction,
+  setEditQuestionAction,
+  history,
+  nameTest,
+  isModalWindow,
+  showModalWindowAction,
+  isEditQuestion,
+  editIdQuestion,
+  clearIntermediateValueTestAction,
+  deleteTestAction,
+  editIdTest,
+  changeTypeQuestionAction,
+  addInitialTwoAnswerAction,
+  addInitialNumberAnswer,
+  saveTestAction,
+  nextIdTest,
+  isEditTest,
+  setEditTestAction,
+  clearTypeQuestionAction,
+  dateCreate,
+  addTestNameAction,
+}) => {
+  const [typeQuestion, setTypeQuestion] = useState('');
+  const handleClickAddQuestion = () => {
     if (typeQuestion === '') return;
     addQuestionAction();
     if (typeQuestion !== 'Численный ответ') {
@@ -25,21 +47,7 @@ class CreateTest extends Component {
     }
   };
 
-  handleSaveTest = () => {
-    const {
-      saveTestAction,
-      nameTest,
-      questionList,
-      nextIdTest,
-      history,
-      clearIntermediateValueTestAction,
-      isEditTest,
-      editIdTest,
-      setEditTestAction,
-      clearTypeQuestionAction,
-      dateCreate,
-    } = this.props;
-
+  const handleSaveTest = () => {
     saveTestAction({
       id: isEditTest === false ? nextIdTest : editIdTest,
       nameTest,
@@ -50,132 +58,101 @@ class CreateTest extends Component {
     clearIntermediateValueTestAction();
     clearTypeQuestionAction();
     history.push('/main/');
-  }
+  };
 
-  handleChangeTestName = (e) => {
-    const { addTestNameAction } = this.props;
+  const handleChangeTestName = (e) => {
     const { value } = e.target;
     addTestNameAction(value);
-  }
+  };
 
-  clickConfirm = () => {
-    const {
-      clearIntermediateValueTestAction,
-      deleteTestAction,
-      history,
-      editIdTest,
-    } = this.props;
+  const clickConfirm = () => {
     deleteTestAction(editIdTest);
     clearIntermediateValueTestAction();
     history.push('/main/');
-  }
+  };
 
-  handleDeleteTest = () => {
-    const {
-      showModalWindowAction,
-      changeTypeModalWindowAction,
-    } = this.props;
+  const handleDeleteTest = () => {
     showModalWindowAction(true);
-    changeTypeModalWindowAction('Подтверждение');
-  }
+  };
 
-  render() {
-    const {
-      addingQuestion,
-      typeQuestion,
-      questionList,
-      deleteQuestionAction,
-      editQuestionAction,
-      addQuestionAction,
-      changeIdEditQuestionAction,
-      setEditQuestionAction,
-      history,
-      nameTest,
-      isModalWindow,
-      showModalWindowAction,
-      isEditQuestion,
-      editIdQuestion,
-      typeModalWindow,
-      changeTypeQuestionAction,
-    } = this.props;
-    const questions = questionList.map(item => (
-      <div key={item.id} className={styles.listItem}>
-        {editIdQuestion === item.id && isEditQuestion ? (
-          <CreateQuestionContainer />
-        ) : (
-          <Question
-            item={item}
-            deleteQuestionAction={deleteQuestionAction}
-            editQuestionAction={editQuestionAction}
-            addQuestionAction={addQuestionAction}
-            changeIdEditQuestionAction={changeIdEditQuestionAction}
-            setEditQuestionAction={setEditQuestionAction}
-          />
-        )}
-      </div>
-    ));
-    const isEmptyQuestionList = questions.length === 0;
+  const questions = questionList.map(item => (
+    <div key={item.id} className={styles.listItem}>
+      {editIdQuestion === item.id && isEditQuestion ? (
+        <CreateQuestionContainer />
+      ) : (
+        <Question
+          item={item}
+          deleteQuestionAction={deleteQuestionAction}
+          editQuestionAction={editQuestionAction}
+          addQuestionAction={addQuestionAction}
+          changeIdEditQuestionAction={changeIdEditQuestionAction}
+          setEditQuestionAction={setEditQuestionAction}
+        />
+      )}
+    </div>
+  ));
+  const isEmptyQuestionList = questions.length === 0;
 
-    return (
-      <div className={styles.page}>
-        <HeaderContainer history={history} />
-        <div className={styles.mainCreateTest}>
-          <div className={styles.nameTest}>
-            <label forhtml="nameTest" className={styles.labelNameTest}>
-              <input
-                type="text"
-                className={styles.inputNameTest}
-                autoComplete="off"
-                name="nameTest"
-                placeholder="Название теста"
-                value={nameTest}
-                onChange={this.handleChangeTestName}
-              />
-            </label>
-          </div>
-          <DropDawn
-            changeTypeQuestionAction={changeTypeQuestionAction}
-            addingQuestion={addingQuestion}
-            typeQuestion={typeQuestion}
-          />
-          <div
-            className={styles.btnAddQuestion}
-            onClick={this.handleClickAddQuestion}
-          >
-            Добавить вопрос
-          </div>
-          {
-            (addingQuestion && !isEditQuestion) && (<CreateQuestionContainer />)
-          }
-          <div className={styles.questionList}>
-            {
-            (isEmptyQuestionList && !addingQuestion)
-              ? <div className={styles.emptyList}>Добавьте вопросы</div>
-              : questions
-            }
-          </div>
-          <div className={styles.blockControlBtn}>
-            <div className={styles.btnSave} onClick={this.handleSaveTest}>Сохранить</div>
-            <div className={styles.btnDeleteTest} onClick={this.handleDeleteTest}>Удалить тест</div>
-          </div>
+  return (
+    <div className={styles.page}>
+      <HeaderContainer history={history} />
+      <div className={styles.mainCreateTest}>
+        <div className={styles.nameTest}>
+          <label forhtml="nameTest" className={styles.labelNameTest}>
+            <input
+              type="text"
+              className={styles.inputNameTest}
+              autoComplete="off"
+              name="nameTest"
+              placeholder="Название теста"
+              value={nameTest}
+              onChange={handleChangeTestName}
+            />
+          </label>
         </div>
-        <Footer />
-        {isModalWindow && <ModalWindow
-          typeModalWindow={typeModalWindow}
-          title="Удаление теста"
-          contentModalWindow={{ text: 'Тест будет удален!!! Вы уверены что вы в трезвом уме и с чистой памятью?' }}
-          showModalWindowAction={showModalWindowAction}
-          clickConfirm={this.clickConfirm}
-        />}
+        <DropDawn
+          changeTypeQuestionAction={changeTypeQuestionAction}
+          addingQuestion={addingQuestion}
+          typeQuestion={typeQuestion}
+          setTypeQuestion={setTypeQuestion}
+        />
+        <div
+          className={styles.btnAddQuestion}
+          onClick={handleClickAddQuestion}
+        >
+          Добавить вопрос
+        </div>
+        {
+          (addingQuestion && !isEditQuestion)
+          && (<CreateQuestionContainer typeQuestion={typeQuestion} />)
+        }
+        <div className={styles.questionList}>
+          {
+          (isEmptyQuestionList && !addingQuestion)
+            ? <div className={styles.emptyList}>Добавьте вопросы</div>
+            : questions
+          }
+        </div>
+        <div className={styles.blockControlBtn}>
+          <div className={styles.btnSave} onClick={handleSaveTest}>Сохранить</div>
+          <div className={styles.btnDeleteTest} onClick={handleDeleteTest}>Удалить тест</div>
+        </div>
       </div>
-    );
-  }
-}
+      <Footer />
+      {isModalWindow && <ModalWindow
+        typeModalWindow="Подтверждение"
+        title="Удаление теста"
+        contentModalWindow={{ text: 'Тест будет удален!!! Вы уверены что вы в трезвом уме и с чистой памятью?' }}
+        showModalWindowAction={showModalWindowAction}
+        clickConfirm={clickConfirm}
+      />}
+    </div>
+  );
+};
 
 CreateTest.propTypes = {
   addingQuestion: PropTypes.bool.isRequired,
   addQuestionAction: PropTypes.func.isRequired,
-  typeQuestion: PropTypes.string.isRequired,
   changeTypeQuestionAction: PropTypes.func.isRequired,
   saveTestAction: PropTypes.func.isRequired,
   addTestNameAction: PropTypes.func.isRequired,
@@ -199,8 +176,6 @@ CreateTest.propTypes = {
   isEditQuestion: PropTypes.bool.isRequired,
   editIdQuestion: PropTypes.number.isRequired,
   clearTypeQuestionAction: PropTypes.func.isRequired,
-  changeTypeModalWindowAction: PropTypes.func.isRequired,
-  typeModalWindow: PropTypes.string.isRequired,
   dateCreate: PropTypes.string.isRequired,
 };
 

@@ -14,6 +14,7 @@ import {
 
 const data = { answerList: [], textQuestion: '', typeQuestion: '' };
 
+
 const initialState = localStorage.getItem('app-test')
   && JSON.parse(localStorage.getItem('app-test')).intermediateValueQuestion.length !== 0
   ? JSON.parse(localStorage.getItem('app-test')).intermediateValueQuestion

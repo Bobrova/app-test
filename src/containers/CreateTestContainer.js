@@ -17,7 +17,6 @@ import {
   showModalWindowAction,
   deleteTestAction,
   clearTypeQuestionAction,
-  changeTypeModalWindowAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -32,7 +31,6 @@ const mapStateToProps = state => ({
   editIdTest: state.common.editIdTest,
   editIdQuestion: state.common.editIdQuestion,
   isModalWindow: state.common.isModalWindow,
-  typeModalWindow: state.modalWindow.typeModalWindow,
 });
 
 
@@ -54,6 +52,5 @@ export default connect(
     showModalWindowAction,
     deleteTestAction,
     clearTypeQuestionAction,
-    changeTypeModalWindowAction,
   },
 )(CreateTest);

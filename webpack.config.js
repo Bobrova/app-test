@@ -26,6 +26,7 @@ module.exports = {
       sagas: path.resolve(__dirname, 'src/sagas/'),
       api: path.resolve(__dirname, 'src/sagas/'),
       img: path.resolve(__dirname, 'src/img/'),
+      models: path.resolve(__dirname, 'src/models/'),
     },
   },
 

@@ -1,22 +1,39 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Answer from 'components/Answer';
 import styles from './style.scss';
 
-class CreateQuestion extends Component {
-  validationQuestion = () => {
-    const { validationTextQuestionAction, textQuestion } = this.props;
+const CreateQuestion = ({
+  typeQuestion,
+  answerList,
+  textQuestion,
+  changeCheckAction,
+  addAnswerAction,
+  changeRadioAction,
+  changeTextAnswerCreateAction,
+  addTextQuestionAction,
+  saveQuestionAction,
+  closeAddingQuestionAction,
+  nextIdQuestion,
+  isEditQuestion,
+  setEditQuestionAction,
+  editIdQuestion,
+  clearIntermediateValueQuestionAction,
+  nextIdAnswer,
+}) => {
+  const [validationBlankFilds, setValidationBlankFilds] = useState([]);
+  const [isTextQuestion, setTextQuestion] = useState(true);
+  const validationQuestion = () => {
     if (textQuestion === '') {
-      validationTextQuestionAction(false);
+      setTextQuestion(false);
       return false;
     }
-    validationTextQuestionAction(true);
+    setTextQuestion(true);
     return true;
-  }
+  };
 
-  validationAnswer = () => {
-    const { validationQuestionAnswersAction, answerList, typeQuestion } = this.props;
+  const validationAnswer = () => {
     let isAnswer = false;
     let isTextAnswer = false;
     let counterRightAnswers = 0;
@@ -50,50 +67,30 @@ class CreateQuestion extends Component {
       default: break;
     }
     if (isAnswer && isTextAnswer) {
-      validationQuestionAnswersAction({ isAnswer: true, blankFields: [] });
+      setValidationBlankFilds([]);
       return true;
     }
-    validationQuestionAnswersAction({ isAnswer, blankFields: arrayBlankFields });
+    setValidationBlankFilds(arrayBlankFields);
     return false;
-  }
+  };
 
-  handleChangeTextQuestion = (e) => {
-    const { addTextQuestionAction } = this.props;
+  const handleChangeTextQuestion = (e) => {
     const { value } = e.target;
     addTextQuestionAction(value);
-  }
+  };
 
-  handleClickAddAnswer = () => {
-    const { addAnswerAction, nextIdAnswer } = this.props;
+  const handleClickAddAnswer = () => {
     addAnswerAction(nextIdAnswer);
-  }
+  };
 
-  handleClickCloseQuestion = () => {
-    const {
-      closeAddingQuestionAction,
-      clearIntermediateValueQuestionAction,
-      isEditQuestion,
-      setEditQuestionAction,
-    } = this.props;
+  const handleClickCloseQuestion = () => {
     closeAddingQuestionAction();
     clearIntermediateValueQuestionAction();
     if (isEditQuestion === true) setEditQuestionAction(false);
-  }
+  };
 
-  handleCkickSaveQuestion = () => {
-    const {
-      saveQuestionAction,
-      textQuestion,
-      answerList,
-      closeAddingQuestionAction,
-      typeQuestion,
-      nextIdQuestion,
-      isEditQuestion,
-      setEditQuestionAction,
-      editIdQuestion,
-      clearIntermediateValueQuestionAction,
-    } = this.props;
-    if (!(this.validationQuestion()) || !(this.validationAnswer())) return;
+  const handleCkickSaveQuestion = () => {
+    if (!(validationQuestion()) || !(validationAnswer())) return;
     saveQuestionAction({
       id: isEditQuestion === false ? nextIdQuestion : editIdQuestion,
       textQuestion,
@@ -103,118 +100,105 @@ class CreateQuestion extends Component {
     if (isEditQuestion === true) setEditQuestionAction(false);
     closeAddingQuestionAction();
     clearIntermediateValueQuestionAction();
-  }
+  };
 
-  render() {
-    const {
-      typeQuestion,
-      answerList,
-      textQuestion,
-      changeCheckAction,
-      addAnswerAction,
-      changeRadioAction,
-      changeTextAnswerCreateAction,
-      isTextQuestion,
-      listBlankFields,
-    } = this.props;
-    const answers = answerList.map(item => {
-      const validationError = listBlankFields.includes(item.id, 0);
-      const answerClass = classNames(
-        styles.answerText,
-        { [styles.validationErrorAnswerText]: validationError },
-      );
-      return (
-        <div key={item.id}>
-          <Answer
-            item={item}
-            typeQuestion={typeQuestion}
-            changeCheckAction={changeCheckAction}
-            key={item.id}
-            addAnswerAction={addAnswerAction}
-            changeRadioAction={changeRadioAction}
-            changeTextAnswerCreateAction={changeTextAnswerCreateAction}
-            answerClass={answerClass}
-          />
-        </div>);
-    });
-    const questionClass = classNames(
-      styles.questionText,
-      { [styles.validationErrorTextQuestion]: !isTextQuestion },
-    );
-    const questionOneOfList = (
-      <div className={styles.addQuestion}>
-        <p className={styles.typeQuestion}>{typeQuestion}</p>
-        <textarea
-          className={questionClass}
-          placeholder="Текст вопроса"
-          onChange={this.handleChangeTextQuestion}
-          value={textQuestion}
-        />
-        <div className={styles.answerOptions}>
-          <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
-          <div className={styles.answerOptionsWrapper}>
-            {answers}
-            <div className={styles.btnAddAnswer} onClick={this.handleClickAddAnswer}>+</div>
-            <div className={styles.blockSaveCancel}>
-              <div className={styles.btnSave} onClick={this.handleCkickSaveQuestion}>Сохранить</div>
-              <div className={styles.btnCancel} onClick={this.handleClickCloseQuestion}>Отмена</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-    const questionFewFromList = (
-      <div className={styles.addQuestion}>
-        <p className={styles.typeQuestion}>{typeQuestion}</p>
-        <textarea
-          className={questionClass}
-          placeholder="Текст вопроса"
-          onChange={this.handleChangeTextQuestion}
-          value={textQuestion}
-        />
-        <div className={styles.answerOptions}>
-          <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
-          <div className={styles.answerOptionsWrapper}>
-            {answers}
-            <div className={styles.btnAddAnswer} onClick={this.handleClickAddAnswer}>+</div>
-            <div className={styles.blockSaveCancel}>
-              <div className={styles.btnSave} onClick={this.handleCkickSaveQuestion}>Сохранить</div>
-              <div className={styles.btnCancel} onClick={this.handleClickCloseQuestion}>Отмена</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-    const questionNumericalAnswer = (
-      <div className={styles.addQuestion}>
-        <p className={styles.typeQuestion}>{typeQuestion}</p>
-        <textarea
-          className={questionClass}
-          placeholder="Текст вопроса"
-          onChange={this.handleChangeTextQuestion}
-          value={textQuestion}
-        />
-        <div className={styles.answerOptions}>
-          <p className={styles.answerOptionsTitle}>Ответ:</p>
-          <div className={styles.answerOptionsWrapper}>
-            {answers}
-            <div className={styles.blockSaveCancel}>
-              <div className={styles.btnSave} onClick={this.handleCkickSaveQuestion}>Сохранить</div>
-              <div className={styles.btnCancel} onClick={this.handleClickCloseQuestion}>Отмена</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  const answers = answerList.map(item => {
+    const validationError = validationBlankFilds.includes(item.id, 0);
+    const answerClass = classNames(
+      styles.answerText,
+      { [styles.validationErrorAnswerText]: validationError },
     );
     return (
-      <>
-        {typeQuestion === 'Один из списка' && questionOneOfList}
-        {typeQuestion === 'Несколько из списка' && questionFewFromList}
-        {typeQuestion === 'Численный ответ' && questionNumericalAnswer}
-      </>
-    );
-  }
-}
+      <div key={item.id}>
+        <Answer
+          item={item}
+          typeQuestion={typeQuestion}
+          changeCheckAction={changeCheckAction}
+          key={item.id}
+          addAnswerAction={addAnswerAction}
+          changeRadioAction={changeRadioAction}
+          changeTextAnswerCreateAction={changeTextAnswerCreateAction}
+          answerClass={answerClass}
+        />
+      </div>);
+  });
+  const questionClass = classNames(
+    styles.questionText,
+    { [styles.validationErrorTextQuestion]: !isTextQuestion },
+  );
+  const questionOneOfList = (
+    <div className={styles.addQuestion}>
+      <p className={styles.typeQuestion}>{typeQuestion}</p>
+      <textarea
+        className={questionClass}
+        placeholder="Текст вопроса"
+        onChange={handleChangeTextQuestion}
+        value={textQuestion}
+      />
+      <div className={styles.answerOptions}>
+        <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
+        <div className={styles.answerOptionsWrapper}>
+          {answers}
+          <div className={styles.btnAddAnswer} onClick={handleClickAddAnswer}>+</div>
+          <div className={styles.blockSaveCancel}>
+            <div className={styles.btnSave} onClick={handleCkickSaveQuestion}>Сохранить</div>
+            <div className={styles.btnCancel} onClick={handleClickCloseQuestion}>Отмена</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+  const questionFewFromList = (
+    <div className={styles.addQuestion}>
+      <p className={styles.typeQuestion}>{typeQuestion}</p>
+      <textarea
+        className={questionClass}
+        placeholder="Текст вопроса"
+        onChange={handleChangeTextQuestion}
+        value={textQuestion}
+      />
+      <div className={styles.answerOptions}>
+        <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
+        <div className={styles.answerOptionsWrapper}>
+          {answers}
+          <div className={styles.btnAddAnswer} onClick={handleClickAddAnswer}>+</div>
+          <div className={styles.blockSaveCancel}>
+            <div className={styles.btnSave} onClick={handleCkickSaveQuestion}>Сохранить</div>
+            <div className={styles.btnCancel} onClick={handleClickCloseQuestion}>Отмена</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+  const questionNumericalAnswer = (
+    <div className={styles.addQuestion}>
+      <p className={styles.typeQuestion}>{typeQuestion}</p>
+      <textarea
+        className={questionClass}
+        placeholder="Текст вопроса"
+        onChange={handleChangeTextQuestion}
+        value={textQuestion}
+      />
+      <div className={styles.answerOptions}>
+        <p className={styles.answerOptionsTitle}>Ответ:</p>
+        <div className={styles.answerOptionsWrapper}>
+          {answers}
+          <div className={styles.blockSaveCancel}>
+            <div className={styles.btnSave} onClick={handleCkickSaveQuestion}>Сохранить</div>
+            <div className={styles.btnCancel} onClick={handleClickCloseQuestion}>Отмена</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+  return (
+    <>
+      {typeQuestion === 'Один из списка' && questionOneOfList}
+      {typeQuestion === 'Несколько из списка' && questionFewFromList}
+      {typeQuestion === 'Численный ответ' && questionNumericalAnswer}
+    </>
+  );
+};
 
 CreateQuestion.propTypes = {
   typeQuestion: PropTypes.string.isRequired,
@@ -233,10 +217,7 @@ CreateQuestion.propTypes = {
   isEditQuestion: PropTypes.bool.isRequired,
   setEditQuestionAction: PropTypes.func.isRequired,
   clearIntermediateValueQuestionAction: PropTypes.func.isRequired,
-  validationTextQuestionAction: PropTypes.func.isRequired,
-  validationQuestionAnswersAction: PropTypes.func.isRequired,
-  isTextQuestion: PropTypes.bool.isRequired,
-  listBlankFields: PropTypes.array.isRequired,
 };
 
 export default CreateQuestion;
+//  244

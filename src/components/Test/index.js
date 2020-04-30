@@ -1,31 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import iconEdit from 'img/edit-icon2.png';
 import styles from './style.scss';
 
-class Test extends Component {
-  handleClickEditTest = () => {
-    const {
-      editTestAction,
-      item,
-      history,
-      changeIdEditTestAction,
-      setEditTestAction,
-    } = this.props;
+const Test = ({
+  editTestAction,
+  item,
+  history,
+  changeIdEditTestAction,
+  setEditTestAction,
+  changeTakingTest,
+  addRightAnswer,
+  validationBlankFieldsAction,
+  isAdmin,
+}) => {
+  const handleClickEditTest = () => {
     editTestAction(item);
     changeIdEditTestAction(item.id);
     setEditTestAction(true);
     history.push('/main/create-test');
-  }
+  };
 
-  handleClickTest = () => {
-    const {
-      item,
-      history,
-      changeTakingTest,
-      addRightAnswer,
-      validationBlankFieldsAction,
-    } = this.props;
+  const handleClickTest = () => {
     const listWithoutAnswer = {
       ...item,
       questionList:
@@ -43,33 +39,30 @@ class Test extends Component {
     addRightAnswer(rightAnswer);
     validationBlankFieldsAction([]);
     history.push(`/main/test-${item.id}`);
-  }
+  };
 
-  render() {
-    const { item, isAdmin } = this.props;
-    return (
-      <div className={styles.listItem}>
-        <div className={styles.itemTest}>
-          <div className={styles.startTest} onClick={this.handleClickTest}>
-            <div className={styles.nameTest}>
-              <p>{item.nameTest}</p>
-            </div>
+  return (
+    <div className={styles.listItem}>
+      <div className={styles.itemTest}>
+        <div className={styles.startTest} onClick={handleClickTest}>
+          <div className={styles.nameTest}>
+            <p>{item.nameTest}</p>
           </div>
-          {
-            isAdmin && (
-              <div
-                className={styles.btnEdit}
-                onClick={this.handleClickEditTest}
-                style={{ backgroundImage: `URL("${iconEdit}")` }}
-              />
-            )
-          }
         </div>
-        <div className={styles.itemDateCreate}>{item.dateCreate}</div>
+        {
+          isAdmin && (
+            <div
+              className={styles.btnEdit}
+              onClick={handleClickEditTest}
+              style={{ backgroundImage: `URL("${iconEdit}")` }}
+            />
+          )
+        }
       </div>
-    );
-  }
-}
+      <div className={styles.itemDateCreate}>{item.dateCreate}</div>
+    </div>
+  );
+};
 
 Test.propTypes = {
   item: PropTypes.object.isRequired,
