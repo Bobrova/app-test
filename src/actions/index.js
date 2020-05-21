@@ -102,14 +102,6 @@ export const validationQuestionAnswersAction = payload => ({
   type: types.VALIDATION_QUESTION_ANSWERS,
   payload,
 });
-export const setSortName = payload => ({
-  type: types.SET_SORT_NAME,
-  payload,
-});
-export const setSortDate = payload => ({
-  type: types.SET_SORT_DATE,
-  payload,
-});
 export const addDateCreate = payload => ({
   type: types.ADD_DATE_CREATE,
   payload,

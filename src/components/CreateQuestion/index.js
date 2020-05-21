@@ -98,9 +98,11 @@ const CreateQuestion = ({
       answerList,
       typeQuestion,
     });
-    if (isEditQuestion === true) setEditQuestionAction(false);
+    if (isEditQuestion === true) {
+      setEditQuestionAction(false);
+      setidEditQuestion(-1);
+    }
     setCreatingQuestion(false);
-    setidEditQuestion(-1);
     clearIntermediateValueQuestionAction();
   };
 

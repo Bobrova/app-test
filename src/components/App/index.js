@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import background from 'img/wall.jpg';
 import loginImg from 'img/cat2.png';
-import { adminData } from 'constants/constants';
-import { ENTER_KEY_CODE } from '../../constants/constants';
+import { ENTER_KEY_CODE, adminData } from 'constants/constants';
 import styles from './style.scss';
 
 class App extends Component {

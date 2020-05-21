@@ -7,17 +7,14 @@ import {
   changeTakingTest,
   addRightAnswer,
   validationBlankFieldsAction,
-  setSortName,
-  setSortDate,
   addDateCreate,
+  clearIntermediateValueTestAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
   first: state.common,
   testListMain: state.listTest,
   isAdmin: state.userData.isAdmin,
-  isSortName: state.common.isSortName,
-  isSortDate: state.common.isSortDate,
 });
 
 export default connect(
@@ -29,8 +26,7 @@ export default connect(
     changeTakingTest,
     addRightAnswer,
     validationBlankFieldsAction,
-    setSortName,
-    setSortDate,
     addDateCreate,
+    clearIntermediateValueTestAction,
   },
 )(Main);

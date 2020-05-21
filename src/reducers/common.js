@@ -3,8 +3,6 @@ import {
   CHANGE_ID_EDIT_TEST,
   SET_EDIT_TEST,
   SHOW_MODAL_WINDOW,
-  SET_SORT_NAME,
-  SET_SORT_DATE,
 } from 'constants/ActionTypes';
 
 const initialState = {
@@ -12,8 +10,6 @@ const initialState = {
   editIdTest: -1,
   isEditTest: false,
   isModalWindow: false,
-  isSortName: false,
-  isSortDate: false,
 };
 
 export default function common(state = initialState, action) {
@@ -37,16 +33,6 @@ export default function common(state = initialState, action) {
       return {
         ...state,
         isModalWindow: action.payload,
-      };
-    case SET_SORT_NAME:
-      return {
-        ...state,
-        isSortName: action.payload,
-      };
-    case SET_SORT_DATE:
-      return {
-        ...state,
-        isSortDate: action.payload,
       };
     default:
       return state;

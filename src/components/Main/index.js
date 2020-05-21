@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import HeaderContainer from 'containers/HeaderContainer';
 import { day, month } from 'constants/constants';
@@ -7,8 +7,6 @@ import Test from 'components/Test';
 import styles from './style.scss';
 
 const Main = ({
-  setSortName,
-  setSortDate,
   history,
   addDateCreate,
   testListMain,
@@ -19,17 +17,26 @@ const Main = ({
   isAdmin,
   addRightAnswer,
   validationBlankFieldsAction,
-  isSortName,
-  isSortDate,
+  clearIntermediateValueTestAction,
 }) => {
+  const [isSortName, setSortName] = useState(0);
+  const [isSortDate, setSortDate] = useState(0);
   const handleClickSortName = () => {
-    setSortDate(false);
-    setSortName(true);
+    if (isSortName === 0) {
+      setSortName(1);
+    } else {
+      setSortName(isSortName === 1 ? 2 : 1);
+    }
+    setSortDate(0);
   };
 
   const handleClickSortDate = () => {
-    setSortName(false);
-    setSortDate(true);
+    if (isSortDate === 0) {
+      setSortDate(1);
+    } else {
+      setSortDate(isSortDate === 1 ? 2 : 1);
+    }
+    setSortName(0);
   };
 
   const createDate = () => {
@@ -43,12 +50,13 @@ const Main = ({
   };
 
   const handleClickCreateTest = () => {
+    clearIntermediateValueTestAction();
     const dateCreate = createDate();
     addDateCreate(dateCreate);
     history.push('/main/create-test');
   };
 
-  if (isSortName) {
+  if (isSortName === 1) {
     testListMain.sort((a, b) => {
       const nameA = a.nameTest.toLowerCase();
       const nameB = b.nameTest.toLowerCase();
@@ -56,12 +64,26 @@ const Main = ({
       if (nameA > nameB) return 1;
       return 0;
     });
+  } else if (isSortName === 2) {
+    testListMain.sort((a, b) => {
+      const nameA = a.nameTest.toLowerCase();
+      const nameB = b.nameTest.toLowerCase();
+      if (nameA < nameB) return 1;
+      if (nameA > nameB) return -1;
+      return 0;
+    });
   }
-  if (isSortDate) {
+  if (isSortDate === 1) {
     testListMain.sort((a, b) => {
       const dateA = new Date(a.dateCreate);
       const dateB = new Date(b.dateCreate);
       return dateB - dateA;
+    });
+  } else if (isSortDate === 2) {
+    testListMain.sort((a, b) => {
+      const dateA = new Date(a.dateCreate);
+      const dateB = new Date(b.dateCreate);
+      return dateA - dateB;
     });
   }
   const listTest = testListMain.map(item => (
@@ -121,11 +143,8 @@ Main.propTypes = {
   isAdmin: PropTypes.bool.isRequired,
   addRightAnswer: PropTypes.func.isRequired,
   validationBlankFieldsAction: PropTypes.func.isRequired,
-  isSortName: PropTypes.bool.isRequired,
-  setSortName: PropTypes.func.isRequired,
-  isSortDate: PropTypes.bool.isRequired,
-  setSortDate: PropTypes.func.isRequired,
   addDateCreate: PropTypes.func.isRequired,
+  clearIntermediateValueTestAction: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -24,15 +24,19 @@ const Test = ({
   const handleClickTest = () => {
     const listWithoutAnswer = {
       ...item,
-      questionList:
-        item.questionList.map(questionItem => ({
-          ...questionItem,
-          answerList: questionItem.answerList.map(item => (questionItem.typeQuestion === 'Численный ответ' ? { ...item, textAnswer: '' } : { ...item, check: false })),
-        })),
+      questionList: item.questionList.map((questionItem) => ({
+        ...questionItem,
+        answerList: questionItem.answerList.map((item) => questionItem.typeQuestion === 'Численный ответ'
+          ? { ...item, textAnswer: '' }
+          : { ...item, check: false }),
+      })),
     };
+
     changeTakingTest(listWithoutAnswer);
-    const rightAnswer = item.questionList.map(itemQuestion => ({
-      answer: itemQuestion.answerList.map(itemAnswer => (itemQuestion.typeQuestion === 'Численный ответ' ? itemAnswer.textAnswer : itemAnswer.check)),
+    const rightAnswer = item.questionList.map((itemQuestion) => ({
+      answer: itemQuestion.answerList.map((itemAnswer) => itemQuestion.typeQuestion === 'Численный ответ'
+        ? itemAnswer.textAnswer
+        : itemAnswer.check),
       id: itemQuestion.id,
       typeQuestion: itemQuestion.typeQuestion,
     }));

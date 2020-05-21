@@ -48,7 +48,18 @@ const CreateTest = ({
     }
   };
 
+  const validationCreateTest = () => {
+    if (nameTest === '') {
+      return false;
+    }
+    if (!questionList.length) {
+      return false;
+    }
+    return true;
+  };
+
   const handleSaveTest = () => {
+    if (!validationCreateTest()) return;
     saveTestAction({
       id: isEditTest === false ? nextIdTest : editIdTest,
       nameTest,
