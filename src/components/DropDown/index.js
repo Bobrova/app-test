@@ -3,24 +3,24 @@ import PropTypes from 'prop-types';
 import styles from './style.scss';
 
 const DropDown = ({
-  addingQuestion,
+  isCreatingQuestion,
   typeQuestion,
   setTypeQuestion,
 }) => {
   const handleChoiceOneOfList = () => {
-    if (!addingQuestion) {
+    if (!isCreatingQuestion) {
       setTypeQuestion('Один из списка');
     }
   };
 
   const handleChoiceFewFromList = () => {
-    if (!addingQuestion) {
+    if (!isCreatingQuestion) {
       setTypeQuestion('Несколько из списка');
     }
   };
 
   const handleChoiceNumericalAnswer = () => {
-    if (!addingQuestion) {
+    if (!isCreatingQuestion) {
       setTypeQuestion('Численный ответ');
     }
   };
@@ -59,7 +59,7 @@ const DropDown = ({
 };
 
 DropDown.propTypes = {
-  addingQuestion: PropTypes.bool.isRequired,
+  isCreatingQuestion: PropTypes.bool.isRequired,
   typeQuestion: PropTypes.string.isRequired,
   setTypeQuestion: PropTypes.func.isRequired,
 };

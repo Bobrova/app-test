@@ -57,12 +57,10 @@ const TakingTest = ({
 
   const testCheck = (takingTestAnswer) => {
     let numberCorrectQuestion = 0;
-    console.log(rightAnswersList, 'rightAnswersList');
     const arrayWrongQuestions = [];
     for (let i = 0; i < takingTestAnswer.length; i += 1) {
       let numberCorrectAnswers = 0;
       for (let j = 0; j < takingTestAnswer[i].answer.length; j += 1) {
-        console.log(i, j);
         if (takingTestAnswer[i].answer[j] === rightAnswersList[i].answer[j]) {
           numberCorrectAnswers += 1;
         }
@@ -87,7 +85,6 @@ const TakingTest = ({
     if (!(validationTest(takingTestAnswer))) {
       return;
     }
-    console.log(takingTestAnswer);
     setResultTest(testCheck(takingTestAnswer));
     showModalWindowAction(true);
   };

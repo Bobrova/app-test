@@ -5,9 +5,9 @@ import styles from './style.scss';
 
 const Question = ({
   editQuestionAction,
-  addQuestionAction,
+  setCreatingQuestion,
   item,
-  changeIdEditQuestionAction,
+  setidEditQuestion,
   setEditQuestionAction,
   deleteQuestionAction,
 }) => {
@@ -17,8 +17,8 @@ const Question = ({
 
   const handleClickEditQuestion = () => {
     editQuestionAction(item);
-    addQuestionAction();
-    changeIdEditQuestionAction(item.id);
+    setCreatingQuestion(true);
+    setidEditQuestion(item.id);
     setEditQuestionAction(true);
   };
 
@@ -30,7 +30,7 @@ const Question = ({
         onClick={handleClickEditQuestion}
         style={{ backgroundImage: `URL("${iconEdit}")` }}
       />
-      <div className={styles.btn} onClick={handleClickDeleteQuestion}>Удалить</div>
+      <div className={styles.btnDelete} onClick={handleClickDeleteQuestion} />
     </>
   );
 };
@@ -39,8 +39,8 @@ Question.propTypes = {
   item: PropTypes.object.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,
-  addQuestionAction: PropTypes.func.isRequired,
-  changeIdEditQuestionAction: PropTypes.func.isRequired,
+  setCreatingQuestion: PropTypes.func.isRequired,
+  setidEditQuestion: PropTypes.func.isRequired,
   setEditQuestionAction: PropTypes.func.isRequired,
 };
 

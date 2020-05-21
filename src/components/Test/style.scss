@@ -38,16 +38,17 @@
   position: absolute;
   top: 50%;
   right: 10px;
-  width: 7%;
-  height: 70%;
+  width: 35px;
+  height: 35px;
   z-index: 2;
   background-repeat: no-repeat;
   background-size: contain;
   transform: translateY(-50%);
   border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
   &:hover {
     cursor: pointer;
-    border-bottom: 1px solid gray;
+    transform: scale(1.1) translateY(-50%);
   }
 }
 

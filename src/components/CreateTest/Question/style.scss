@@ -24,6 +24,36 @@
   }
 }
 
+.btnDelete {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    }
+  
+  &:before, &:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 45px;
+    width: 2px;
+    background-color: #333;
+    }
+
+  &:before {
+    transform: rotate(45deg);
+    }
+
+  &:after {
+    transform: rotate(-45deg);
+    }
+}
+
+
 .btnEdit {
   width: 45px;
   height: 45px;

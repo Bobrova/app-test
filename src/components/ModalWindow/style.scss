@@ -15,34 +15,45 @@
 
 .modalContent {
   position: relative;
-  width: 300px;
-  height: 150px;
-  padding: 10px;
+  width: 400px;
+  height: 200px;
+  padding: 20px;
   border-radius: 5px;
   background-color: #fff;
   opacity: 1;
-  padding: 20px;
   animation-name: animate;
   animation-duration: 0.5s
 }
 
 .btnClose {
   position: absolute;
-  top: 5px;
   right: 5px;
+  top: 5px;
   width: 30px;
   height: 30px;
-  text-align: center;
-  line-height: 30px;
-  font-size: 25px;
-  opacity: 0.7;
-  color: #000;
+  opacity: 0.3;
+
   &:hover {
     cursor: pointer;
-    // opacity: 1;
-    background-color: #dbdbdb;
-    border-radius: 50%;
-  }
+    opacity: 1;
+    }
+  
+  &:before, &:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 30px;
+    width: 1px;
+    background-color: #333;
+    }
+
+  &:before {
+    transform: rotate(45deg);
+    }
+
+  &:after {
+    transform: rotate(-45deg);
+    }
 }
 
 @keyframes animate {
@@ -72,4 +83,19 @@
     border-color: #444;
     cursor: pointer;
   }
+}
+
+.titleModal {
+  text-align: center;
+}
+
+.modalText {
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  line-height: 30px;
+  transform: translateY(-15px);
+  text-align: center;
 }

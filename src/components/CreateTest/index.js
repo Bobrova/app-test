@@ -9,19 +9,17 @@ import Footer from 'components/Footer';
 import styles from './style.scss';
 
 const CreateTest = ({
-  addingQuestion,
   questionList,
   deleteQuestionAction,
   editQuestionAction,
-  addQuestionAction,
-  changeIdEditQuestionAction,
+  // changeIdEditQuestionAction,
   setEditQuestionAction,
   history,
   nameTest,
   isModalWindow,
   showModalWindowAction,
   isEditQuestion,
-  editIdQuestion,
+  // editIdQuestion,
   clearIntermediateValueTestAction,
   deleteTestAction,
   editIdTest,
@@ -37,9 +35,12 @@ const CreateTest = ({
   addTestNameAction,
 }) => {
   const [typeQuestion, setTypeQuestion] = useState('');
+  const [isCreatingQuestion, setCreatingQuestion] = useState(false);
+  const [idQuestionEdit, setidEditQuestion] = useState(-1);
+
   const handleClickAddQuestion = () => {
     if (typeQuestion === '') return;
-    addQuestionAction();
+    setCreatingQuestion(true);
     if (typeQuestion !== 'Численный ответ') {
       addInitialTwoAnswerAction();
     } else {
@@ -77,15 +78,19 @@ const CreateTest = ({
 
   const questions = questionList.map(item => (
     <div key={item.id} className={styles.listItem}>
-      {editIdQuestion === item.id && isEditQuestion ? (
-        <CreateQuestionContainer />
+      {idQuestionEdit === item.id && isEditQuestion ? (
+        <CreateQuestionContainer
+          idQuestionEdit={idQuestionEdit}
+          setidEditQuestion={setidEditQuestion}
+          setCreatingQuestion={setCreatingQuestion}
+        />
       ) : (
         <Question
           item={item}
           deleteQuestionAction={deleteQuestionAction}
           editQuestionAction={editQuestionAction}
-          addQuestionAction={addQuestionAction}
-          changeIdEditQuestionAction={changeIdEditQuestionAction}
+          setCreatingQuestion={setCreatingQuestion}
+          setidEditQuestion={setidEditQuestion}
           setEditQuestionAction={setEditQuestionAction}
         />
       )}
@@ -112,7 +117,7 @@ const CreateTest = ({
         </div>
         <DropDawn
           changeTypeQuestionAction={changeTypeQuestionAction}
-          addingQuestion={addingQuestion}
+          isCreatingQuestion={isCreatingQuestion}
           typeQuestion={typeQuestion}
           setTypeQuestion={setTypeQuestion}
         />
@@ -123,12 +128,16 @@ const CreateTest = ({
           Добавить вопрос
         </div>
         {
-          (addingQuestion && !isEditQuestion)
-          && (<CreateQuestionContainer typeQuestion={typeQuestion} />)
+          (isCreatingQuestion && !isEditQuestion)
+          && (<CreateQuestionContainer
+            typeQuestion={typeQuestion}
+            isCreatingQuestion={isCreatingQuestion}
+            setCreatingQuestion={setCreatingQuestion}
+          />)
         }
         <div className={styles.questionList}>
           {
-          (isEmptyQuestionList && !addingQuestion)
+          (isEmptyQuestionList && !isCreatingQuestion)
             ? <div className={styles.emptyList}>Добавьте вопросы</div>
             : questions
           }
@@ -142,7 +151,7 @@ const CreateTest = ({
       {isModalWindow && <ModalWindow
         typeModalWindow="Подтверждение"
         title="Удаление теста"
-        contentModalWindow={{ text: 'Тест будет удален!!! Вы уверены что вы в трезвом уме и с чистой памятью?' }}
+        contentModalWindow={{ text: 'Вы уверены что хотите удалить тест?' }}
         showModalWindowAction={showModalWindowAction}
         clickConfirm={clickConfirm}
       />}
@@ -151,8 +160,6 @@ const CreateTest = ({
 };
 
 CreateTest.propTypes = {
-  addingQuestion: PropTypes.bool.isRequired,
-  addQuestionAction: PropTypes.func.isRequired,
   changeTypeQuestionAction: PropTypes.func.isRequired,
   saveTestAction: PropTypes.func.isRequired,
   addTestNameAction: PropTypes.func.isRequired,
@@ -161,7 +168,6 @@ CreateTest.propTypes = {
   questionList: PropTypes.array.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,
-  changeIdEditQuestionAction: PropTypes.func.isRequired,
   setEditQuestionAction: PropTypes.func.isRequired,
   nameTest: PropTypes.string.isRequired,
   nextIdTest: PropTypes.number.isRequired,
@@ -174,7 +180,6 @@ CreateTest.propTypes = {
   isModalWindow: PropTypes.bool.isRequired,
   deleteTestAction: PropTypes.func.isRequired,
   isEditQuestion: PropTypes.bool.isRequired,
-  editIdQuestion: PropTypes.number.isRequired,
   clearTypeQuestionAction: PropTypes.func.isRequired,
   dateCreate: PropTypes.string.isRequired,
 };

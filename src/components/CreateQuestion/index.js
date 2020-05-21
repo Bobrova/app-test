@@ -14,13 +14,14 @@ const CreateQuestion = ({
   changeTextAnswerCreateAction,
   addTextQuestionAction,
   saveQuestionAction,
-  closeAddingQuestionAction,
   nextIdQuestion,
   isEditQuestion,
   setEditQuestionAction,
-  editIdQuestion,
+  idQuestionEdit,
   clearIntermediateValueQuestionAction,
   nextIdAnswer,
+  setCreatingQuestion,
+  setidEditQuestion,
 }) => {
   const [validationBlankFilds, setValidationBlankFilds] = useState([]);
   const [isTextQuestion, setTextQuestion] = useState(true);
@@ -84,7 +85,7 @@ const CreateQuestion = ({
   };
 
   const handleClickCloseQuestion = () => {
-    closeAddingQuestionAction();
+    setCreatingQuestion(false);
     clearIntermediateValueQuestionAction();
     if (isEditQuestion === true) setEditQuestionAction(false);
   };
@@ -92,13 +93,14 @@ const CreateQuestion = ({
   const handleCkickSaveQuestion = () => {
     if (!(validationQuestion()) || !(validationAnswer())) return;
     saveQuestionAction({
-      id: isEditQuestion === false ? nextIdQuestion : editIdQuestion,
+      id: isEditQuestion === false ? nextIdQuestion : idQuestionEdit,
       textQuestion,
       answerList,
       typeQuestion,
     });
     if (isEditQuestion === true) setEditQuestionAction(false);
-    closeAddingQuestionAction();
+    setCreatingQuestion(false);
+    setidEditQuestion(-1);
     clearIntermediateValueQuestionAction();
   };
 
@@ -207,16 +209,22 @@ CreateQuestion.propTypes = {
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
   nextIdAnswer: PropTypes.number.isRequired,
-  closeAddingQuestionAction: PropTypes.func.isRequired,
+  setCreatingQuestion: PropTypes.func.isRequired,
   changeTextAnswerCreateAction: PropTypes.func.isRequired,
   saveQuestionAction: PropTypes.func.isRequired,
   textQuestion: PropTypes.string.isRequired,
   answerList: PropTypes.array.isRequired,
   nextIdQuestion: PropTypes.number.isRequired,
-  editIdQuestion: PropTypes.number.isRequired,
+  idQuestionEdit: PropTypes.number,
+  setidEditQuestion: PropTypes.func,
   isEditQuestion: PropTypes.bool.isRequired,
   setEditQuestionAction: PropTypes.func.isRequired,
   clearIntermediateValueQuestionAction: PropTypes.func.isRequired,
+};
+
+CreateQuestion.defaultProps = {
+  idQuestionEdit: -1,
+  setidEditQuestion: null,
 };
 
 export default CreateQuestion;

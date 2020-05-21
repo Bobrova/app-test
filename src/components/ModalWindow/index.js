@@ -29,7 +29,7 @@ class ModalWindow extends Component {
     const modalResultTest = (
       <div className={styles.modalWindow}>
         <div className={styles.modalContent}>
-          <div className={styles.btnClose} onClick={this.handleClickClose}>&times;</div>
+          <div className={styles.btnClose} onClick={this.handleClickClose} />
           <div className={styles.titleModal}>{title}</div>
           <div className={styles.modalText}>
             Количество правильных ответов:
@@ -47,7 +47,7 @@ class ModalWindow extends Component {
       <div className={styles.modalWindow}>
         <div className={styles.modalContent}>
           <div className={styles.titleModal}>{title}</div>
-          <div className={styles.btnClose} onClick={this.handleClickClose}>&times;</div>
+          <div className={styles.btnClose} onClick={this.handleClickClose} />
           <div className={styles.modalText}>{contentModalWindow.text}</div>
           <div className={styles.controlBtn}>
             <div className={styles.btn} onClick={this.handleClickConfirm}>Подтвердить</div>

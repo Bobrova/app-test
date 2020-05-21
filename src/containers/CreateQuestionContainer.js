@@ -7,13 +7,10 @@ import {
   addAnswerAction,
   changeCheckAction,
   changeRadioAction,
-  closeAddingQuestionAction,
   changeTextAnswerCreateAction,
   saveQuestionAction,
   setEditQuestionAction,
   clearIntermediateValueQuestionAction,
-  validationTextQuestionAction,
-  validationQuestionAnswersAction,
 } from 'actions';
 
 const mapStateToProps = (state, props) => ({
@@ -24,7 +21,10 @@ const mapStateToProps = (state, props) => ({
   answerList: state.intermediateValueQuestion.answerList,
   questionList: state.intermediateValueTest.questionList,
   isEditQuestion: state.common.isEditQuestion,
-  editIdQuestion: state.common.editIdQuestion,
+  setCreatingQuestion: props.setCreatingQuestion,
+  setidEditQuestion: props.setidEditQuestion,
+  idQuestionEdit: props.idQuestionEdit,
+  prop: props,
 });
 
 
@@ -36,12 +36,9 @@ export default connect(
     addAnswerAction,
     changeCheckAction,
     changeRadioAction,
-    closeAddingQuestionAction,
     changeTextAnswerCreateAction,
     saveQuestionAction,
     setEditQuestionAction,
     clearIntermediateValueQuestionAction,
-    validationTextQuestionAction,
-    validationQuestionAnswersAction,
   },
 )(CreateQuestion);
