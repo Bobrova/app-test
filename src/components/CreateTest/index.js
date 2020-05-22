@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 import HeaderContainer from 'containers/HeaderContainer';
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
-import Question from 'components/CreateTest/Question';
 import ModalWindow from 'components/ModalWindow';
 import DropDawn from 'components/DropDown';
+import QuestionList from 'components/CreateTest/QuestionList';
+
 import styles from './style.scss';
 
 const CreateTest = ({
   questionList,
   deleteQuestionAction,
   editQuestionAction,
-  // changeIdEditQuestionAction,
-  setEditQuestionAction,
   history,
   nameTest,
-  isEditQuestion,
-  // editIdQuestion,
   clearIntermediateValueTestAction,
   deleteTestAction,
   editIdTest,
@@ -31,7 +30,6 @@ const CreateTest = ({
 }) => {
   const [typeQuestion, setTypeQuestion] = useState('');
   const [isCreatingQuestion, setCreatingQuestion] = useState(false);
-  const [idQuestionEdit, setidEditQuestion] = useState(-1);
   const [isModalWindow, setModalWindow] = useState(false);
 
   const handleClickAddQuestion = () => {
@@ -82,28 +80,6 @@ const CreateTest = ({
     setModalWindow(true);
   };
 
-  const questions = questionList.map(item => (
-    <div key={item.id} className={styles.listItem}>
-      {idQuestionEdit === item.id && isEditQuestion ? (
-        <CreateQuestionContainer
-          idQuestionEdit={idQuestionEdit}
-          setidEditQuestion={setidEditQuestion}
-          setCreatingQuestion={setCreatingQuestion}
-        />
-      ) : (
-        <Question
-          item={item}
-          deleteQuestionAction={deleteQuestionAction}
-          editQuestionAction={editQuestionAction}
-          setCreatingQuestion={setCreatingQuestion}
-          setidEditQuestion={setidEditQuestion}
-          setEditQuestionAction={setEditQuestionAction}
-        />
-      )}
-    </div>
-  ));
-  const isEmptyQuestionList = questions.length === 0;
-
   return (
     <div className={styles.page}>
       <HeaderContainer history={history} />
@@ -133,20 +109,19 @@ const CreateTest = ({
           Добавить вопрос
         </div>
         {
-          (isCreatingQuestion && !isEditQuestion)
+          (isCreatingQuestion)
           && (<CreateQuestionContainer
             typeQuestion={typeQuestion}
             isCreatingQuestion={isCreatingQuestion}
             setCreatingQuestion={setCreatingQuestion}
           />)
         }
-        <div className={styles.questionList}>
-          {
-          (isEmptyQuestionList && !isCreatingQuestion)
-            ? <div className={styles.emptyList}>Добавьте вопросы</div>
-            : questions
-          }
-        </div>
+        <QuestionList
+          isCreatingQuestion={isCreatingQuestion}
+          deleteQuestionAction={deleteQuestionAction}
+          editQuestionAction={editQuestionAction}
+          questionList={questionList}
+        />
         <div className={styles.blockControlBtn}>
           <div className={styles.btnSave} onClick={handleSaveTest}>Сохранить</div>
           <div className={styles.btnDeleteTest} onClick={handleDeleteTest}>Удалить тест</div>
@@ -171,7 +146,6 @@ CreateTest.propTypes = {
   questionList: PropTypes.array.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,
-  setEditQuestionAction: PropTypes.func.isRequired,
   nameTest: PropTypes.string.isRequired,
   nextIdTest: PropTypes.number.isRequired,
   history: PropTypes.object.isRequired,
@@ -180,7 +154,6 @@ CreateTest.propTypes = {
   editIdTest: PropTypes.number.isRequired,
   setEditTestAction: PropTypes.func.isRequired,
   deleteTestAction: PropTypes.func.isRequired,
-  isEditQuestion: PropTypes.bool.isRequired,
   dateCreate: PropTypes.string.isRequired,
 };
 

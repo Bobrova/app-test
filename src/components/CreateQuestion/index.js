@@ -15,8 +15,6 @@ const CreateQuestion = ({
   addTextQuestionAction,
   saveQuestionAction,
   nextIdQuestion,
-  isEditQuestion,
-  setEditQuestionAction,
   idQuestionEdit,
   clearIntermediateValueQuestionAction,
   nextIdAnswer,
@@ -85,24 +83,27 @@ const CreateQuestion = ({
   };
 
   const handleClickCloseQuestion = () => {
-    setCreatingQuestion(false);
     clearIntermediateValueQuestionAction();
-    if (isEditQuestion === true) setEditQuestionAction(false);
+    if (idQuestionEdit !== -1) {
+      setidEditQuestion(-1);
+    } else {
+      setCreatingQuestion(false);
+    }
   };
 
   const handleCkickSaveQuestion = () => {
     if (!(validationQuestion()) || !(validationAnswer())) return;
     saveQuestionAction({
-      id: isEditQuestion === false ? nextIdQuestion : idQuestionEdit,
+      id: idQuestionEdit === -1 ? nextIdQuestion : idQuestionEdit,
       textQuestion,
       answerList,
       typeQuestion,
     });
-    if (isEditQuestion === true) {
-      setEditQuestionAction(false);
+    if (idQuestionEdit !== -1) {
       setidEditQuestion(-1);
+    } else {
+      setCreatingQuestion(false);
     }
-    setCreatingQuestion(false);
     clearIntermediateValueQuestionAction();
   };
 
@@ -211,7 +212,7 @@ CreateQuestion.propTypes = {
   changeCheckAction: PropTypes.func.isRequired,
   changeRadioAction: PropTypes.func.isRequired,
   nextIdAnswer: PropTypes.number.isRequired,
-  setCreatingQuestion: PropTypes.func.isRequired,
+  setCreatingQuestion: PropTypes.func,
   changeTextAnswerCreateAction: PropTypes.func.isRequired,
   saveQuestionAction: PropTypes.func.isRequired,
   textQuestion: PropTypes.string.isRequired,
@@ -219,14 +220,13 @@ CreateQuestion.propTypes = {
   nextIdQuestion: PropTypes.number.isRequired,
   idQuestionEdit: PropTypes.number,
   setidEditQuestion: PropTypes.func,
-  isEditQuestion: PropTypes.bool.isRequired,
-  setEditQuestionAction: PropTypes.func.isRequired,
   clearIntermediateValueQuestionAction: PropTypes.func.isRequired,
 };
 
 CreateQuestion.defaultProps = {
   idQuestionEdit: -1,
   setidEditQuestion: null,
+  setCreatingQuestion: null,
 };
 
 export default CreateQuestion;

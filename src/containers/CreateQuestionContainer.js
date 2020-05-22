@@ -9,7 +9,6 @@ import {
   changeRadioAction,
   changeTextAnswerCreateAction,
   saveQuestionAction,
-  setEditQuestionAction,
   clearIntermediateValueQuestionAction,
 } from 'actions';
 
@@ -20,7 +19,6 @@ const mapStateToProps = (state, props) => ({
   textQuestion: state.intermediateValueQuestion.textQuestion,
   answerList: state.intermediateValueQuestion.answerList,
   questionList: state.intermediateValueTest.questionList,
-  isEditQuestion: state.common.isEditQuestion,
   setCreatingQuestion: props.setCreatingQuestion,
   setidEditQuestion: props.setidEditQuestion,
   idQuestionEdit: props.idQuestionEdit,
@@ -38,7 +36,6 @@ export default connect(
     changeRadioAction,
     changeTextAnswerCreateAction,
     saveQuestionAction,
-    setEditQuestionAction,
     clearIntermediateValueQuestionAction,
   },
 )(CreateQuestion);

@@ -7,13 +7,9 @@ const commonSlice = createSlice({
   initialState: {
     addingQuestion: false,
     typeQuestion: '',
-    editIdQuestion: -1,
-    isEditQuestion: false,
     editIdTest: -1,
     isEditTest: false,
     isModalWindow: false,
-    isSortName: false,
-    isSortDate: false,
     rightAnswer: [],
   },
   reducers: {
@@ -23,14 +19,8 @@ const commonSlice = createSlice({
     closeAddingQuestion(state) {
       state.addingQuestion = false;
     },
-    changeIdEditQuestion(state, { payload }) {
-      state.editIdQuestion = payload.id;
-    },
     chsngeTypeQuestion(state, { payload }) {
       state.typeQuestion = payload;
-    },
-    setEditQuestion(state, { payload }) {
-      state.isEditQuestion = payload;
     },
     changeIdEditTest(state, { payload }) {
       state.editIdTest = payload.id;
@@ -43,12 +33,6 @@ const commonSlice = createSlice({
     },
     clearTypeQuestion(state) {
       state.typeQuestion = '';
-    },
-    setSortName(state, { payload }) {
-      state.isSortName = payload;
-    },
-    setSortDate(state, { payload }) {
-      state.isSortDate = payload;
     },
     changeFilterGallery(state, { payload }) {
       state.filterGallery = payload;

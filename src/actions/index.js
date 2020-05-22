@@ -48,20 +48,11 @@ export const changeCheckboxAnswerAction = payload => ({
   payload,
 });
 export const changeIdEditTestAction = id => ({ type: types.CHANGE_ID_EDIT_TEST, id });
-export const changeIdEditQuestionAction = id => ({ type: types.CHANGE_ID_EDIT_QUESTION, id });
 export const changeTakingTest = item => ({ type: types.CHANGE_TAKING_TEST, item });
 export const saveTestAction = item => ({ type: types.SAVE_TEST, item });
-export const closeAddingQuestionAction = payload => ({
-  type: types.CLOSE_ADDING_QUESTION,
-  payload,
-});
 export const saveQuestionAction = item => ({ type: types.SAVE_QUESTION, item });
 export const deleteQuestionAction = id => ({ type: types.DELETE_QUESTION, id });
 export const editQuestionAction = item => ({ type: types.EDIT_QUESTION, item });
-export const setEditQuestionAction = payload => ({
-  type: types.SET_EDIT_QUESTION,
-  payload,
-});
 export const clearIntermediateValueQuestionAction = payload => ({
   type: types.CLEAR_INTERMEDIATE_VALUE_QUESTION,
   payload,
@@ -80,10 +71,6 @@ export const changeAccessRights = payload => ({ type: types.CHANGE_ACCESS_RIGHTS
 export const addDataUser = payload => ({ type: types.ADD_DATA_USER, payload });
 export const addRightAnswer = payload => ({ type: types.ADD_RIGHT_ANSWER, payload });
 export const addResultModalAction = payload => ({ type: types.ADD_TEXT_RESULT_MODAL, payload });
-export const changeTypeModalWindowAction = payload => ({
-  type: types.CHANGE_TYPE_MODAL_WINDOW,
-  payload,
-});
 export const validationBlankFieldsAction = payload => ({
   type: types.VALIDATION_BLANK_FIELD,
   payload,

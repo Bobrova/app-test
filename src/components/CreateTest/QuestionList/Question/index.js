@@ -8,10 +8,8 @@ import styles from './style.scss';
 
 const Question = ({
   editQuestionAction,
-  setCreatingQuestion,
   item,
   setidEditQuestion,
-  setEditQuestionAction,
   deleteQuestionAction,
 }) => {
   const [isModalWindow, setModalWindow] = useState(false);
@@ -22,9 +20,7 @@ const Question = ({
 
   const handleClickEditQuestion = () => {
     editQuestionAction(item);
-    setCreatingQuestion(true);
     setidEditQuestion(item.id);
-    setEditQuestionAction(true);
   };
 
   const clickConfirm = () => {
@@ -57,9 +53,7 @@ Question.propTypes = {
   item: PropTypes.object.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,
-  setCreatingQuestion: PropTypes.func.isRequired,
   setidEditQuestion: PropTypes.func.isRequired,
-  setEditQuestionAction: PropTypes.func.isRequired,
 };
 
 export default Question;

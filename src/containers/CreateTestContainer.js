@@ -9,8 +9,6 @@ import {
   addInitialNumberAnswer,
   deleteQuestionAction,
   editQuestionAction,
-  changeIdEditQuestionAction,
-  setEditQuestionAction,
   clearIntermediateValueTestAction,
   setEditTestAction,
   deleteTestAction,
@@ -23,9 +21,7 @@ const mapStateToProps = state => ({
   dateCreate: getDateCreate(state),
   nextIdTest: getCurrentIdTest(state),
   isEditTest: state.common.isEditTest,
-  isEditQuestion: state.common.isEditQuestion,
   editIdTest: state.common.editIdTest,
-  editIdQuestion: state.common.editIdQuestion,
 });
 
 
@@ -39,8 +35,6 @@ export default connect(
     addInitialNumberAnswer,
     deleteQuestionAction,
     editQuestionAction,
-    changeIdEditQuestionAction,
-    setEditQuestionAction,
     clearIntermediateValueTestAction,
     setEditTestAction,
     deleteTestAction,
