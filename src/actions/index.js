@@ -31,10 +31,6 @@ export const addTestNameAction = payload => ({
   payload,
 });
 export const addTypeQuestionAction = (payload) => ({ type: types.ADD_TYPE_QUESTION, payload });
-export const changeTypeQuestionAction = payload => ({
-  type: types.CHANGE_TYPE_QUESTION,
-  payload,
-});
 export const changeCheckAction = (id) => ({ type: types.CHANGE_CHECK, id });
 export const changeRadioAction = (id) => ({ type: types.CHANGE_RADIO, id });
 export const changeTextAnswerCreateAction = (id, text) => ({
@@ -74,13 +70,11 @@ export const clearIntermediateValueTestAction = payload => ({
   type: types.CLEAR_INTERMEDIATE_VALUE_TEST,
   payload,
 });
-export const clearTypeQuestionAction = () => ({ type: types.CLEAR_TYPE_QUESTION });
 export const editTestAction = item => ({ type: types.EDIT_TEST, item });
 export const setEditTestAction = payload => ({
   type: types.SET_EDIT_TEST,
   payload,
 });
-export const showModalWindowAction = payload => ({ type: types.SHOW_MODAL_WINDOW, payload });
 export const deleteTestAction = id => ({ type: types.DELETE_TEST, id });
 export const changeAccessRights = payload => ({ type: types.CHANGE_ACCESS_RIGHTS, payload });
 export const addDataUser = payload => ({ type: types.ADD_DATA_USER, payload });

@@ -23,8 +23,9 @@
   outline: none;
   width: 300px;
   border-bottom: 1px solid gray;
-  &:focus {
-    border-color: #88fce5;
+
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
   }
 }
 

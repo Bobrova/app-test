@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import HeaderContainer from 'containers/HeaderContainer';
 import { day, month } from 'constants/constants';
-import Footer from 'components/Footer';
+
+import ModalWindow from 'components/ModalWindow';
 import Test from 'components/Test';
+
 import styles from './style.scss';
 
 const Main = ({
@@ -21,6 +23,34 @@ const Main = ({
 }) => {
   const [isSortName, setSortName] = useState(0);
   const [isSortDate, setSortDate] = useState(0);
+  const [isModalWindow, setModalWindow] = useState(false);
+  const [test, setTest] = useState(-1);
+  // console.log(isSortDate);
+
+  const clickConfirm = () => {
+    const listWithoutAnswer = {
+      ...test,
+      questionList: test.questionList.map((questionItem) => ({
+        ...questionItem,
+        answerList: questionItem.answerList.map((item) => questionItem.typeQuestion === 'Численный ответ'
+          ? { ...item, textAnswer: '' }
+          : { ...item, check: false }),
+      })),
+    };
+
+    changeTakingTest(listWithoutAnswer);
+    const rightAnswer = test.questionList.map((itemQuestion) => ({
+      answer: itemQuestion.answerList.map((itemAnswer) => itemQuestion.typeQuestion === 'Численный ответ'
+        ? itemAnswer.textAnswer
+        : itemAnswer.check),
+      id: itemQuestion.id,
+      typeQuestion: itemQuestion.typeQuestion,
+    }));
+    addRightAnswer(rightAnswer);
+    validationBlankFieldsAction([]);
+    history.push(`/main/test-${test.id}`);
+  };
+
   const handleClickSortName = () => {
     if (isSortName === 0) {
       setSortName(1);
@@ -83,6 +113,11 @@ const Main = ({
     testListMain.sort((a, b) => {
       const dateA = new Date(a.dateCreate);
       const dateB = new Date(b.dateCreate);
+      // console.log(a.dateCreate, 'a.dateCreate');
+      // console.log(b.dateCreate, 'b.dateCreate');
+      // console.log(dateA, 'dateA');
+      // console.log(dateB, 'dateB');
+      // console.log(dateA - dateB);
       return dateA - dateB;
     });
   }
@@ -98,6 +133,8 @@ const Main = ({
       isAdmin={isAdmin}
       addRightAnswer={addRightAnswer}
       validationBlankFieldsAction={validationBlankFieldsAction}
+      setModalWindow={setModalWindow}
+      setIdTest={setTest}
     />
   ));
   const isEmptyList = listTest.length === 0;
@@ -128,7 +165,13 @@ const Main = ({
           )}
         </div>
       </div>
-      <Footer />
+      {isModalWindow && <ModalWindow
+        typeModalWindow="Подтверждение"
+        title="Прохождение теста"
+        contentModalWindow={{ text: 'Начать прохождение теста?' }}
+        setModalWindow={setModalWindow}
+        clickConfirm={clickConfirm}
+      />}
     </div>
   );
 };

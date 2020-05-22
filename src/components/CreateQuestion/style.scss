@@ -86,11 +86,13 @@
   border-bottom: 1px solid gray;
   padding: 5px;
   margin-left: 10px;
-  &:focus {
-    border-color: rgb(164, 30, 241);
+
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
   }
 }
 
 .typeQuestion {
   text-align: center;
+  padding-bottom: 10px;
 }

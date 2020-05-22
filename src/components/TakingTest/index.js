@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import HeaderContainer from 'containers/HeaderContainer';
 import Question from 'components/TakingTest/Question';
 import ModalWindow from 'components/ModalWindow';
-import Footer from 'components/Footer';
 import styles from './style.scss';
 
 const TakingTest = ({
@@ -13,12 +12,11 @@ const TakingTest = ({
   changeCheckboxAnswerAction,
   changeRadioAnswerAction,
   changeTextAnswerAction,
-  showModalWindowAction,
-  isModalWindow,
   rightAnswersList,
 }) => {
   const [resultTest, setResultTest] = useState(0);
   const [validationBlankFilds, setValidationBlankFilds] = useState([]);
+  const [isModalWindow, setModalWindow] = useState(false);
   const validationTest = testAnswer => {
     const arrayBlankFields = [];
     for (let i = 0; i < testAnswer.length; i += 1) {
@@ -86,7 +84,7 @@ const TakingTest = ({
       return;
     }
     setResultTest(testCheck(takingTestAnswer));
-    showModalWindowAction(true);
+    setModalWindow(true);
   };
 
   const handleClickConfirm = () => {
@@ -124,9 +122,8 @@ const TakingTest = ({
         contentModalWindow={{ text: resultTest }}
         clickConfirm={handleClickConfirm}
         typeModalWindow="Результаты"
-        showModalWindowAction={showModalWindowAction}
+        setModalWindow={setModalWindow}
       />}
-      <Footer />
     </div>
   );
 };
@@ -138,8 +135,6 @@ TakingTest.propTypes = {
   changeRadioAnswerAction: PropTypes.func.isRequired,
   changeTextAnswerAction: PropTypes.func.isRequired,
   rightAnswersList: PropTypes.array.isRequired,
-  showModalWindowAction: PropTypes.func.isRequired,
-  isModalWindow: PropTypes.bool.isRequired,
 };
 
 export default TakingTest;

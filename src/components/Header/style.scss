@@ -1,8 +1,8 @@
 .header {
+  height: 80px;
   padding: 10px;
+  box-sizing: border-box;
   background-color: #444;
-  grid-row-start: 1;
-  grid-row-end: 2;
 }
 
 .headerWrapper {

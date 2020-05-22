@@ -11,20 +11,20 @@ const ModalWindow = ({
   contentModalWindow,
   typeModalWindow,
   title,
-  showModalWindowAction,
+  setModalWindow,
   clickConfirm,
 }) => {
   const popUpRef = useRef(null);
 
   const handleOutsideClick = e => {
     if (!e.composedPath().includes(popUpRef.current)) {
-      showModalWindowAction(false);
+      setModalWindow(false);
     }
   };
 
   const handleKeyDown = e => {
     if (e.keyCode === ESC_KEY_CODE) {
-      showModalWindowAction(false);
+      setModalWindow(false);
     }
   };
 
@@ -38,16 +38,16 @@ const ModalWindow = ({
   });
 
   const handleClickClose = () => {
-    showModalWindowAction(false);
+    setModalWindow(false);
   };
 
   const handleClickConfirm = () => {
-    showModalWindowAction(false);
+    setModalWindow(false);
     clickConfirm();
   };
 
   const handleClickCancel = () => {
-    showModalWindowAction(false);
+    setModalWindow(false);
   };
 
   const modalResultTest = (
@@ -91,7 +91,7 @@ const ModalWindow = ({
 
 ModalWindow.propTypes = {
   contentModalWindow: PropTypes.object.isRequired,
-  showModalWindowAction: PropTypes.func.isRequired,
+  setModalWindow: PropTypes.func.isRequired,
   clickConfirm: PropTypes.func.isRequired,
   typeModalWindow: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

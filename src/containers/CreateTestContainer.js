@@ -3,7 +3,6 @@ import CreateTest from 'components/CreateTest';
 import { getCurrentIdTest, getDateCreate } from 'selectors';
 import {
   addQuestionAction,
-  changeTypeQuestionAction,
   saveTestAction,
   addTestNameAction,
   addInitialTwoAnswerAction,
@@ -14,14 +13,11 @@ import {
   setEditQuestionAction,
   clearIntermediateValueTestAction,
   setEditTestAction,
-  showModalWindowAction,
   deleteTestAction,
-  clearTypeQuestionAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
   addingQuestion: state.common.addingQuestion,
-  typeQuestion: state.common.typeQuestion,
   questionList: state.intermediateValueTest.questionList,
   nameTest: state.intermediateValueTest.nameTest,
   dateCreate: getDateCreate(state),
@@ -30,7 +26,6 @@ const mapStateToProps = state => ({
   isEditQuestion: state.common.isEditQuestion,
   editIdTest: state.common.editIdTest,
   editIdQuestion: state.common.editIdQuestion,
-  isModalWindow: state.common.isModalWindow,
 });
 
 
@@ -38,7 +33,6 @@ export default connect(
   mapStateToProps,
   {
     addQuestionAction,
-    changeTypeQuestionAction,
     saveTestAction,
     addTestNameAction,
     addInitialTwoAnswerAction,
@@ -49,8 +43,6 @@ export default connect(
     setEditQuestionAction,
     clearIntermediateValueTestAction,
     setEditTestAction,
-    showModalWindowAction,
     deleteTestAction,
-    clearTypeQuestionAction,
   },
 )(CreateTest);

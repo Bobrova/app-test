@@ -115,13 +115,16 @@
   outline: none;
   border-bottom: 1px solid gray;
   padding: 5px;
-  &:focus {
-    border-color: rgb(164, 30, 241);
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
-}
 
-.answerText {
-
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
 }
 
 .validationErrorAnswerText {

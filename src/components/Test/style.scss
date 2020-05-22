@@ -1,6 +1,7 @@
 .startTest {
   display: flex;
   align-items: center;
+  height: 60px;
   padding: 20px;
   font-size: 16px;
   box-sizing: border-box;
@@ -42,7 +43,6 @@
   right: 10px;
   width: 35px;
   height: 35px;
-  z-index: 2;
   background-repeat: no-repeat;
   background-size: contain;
   transform: translateY(-50%);

@@ -9,10 +9,9 @@ const Test = ({
   history,
   changeIdEditTestAction,
   setEditTestAction,
-  changeTakingTest,
-  addRightAnswer,
-  validationBlankFieldsAction,
   isAdmin,
+  setIdTest,
+  setModalWindow,
 }) => {
   const handleClickEditTest = () => {
     editTestAction(item);
@@ -22,36 +21,15 @@ const Test = ({
   };
 
   const handleClickTest = () => {
-    const listWithoutAnswer = {
-      ...item,
-      questionList: item.questionList.map((questionItem) => ({
-        ...questionItem,
-        answerList: questionItem.answerList.map((item) => questionItem.typeQuestion === 'Численный ответ'
-          ? { ...item, textAnswer: '' }
-          : { ...item, check: false }),
-      })),
-    };
-
-    changeTakingTest(listWithoutAnswer);
-    const rightAnswer = item.questionList.map((itemQuestion) => ({
-      answer: itemQuestion.answerList.map((itemAnswer) => itemQuestion.typeQuestion === 'Численный ответ'
-        ? itemAnswer.textAnswer
-        : itemAnswer.check),
-      id: itemQuestion.id,
-      typeQuestion: itemQuestion.typeQuestion,
-    }));
-    addRightAnswer(rightAnswer);
-    validationBlankFieldsAction([]);
-    history.push(`/main/test-${item.id}`);
+    setModalWindow(true);
+    setIdTest(item);
   };
 
   return (
     <div className={styles.listItem}>
       <div className={styles.itemTest}>
         <div className={styles.startTest} onClick={handleClickTest}>
-          <div className={styles.nameTest}>
-            <p>{item.nameTest}</p>
-          </div>
+          <div className={styles.nameTest}>{item.nameTest}</div>
         </div>
         {
           isAdmin && (
@@ -74,10 +52,9 @@ Test.propTypes = {
   history: PropTypes.object.isRequired,
   changeIdEditTestAction: PropTypes.func.isRequired,
   setEditTestAction: PropTypes.func.isRequired,
-  changeTakingTest: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
-  addRightAnswer: PropTypes.func.isRequired,
-  validationBlankFieldsAction: PropTypes.func.isRequired,
+  setModalWindow: PropTypes.func.isRequired,
+  setIdTest: PropTypes.func.isRequired,
 };
 
 export default Test;

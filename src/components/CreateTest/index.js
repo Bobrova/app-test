@@ -5,7 +5,6 @@ import CreateQuestionContainer from 'containers/CreateQuestionContainer';
 import Question from 'components/CreateTest/Question';
 import ModalWindow from 'components/ModalWindow';
 import DropDawn from 'components/DropDown';
-import Footer from 'components/Footer';
 import styles from './style.scss';
 
 const CreateTest = ({
@@ -16,27 +15,24 @@ const CreateTest = ({
   setEditQuestionAction,
   history,
   nameTest,
-  isModalWindow,
-  showModalWindowAction,
   isEditQuestion,
   // editIdQuestion,
   clearIntermediateValueTestAction,
   deleteTestAction,
   editIdTest,
-  changeTypeQuestionAction,
   addInitialTwoAnswerAction,
   addInitialNumberAnswer,
   saveTestAction,
   nextIdTest,
   isEditTest,
   setEditTestAction,
-  clearTypeQuestionAction,
   dateCreate,
   addTestNameAction,
 }) => {
   const [typeQuestion, setTypeQuestion] = useState('');
   const [isCreatingQuestion, setCreatingQuestion] = useState(false);
   const [idQuestionEdit, setidEditQuestion] = useState(-1);
+  const [isModalWindow, setModalWindow] = useState(false);
 
   const handleClickAddQuestion = () => {
     if (typeQuestion === '') return;
@@ -68,7 +64,6 @@ const CreateTest = ({
     });
     if (isEditTest === true) setEditTestAction(false);
     clearIntermediateValueTestAction();
-    clearTypeQuestionAction();
     history.push('/main/');
   };
 
@@ -84,7 +79,7 @@ const CreateTest = ({
   };
 
   const handleDeleteTest = () => {
-    showModalWindowAction(true);
+    setModalWindow(true);
   };
 
   const questions = questionList.map(item => (
@@ -127,7 +122,6 @@ const CreateTest = ({
           </label>
         </div>
         <DropDawn
-          changeTypeQuestionAction={changeTypeQuestionAction}
           isCreatingQuestion={isCreatingQuestion}
           typeQuestion={typeQuestion}
           setTypeQuestion={setTypeQuestion}
@@ -158,12 +152,11 @@ const CreateTest = ({
           <div className={styles.btnDeleteTest} onClick={handleDeleteTest}>Удалить тест</div>
         </div>
       </div>
-      <Footer />
       {isModalWindow && <ModalWindow
         typeModalWindow="Подтверждение"
         title="Удаление теста"
         contentModalWindow={{ text: 'Вы уверены что хотите удалить тест?' }}
-        showModalWindowAction={showModalWindowAction}
+        setModalWindow={setModalWindow}
         clickConfirm={clickConfirm}
       />}
     </div>
@@ -171,7 +164,6 @@ const CreateTest = ({
 };
 
 CreateTest.propTypes = {
-  changeTypeQuestionAction: PropTypes.func.isRequired,
   saveTestAction: PropTypes.func.isRequired,
   addTestNameAction: PropTypes.func.isRequired,
   addInitialTwoAnswerAction: PropTypes.func.isRequired,
@@ -187,11 +179,8 @@ CreateTest.propTypes = {
   isEditTest: PropTypes.bool.isRequired,
   editIdTest: PropTypes.number.isRequired,
   setEditTestAction: PropTypes.func.isRequired,
-  showModalWindowAction: PropTypes.func.isRequired,
-  isModalWindow: PropTypes.bool.isRequired,
   deleteTestAction: PropTypes.func.isRequired,
   isEditQuestion: PropTypes.bool.isRequired,
-  clearTypeQuestionAction: PropTypes.func.isRequired,
   dateCreate: PropTypes.string.isRequired,
 };
 
