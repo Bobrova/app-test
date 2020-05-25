@@ -3,6 +3,7 @@ import {
   ADD_TEXT_ANSWER,
   ADD_INITIAL_TWO_ANSWER,
   ADD_INITIAL_NUMBER_ANSWER,
+  ADD_INITIAL_THREE_ANSWER,
   CHANGE_CHECK,
   ADD_ANSWER,
   CHANGE_RADIO,
@@ -23,6 +24,14 @@ const initialState = localStorage.getItem('app-test')
 
 export default function intermediateValueQuestion(state = initialState, action) {
   switch (action.type) {
+    case ADD_INITIAL_THREE_ANSWER:
+      return {
+        ...state,
+        answerList: [{ id: 0, textAnswer: '', check: true },
+          { id: 1, textAnswer: '', check: true },
+          { id: 2, textAnswer: '', check: false }],
+        textQuestion: '',
+      };
     case ADD_INITIAL_TWO_ANSWER:
       return { ...state, answerList: [{ id: 0, textAnswer: '', check: true }, { id: 1, textAnswer: '', check: false }], textQuestion: '' };
     case ADD_INITIAL_NUMBER_ANSWER:

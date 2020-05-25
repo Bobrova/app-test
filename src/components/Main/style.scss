@@ -13,14 +13,28 @@
 
 .contentFunctional {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-end;
+  padding: 10px 0;
+}
+
+.filterAdmin {
+  justify-content: space-between;
+  padding: 0;
 }
 
 .filterInput {
   padding: 5px;
+  border-radius: 2px;
+  outline: none;
+  border: 1px solid gray;
   &:focus::-webkit-input-placeholder {
     color: transparent;
+  }
+  &:focus {
+    border-width: 1px;
+    border-color: gray;
+    outline: none;
   }
 }
 

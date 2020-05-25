@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import HeaderContainer from 'containers/HeaderContainer';
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
@@ -17,8 +18,9 @@ const CreateTest = ({
   nameTest,
   clearIntermediateValueTestAction,
   editIdTest,
-  addInitialTwoAnswerAction,
   addInitialNumberAnswer,
+  addInitialTwoAnswerAction,
+  addInitialThreeAnswerAction,
   nextIdTest,
   isEditTest,
   setEditTestAction,
@@ -31,29 +33,45 @@ const CreateTest = ({
   const [typeQuestion, setTypeQuestion] = useState('');
   const [isCreatingQuestion, setCreatingQuestion] = useState(false);
   const [isModalWindow, setModalWindow] = useState(false);
+  const [kindModal, setKindModal] = useState('');
+  const [isTestName, setTestName] = useState(true);
 
   const handleClickAddQuestion = () => {
     if (typeQuestion === '') return;
     setCreatingQuestion(true);
-    if (typeQuestion !== 'Численный ответ') {
+    if (typeQuestion === 'Численный ответ') {
+      addInitialNumberAnswer();
+    } else if (typeQuestion === 'Один из списка') {
       addInitialTwoAnswerAction();
     } else {
-      addInitialNumberAnswer();
+      addInitialThreeAnswerAction();
     }
   };
 
   const validationCreateTest = () => {
     if (nameTest === '') {
+      setTestName(false);
       return false;
     }
+    setTestName(true);
     if (!questionList.length) {
       return false;
     }
     return true;
   };
 
-  const handleSaveTest = () => {
-    if (!validationCreateTest()) return;
+  const handleChangeTestName = (e) => {
+    const { value } = e.target;
+    addTestNameAction(value);
+  };
+
+  const deleteTestConfirm = () => {
+    deleteTestRequestAction(editIdTest);
+    clearIntermediateValueTestAction();
+    history.push('/main/');
+  };
+
+  const saveTestConfirm = () => {
     console.log(isEditTest, 'isEditTest');
     if (isEditTest === true) {
       console.log('edit');
@@ -77,19 +95,15 @@ const CreateTest = ({
     history.push('/main/');
   };
 
-  const handleChangeTestName = (e) => {
-    const { value } = e.target;
-    addTestNameAction(value);
-  };
-
-  const clickConfirm = () => {
-    deleteTestRequestAction(editIdTest);
-    clearIntermediateValueTestAction();
-    history.push('/main/');
-  };
-
   const handleDeleteTest = () => {
     setModalWindow(true);
+    setKindModal('Delete');
+  };
+
+  const handleSaveTest = () => {
+    if (!validationCreateTest()) return;
+    setModalWindow(true);
+    setKindModal('Save');
   };
 
   return (
@@ -100,7 +114,8 @@ const CreateTest = ({
           <label forhtml="nameTest" className={styles.labelNameTest}>
             <input
               type="text"
-              className={styles.inputNameTest}
+              className={classNames(styles.inputNameTest,
+                { [styles.validationErrorTestName]: !isTestName })}
               autoComplete="off"
               name="nameTest"
               placeholder="Название теста"
@@ -139,12 +154,19 @@ const CreateTest = ({
           <div className={styles.btnDeleteTest} onClick={handleDeleteTest}>Удалить тест</div>
         </div>
       </div>
-      {isModalWindow && <ModalWindow
+      {isModalWindow && kindModal === 'Delete' && <ModalWindow
         typeModalWindow="Подтверждение"
         title="Удаление теста"
         contentModalWindow={{ text: 'Вы уверены что хотите удалить тест?' }}
         setModalWindow={setModalWindow}
-        clickConfirm={clickConfirm}
+        clickConfirm={deleteTestConfirm}
+      />}
+      {isModalWindow && kindModal === 'Save' && <ModalWindow
+        typeModalWindow="Подтверждение"
+        title="Сохранение теста"
+        contentModalWindow={{ text: 'Сохранить тест?' }}
+        setModalWindow={setModalWindow}
+        clickConfirm={saveTestConfirm}
       />}
     </div>
   );
@@ -154,6 +176,7 @@ CreateTest.propTypes = {
   addTestNameAction: PropTypes.func.isRequired,
   addInitialTwoAnswerAction: PropTypes.func.isRequired,
   addInitialNumberAnswer: PropTypes.func.isRequired,
+  addInitialThreeAnswerAction: PropTypes.func.isRequired,
   questionList: PropTypes.array.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,

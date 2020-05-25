@@ -1,6 +1,10 @@
 import * as types from 'constants/ActionTypes';
 
 export const addQuestionAction = () => ({ type: types.ADD_QUESTION });
+export const addInitialThreeAnswerAction = payload => ({
+  type: types.ADD_INITIAL_THREE_ANSWER,
+  payload,
+});
 export const addInitialTwoAnswerAction = payload => ({
   type: types.ADD_INITIAL_TWO_ANSWER,
   payload,

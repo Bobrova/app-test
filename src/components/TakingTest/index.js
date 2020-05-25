@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import HeaderContainer from 'containers/HeaderContainer';
@@ -17,6 +17,14 @@ const TakingTest = ({
   const [resultTest, setResultTest] = useState(0);
   const [validationBlankFilds, setValidationBlankFilds] = useState([]);
   const [isModalWindow, setModalWindow] = useState(false);
+
+  useEffect(() => {
+    if (!rightAnswersList.length) history.push('/main');
+  }, [
+    rightAnswersList,
+    history,
+  ]);
+
   const validationTest = testAnswer => {
     const arrayBlankFields = [];
     for (let i = 0; i < testAnswer.length; i += 1) {

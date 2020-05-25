@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
 import HeaderContainer from 'containers/HeaderContainer';
 
 import ModalWindow from 'components/ModalWindow';
@@ -82,7 +84,7 @@ const Main = ({
     history.push('/main/create-test');
   };
 
-  const handleInputChange = e => {
+  const handleFilterChange = e => {
     setfilterValue(e.target.value);
   };
 
@@ -142,7 +144,7 @@ const Main = ({
     <div className={styles.page}>
       <HeaderContainer history={history} />
       <div className={styles.mainContent}>
-        <div className={styles.contentFunctional}>
+        <div className={classNames(styles.contentFunctional, { [styles.filterAdmin]: isAdmin })}>
           {
             isAdmin && (
               <div className={styles.btnCreateTest} onClick={handleClickCreateTest}>
@@ -151,7 +153,7 @@ const Main = ({
             )
           }
           <div className={styles.filter}>
-            <input type="text" placeholder="Поиск по названию" className={styles.filterInput} onChange={handleInputChange} />
+            <input type="text" placeholder="Поиск по названию" className={styles.filterInput} onChange={handleFilterChange} />
           </div>
         </div>
         <div className={styles.list}>
