@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Answer from 'components/Answer';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+import Answer from 'components/CreateQuestion/Answer';
 import styles from './style.scss';
 
 const CreateQuestion = ({
@@ -20,6 +22,7 @@ const CreateQuestion = ({
   nextIdAnswer,
   setCreatingQuestion,
   setidEditQuestion,
+  updateAnswerListAction,
 }) => {
   const [validationBlankFilds, setValidationBlankFilds] = useState([]);
   const [isTextQuestion, setTextQuestion] = useState(true);
@@ -107,101 +110,89 @@ const CreateQuestion = ({
     clearIntermediateValueQuestionAction();
   };
 
-  const answers = answerList.map(item => {
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+  };
+
+  const onDragEnd = result => {
+    if (!result.destination) return;
+
+    const items = reorder(
+      answerList,
+      result.source.index,
+      result.destination.index,
+    );
+    updateAnswerListAction(items);
+  };
+
+  const answers = answerList.map((item, index) => {
     const validationError = validationBlankFilds.includes(item.id, 0);
     const answerClass = classNames(
       styles.answerText,
       { [styles.validationErrorAnswerText]: validationError },
     );
     return (
-      <div key={item.id}>
-        <Answer
-          item={item}
-          typeQuestion={typeQuestion}
-          changeCheckAction={changeCheckAction}
-          key={item.id}
-          addAnswerAction={addAnswerAction}
-          changeRadioAction={changeRadioAction}
-          changeTextAnswerCreateAction={changeTextAnswerCreateAction}
-          answerClass={answerClass}
-        />
-      </div>);
+      <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
+        {provided => (
+          <div
+            key={item.id}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            <Answer
+              item={item}
+              typeQuestion={typeQuestion}
+              changeCheckAction={changeCheckAction}
+              key={item.id}
+              addAnswerAction={addAnswerAction}
+              changeRadioAction={changeRadioAction}
+              changeTextAnswerCreateAction={changeTextAnswerCreateAction}
+              answerClass={answerClass}
+            />
+          </div>
+        )}
+      </Draggable>);
   });
   const questionClass = classNames(
     styles.questionText,
     { [styles.validationErrorTextQuestion]: !isTextQuestion },
   );
-  const questionOneOfList = (
-    <div className={styles.addQuestion}>
-      <p className={styles.typeQuestion}>{typeQuestion}</p>
-      <textarea
-        className={questionClass}
-        placeholder="Текст вопроса"
-        onChange={handleChangeTextQuestion}
-        value={textQuestion}
-      />
-      <div className={styles.answerOptions}>
-        <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
-        <div className={styles.answerOptionsWrapper}>
-          {answers}
-          <div className={styles.btnAddAnswer} onClick={handleClickAddAnswer}>+</div>
-          <div className={styles.blockSaveCancel}>
-            <div className={styles.btnSave} onClick={handleCkickSaveQuestion}>Сохранить</div>
-            <div className={styles.btnCancel} onClick={handleClickCloseQuestion}>Отмена</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-  const questionFewFromList = (
-    <div className={styles.addQuestion}>
-      <p className={styles.typeQuestion}>{typeQuestion}</p>
-      <textarea
-        className={questionClass}
-        placeholder="Текст вопроса"
-        onChange={handleChangeTextQuestion}
-        value={textQuestion}
-      />
-      <div className={styles.answerOptions}>
-        <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
-        <div className={styles.answerOptionsWrapper}>
-          {answers}
-          <div className={styles.btnAddAnswer} onClick={handleClickAddAnswer}>+</div>
-          <div className={styles.blockSaveCancel}>
-            <div className={styles.btnSave} onClick={handleCkickSaveQuestion}>Сохранить</div>
-            <div className={styles.btnCancel} onClick={handleClickCloseQuestion}>Отмена</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-  const questionNumericalAnswer = (
-    <div className={styles.addQuestion}>
-      <p className={styles.typeQuestion}>{typeQuestion}</p>
-      <textarea
-        className={questionClass}
-        placeholder="Текст вопроса"
-        onChange={handleChangeTextQuestion}
-        value={textQuestion}
-      />
-      <div className={styles.answerOptions}>
-        <p className={styles.answerOptionsTitle}>Ответ:</p>
-        <div className={styles.answerOptionsWrapper}>
-          {answers}
-          <div className={styles.blockSaveCancel}>
-            <div className={styles.btnSave} onClick={handleCkickSaveQuestion}>Сохранить</div>
-            <div className={styles.btnCancel} onClick={handleClickCloseQuestion}>Отмена</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
   return (
-    <>
-      {typeQuestion === 'Один из списка' && questionOneOfList}
-      {typeQuestion === 'Несколько из списка' && questionFewFromList}
-      {typeQuestion === 'Численный ответ' && questionNumericalAnswer}
-    </>
+    <div className={styles.addQuestion}>
+      <p className={styles.typeQuestion}>{typeQuestion}</p>
+      <textarea
+        className={questionClass}
+        placeholder="Текст вопроса"
+        onChange={handleChangeTextQuestion}
+        value={textQuestion}
+      />
+      <div className={styles.answerOptions}>
+        <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable">
+            {provided => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className={styles.answerOptionsWrapper}
+              >
+                {answers}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+        {typeQuestion !== 'Численный ответ' && <div className={styles.btnAddAnswer} onClick={handleClickAddAnswer}>+</div>}
+        <div className={styles.blockSaveCancel}>
+          <div className={styles.btnSave} onClick={handleCkickSaveQuestion}>Сохранить</div>
+          <div className={styles.btnCancel} onClick={handleClickCloseQuestion}>Отмена</div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -220,6 +211,7 @@ CreateQuestion.propTypes = {
   nextIdQuestion: PropTypes.number.isRequired,
   idQuestionEdit: PropTypes.number,
   setidEditQuestion: PropTypes.func,
+  updateAnswerListAction: PropTypes.func.isRequired,
   clearIntermediateValueQuestionAction: PropTypes.func.isRequired,
 };
 

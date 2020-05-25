@@ -115,7 +115,9 @@ const TakingTest = ({
         <div className={styles.test}>
           {test}
         </div>
-        <div className={styles.btnTestCheck} onClick={handleClickTestCheck}>Закончить</div>
+        <div className={styles.btnTestCheck} onClick={handleClickTestCheck}>
+          Закончить прохождение теста
+        </div>
       </div>
       {isModalWindow && <ModalWindow
         title="Результаты теста"

@@ -37,6 +37,8 @@
       "no-confusing-arrow": "off",
       "react/state-in-constructor": "off",
       "no-shadow": "off",
-      "import/no-unresolved": "off"
+      "import/no-unresolved": "off",
+      "react/jsx-props-no-spreading": "off",
+      "no-useless-return": "off"
     }
 }

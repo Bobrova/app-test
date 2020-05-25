@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
 import Question from 'components/CreateTest/QuestionList/Question';

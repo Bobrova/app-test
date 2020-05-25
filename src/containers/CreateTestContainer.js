@@ -3,7 +3,6 @@ import CreateTest from 'components/CreateTest';
 import { getCurrentIdTest, getDateCreate } from 'selectors';
 import {
   addQuestionAction,
-  saveTestAction,
   addTestNameAction,
   addInitialTwoAnswerAction,
   addInitialNumberAnswer,
@@ -11,7 +10,9 @@ import {
   editQuestionAction,
   clearIntermediateValueTestAction,
   setEditTestAction,
-  deleteTestAction,
+  postTestRequestAction,
+  putTestRequestAction,
+  deleteTestRequestAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -29,7 +30,6 @@ export default connect(
   mapStateToProps,
   {
     addQuestionAction,
-    saveTestAction,
     addTestNameAction,
     addInitialTwoAnswerAction,
     addInitialNumberAnswer,
@@ -37,6 +37,8 @@ export default connect(
     editQuestionAction,
     clearIntermediateValueTestAction,
     setEditTestAction,
-    deleteTestAction,
+    postTestRequestAction,
+    putTestRequestAction,
+    deleteTestRequestAction,
   },
 )(CreateTest);

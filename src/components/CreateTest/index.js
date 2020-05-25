@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import HeaderContainer from 'containers/HeaderContainer';
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
@@ -17,16 +16,17 @@ const CreateTest = ({
   history,
   nameTest,
   clearIntermediateValueTestAction,
-  deleteTestAction,
   editIdTest,
   addInitialTwoAnswerAction,
   addInitialNumberAnswer,
-  saveTestAction,
   nextIdTest,
   isEditTest,
   setEditTestAction,
   dateCreate,
   addTestNameAction,
+  postTestRequestAction,
+  putTestRequestAction,
+  deleteTestRequestAction,
 }) => {
   const [typeQuestion, setTypeQuestion] = useState('');
   const [isCreatingQuestion, setCreatingQuestion] = useState(false);
@@ -54,13 +54,25 @@ const CreateTest = ({
 
   const handleSaveTest = () => {
     if (!validationCreateTest()) return;
-    saveTestAction({
-      id: isEditTest === false ? nextIdTest : editIdTest,
-      nameTest,
-      questionList,
-      dateCreate,
-    });
-    if (isEditTest === true) setEditTestAction(false);
+    console.log(isEditTest, 'isEditTest');
+    if (isEditTest === true) {
+      console.log('edit');
+      setEditTestAction(false);
+      putTestRequestAction({
+        id: editIdTest,
+        nameTest,
+        questionList,
+        dateCreate,
+      });
+    } else {
+      console.log('add');
+      postTestRequestAction({
+        id: nextIdTest,
+        nameTest,
+        questionList,
+        dateCreate,
+      });
+    }
     clearIntermediateValueTestAction();
     history.push('/main/');
   };
@@ -71,7 +83,7 @@ const CreateTest = ({
   };
 
   const clickConfirm = () => {
-    deleteTestAction(editIdTest);
+    deleteTestRequestAction(editIdTest);
     clearIntermediateValueTestAction();
     history.push('/main/');
   };
@@ -139,7 +151,6 @@ const CreateTest = ({
 };
 
 CreateTest.propTypes = {
-  saveTestAction: PropTypes.func.isRequired,
   addTestNameAction: PropTypes.func.isRequired,
   addInitialTwoAnswerAction: PropTypes.func.isRequired,
   addInitialNumberAnswer: PropTypes.func.isRequired,
@@ -153,8 +164,10 @@ CreateTest.propTypes = {
   isEditTest: PropTypes.bool.isRequired,
   editIdTest: PropTypes.number.isRequired,
   setEditTestAction: PropTypes.func.isRequired,
-  deleteTestAction: PropTypes.func.isRequired,
   dateCreate: PropTypes.string.isRequired,
+  postTestRequestAction: PropTypes.func.isRequired,
+  putTestRequestAction: PropTypes.func.isRequired,
+  deleteTestRequestAction: PropTypes.func.isRequired,
 };
 
 export default CreateTest;

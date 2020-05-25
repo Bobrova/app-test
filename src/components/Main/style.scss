@@ -11,6 +11,19 @@
   box-sizing: border-box;
 }
 
+.contentFunctional {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filterInput {
+  padding: 5px;
+  &:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+}
+
 .list {
   border: 1px solid lightgray;
 }

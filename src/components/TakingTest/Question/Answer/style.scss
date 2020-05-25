@@ -119,6 +119,12 @@
 
 .answerNumber {
   margin-left: 10px;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 .answerText {

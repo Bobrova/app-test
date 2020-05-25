@@ -24,7 +24,7 @@ module.exports = {
       selectors: path.resolve(__dirname, 'src/selectors/'),
       reducers: path.resolve(__dirname, 'src/reducers/'),
       sagas: path.resolve(__dirname, 'src/sagas/'),
-      api: path.resolve(__dirname, 'src/sagas/'),
+      api: path.resolve(__dirname, 'src/api/'),
       img: path.resolve(__dirname, 'src/img/'),
       models: path.resolve(__dirname, 'src/models/'),
     },

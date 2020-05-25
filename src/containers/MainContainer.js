@@ -9,6 +9,7 @@ import {
   validationBlankFieldsAction,
   addDateCreate,
   clearIntermediateValueTestAction,
+  getListRequestAction,
 } from 'actions';
 
 const mapStateToProps = state => ({
@@ -28,5 +29,6 @@ export default connect(
     validationBlankFieldsAction,
     addDateCreate,
     clearIntermediateValueTestAction,
+    getListRequestAction,
   },
 )(Main);

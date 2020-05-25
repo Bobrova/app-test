@@ -10,6 +10,7 @@ import {
   ADD_TYPE_QUESTION,
   EDIT_QUESTION,
   CLEAR_INTERMEDIATE_VALUE_QUESTION,
+  UPDATE_ANSWER_LIST,
 } from 'constants/ActionTypes';
 
 const data = { answerList: [], textQuestion: '', typeQuestion: '' };
@@ -34,6 +35,8 @@ export default function intermediateValueQuestion(state = initialState, action) 
       return { ...state, answerList: [...state.answerList, { id: action.payload, textAnswer: '', check: false }] };
     case EDIT_QUESTION:
       return action.item;
+    case UPDATE_ANSWER_LIST:
+      return { ...state, answerList: action.payload };
     case CHANGE_CHECK:
       return {
         ...state,

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import HeaderContainer from 'containers/HeaderContainer';
-import { day, month } from 'constants/constants';
 
 import ModalWindow from 'components/ModalWindow';
 import Test from 'components/Test';
@@ -20,12 +19,19 @@ const Main = ({
   addRightAnswer,
   validationBlankFieldsAction,
   clearIntermediateValueTestAction,
+  getListRequestAction,
 }) => {
   const [isSortName, setSortName] = useState(0);
   const [isSortDate, setSortDate] = useState(0);
   const [isModalWindow, setModalWindow] = useState(false);
+  const [filterValue, setfilterValue] = useState('');
   const [test, setTest] = useState(-1);
-  // console.log(isSortDate);
+
+  useEffect(() => {
+    getListRequestAction();
+  }, [
+    getListRequestAction,
+  ]);
 
   const clickConfirm = () => {
     const listWithoutAnswer = {
@@ -69,21 +75,15 @@ const Main = ({
     setSortName(0);
   };
 
-  const createDate = () => {
-    const date = new Date();
-    const dateCreate = `${
-      day[date.getDay()]
-    } ${date.getDate()} ${
-      month[date.getMonth()]
-    } ${date.getFullYear()} г.`;
-    return dateCreate;
-  };
-
   const handleClickCreateTest = () => {
     clearIntermediateValueTestAction();
-    const dateCreate = createDate();
-    addDateCreate(dateCreate);
+    const date = new Date();
+    addDateCreate(date.toString());
     history.push('/main/create-test');
+  };
+
+  const handleInputChange = e => {
+    setfilterValue(e.target.value);
   };
 
   if (isSortName === 1) {
@@ -113,15 +113,15 @@ const Main = ({
     testListMain.sort((a, b) => {
       const dateA = new Date(a.dateCreate);
       const dateB = new Date(b.dateCreate);
-      // console.log(a.dateCreate, 'a.dateCreate');
-      // console.log(b.dateCreate, 'b.dateCreate');
-      // console.log(dateA, 'dateA');
-      // console.log(dateB, 'dateB');
-      // console.log(dateA - dateB);
       return dateA - dateB;
     });
   }
-  const listTest = testListMain.map(item => (
+
+  const filterList = testListMain.filter(
+    item => item.nameTest.toLowerCase().includes(filterValue.toLowerCase()),
+  );
+
+  const listTest = filterList.map(item => (
     <Test
       key={item.id}
       item={item}
@@ -142,13 +142,18 @@ const Main = ({
     <div className={styles.page}>
       <HeaderContainer history={history} />
       <div className={styles.mainContent}>
-        {
-          isAdmin && (
-            <div className={styles.btnCreateTest} onClick={handleClickCreateTest}>
-              Создать тест
-            </div>
-          )
-        }
+        <div className={styles.contentFunctional}>
+          {
+            isAdmin && (
+              <div className={styles.btnCreateTest} onClick={handleClickCreateTest}>
+                Создать тест
+              </div>
+            )
+          }
+          <div className={styles.filter}>
+            <input type="text" placeholder="Поиск по названию" className={styles.filterInput} onChange={handleInputChange} />
+          </div>
+        </div>
         <div className={styles.list}>
           <div className={styles.sortMenu}>
             <div className={styles.sortName} onClick={handleClickSortName}>
@@ -188,6 +193,7 @@ Main.propTypes = {
   validationBlankFieldsAction: PropTypes.func.isRequired,
   addDateCreate: PropTypes.func.isRequired,
   clearIntermediateValueTestAction: PropTypes.func.isRequired,
+  getListRequestAction: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -49,7 +49,6 @@ export const changeCheckboxAnswerAction = payload => ({
 });
 export const changeIdEditTestAction = id => ({ type: types.CHANGE_ID_EDIT_TEST, id });
 export const changeTakingTest = item => ({ type: types.CHANGE_TAKING_TEST, item });
-export const saveTestAction = item => ({ type: types.SAVE_TEST, item });
 export const saveQuestionAction = item => ({ type: types.SAVE_QUESTION, item });
 export const deleteQuestionAction = id => ({ type: types.DELETE_QUESTION, id });
 export const editQuestionAction = item => ({ type: types.EDIT_QUESTION, item });
@@ -66,7 +65,6 @@ export const setEditTestAction = payload => ({
   type: types.SET_EDIT_TEST,
   payload,
 });
-export const deleteTestAction = id => ({ type: types.DELETE_TEST, id });
 export const changeAccessRights = payload => ({ type: types.CHANGE_ACCESS_RIGHTS, payload });
 export const addDataUser = payload => ({ type: types.ADD_DATA_USER, payload });
 export const addRightAnswer = payload => ({ type: types.ADD_RIGHT_ANSWER, payload });
@@ -87,3 +85,18 @@ export const addDateCreate = payload => ({
   type: types.ADD_DATE_CREATE,
   payload,
 });
+export const updateAnswerListAction = payload => ({
+  type: types.UPDATE_ANSWER_LIST,
+  payload,
+});
+
+export const getListRequestAction = () => ({ type: types.GET_LIST_REQUEST });
+export const getListSuccessAction = payload => ({ type: types.GET_LIST_SUCCESS, payload });
+export const deleteTestRequestAction = payload => ({ type: types.DELETE_TEST_REQUEST, payload });
+export const deleteTestSuccessAction = payload => ({ type: types.DELETE_TEST_SUCCESS, payload });
+export const postTestRequestAction = payload => ({ type: types.POST_TEST_REQUEST, payload });
+export const postTestSuccessAction = payload => ({ type: types.POST_TEST_SUCCESS, payload });
+export const putTestRequestAction = payload => ({ type: types.PUT_TEST_REQUEST, payload });
+export const putTestSuccessAction = payload => ({ type: types.PUT_TEST_SUCCESS, payload });
+export const failureAction = error => ({ type: types.FAILURE, payload: error });
+export const clearErrorFieldAction = error => ({ type: types.CLEAR_ERROR_FIELD, payload: error });
