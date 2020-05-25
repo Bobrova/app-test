@@ -1,6 +1,13 @@
 import { connect } from 'react-redux';
 import CreateTest from 'components/CreateTest';
-import { getCurrentIdTest, getDateCreate } from 'selectors';
+import {
+  getCurrentIdTestSelector,
+  getDateCreateSelector,
+  getQuestionListSelector,
+  getNameTestSelector,
+  getIsEditTestSelector,
+  getEditIdTestSelector,
+} from 'selectors';
 import {
   addQuestionAction,
   addTestNameAction,
@@ -17,13 +24,12 @@ import {
 } from 'actions';
 
 const mapStateToProps = state => ({
-  addingQuestion: state.common.addingQuestion,
-  questionList: state.intermediateValueTest.questionList,
-  nameTest: state.intermediateValueTest.nameTest,
-  dateCreate: getDateCreate(state),
-  nextIdTest: getCurrentIdTest(state),
-  isEditTest: state.common.isEditTest,
-  editIdTest: state.common.editIdTest,
+  questionList: getQuestionListSelector(state),
+  nameTest: getNameTestSelector(state),
+  dateCreate: getDateCreateSelector(state),
+  nextIdTest: getCurrentIdTestSelector(state),
+  isEditTest: getIsEditTestSelector(state),
+  editIdTest: getEditIdTestSelector(state),
 });
 
 

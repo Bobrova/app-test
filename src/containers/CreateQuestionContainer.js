@@ -1,6 +1,12 @@
 import { connect } from 'react-redux';
 import CreateQuestion from 'components/CreateQuestion';
-import { getCurrentIdAnswer, getCurrentIdQuestion } from 'selectors';
+import {
+  getCurrentIdAnswerSelector,
+  getCurrentIdQuestionSelector,
+  getTextQuestionSelector,
+  getAnswerListSelector,
+  getTypeQuestionSelector,
+} from 'selectors';
 import {
   addTextQuestionAction,
   addTextAnswerAction,
@@ -14,16 +20,14 @@ import {
 } from 'actions';
 
 const mapStateToProps = (state, props) => ({
-  typeQuestion: state.intermediateValueQuestion.typeQuestion === '' ? props.typeQuestion : state.intermediateValueQuestion.typeQuestion,
-  nextIdAnswer: getCurrentIdAnswer(state),
-  nextIdQuestion: getCurrentIdQuestion(state),
-  textQuestion: state.intermediateValueQuestion.textQuestion,
-  answerList: state.intermediateValueQuestion.answerList,
-  questionList: state.intermediateValueTest.questionList,
+  typeQuestion: state.intermediateValueQuestion.typeQuestion === '' ? props.typeQuestion : getTypeQuestionSelector(state),
+  nextIdAnswer: getCurrentIdAnswerSelector(state),
+  nextIdQuestion: getCurrentIdQuestionSelector(state),
+  textQuestion: getTextQuestionSelector(state),
+  answerList: getAnswerListSelector(state),
   setCreatingQuestion: props.setCreatingQuestion,
   setidEditQuestion: props.setidEditQuestion,
   idQuestionEdit: props.idQuestionEdit,
-  prop: props,
 });
 
 

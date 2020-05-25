@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import TakingTest from 'components/TakingTest';
+import { getTakingTestSelector, getRightAnswersListSelector } from 'selectors';
 import {
   changeTakingTest,
   changeRadioAnswerAction,
@@ -8,8 +9,8 @@ import {
 } from 'actions';
 
 const mapStateToProps = state => ({
-  takingTest: state.takingTest,
-  rightAnswersList: state.rightAnswersList,
+  takingTest: getTakingTestSelector(state),
+  rightAnswersList: getRightAnswersListSelector(state),
 });
 
 export default connect(

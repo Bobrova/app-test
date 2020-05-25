@@ -166,7 +166,7 @@ const Main = ({
             </div>
           </div>
           {isEmptyList ? (
-            <div className={styles.emptyList}>Добавьте тестики</div>
+            <div className={styles.emptyList}>Ничего нет</div>
           ) : (
             <div className={styles.testList}>{listTest}</div>
           )}

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Main from 'components/Main';
+import { getTestListSelector, getIsAdminSelector } from 'selectors';
 import {
   editTestAction,
   changeIdEditTestAction,
@@ -13,9 +14,8 @@ import {
 } from 'actions';
 
 const mapStateToProps = state => ({
-  first: state.common,
-  testListMain: state.listTest,
-  isAdmin: state.userData.isAdmin,
+  testListMain: getTestListSelector(state),
+  isAdmin: getIsAdminSelector(state),
 });
 
 export default connect(
