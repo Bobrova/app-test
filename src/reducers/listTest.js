@@ -1,6 +1,4 @@
 import {
-  SAVE_TEST,
-  DELETE_TEST,
   GET_LIST_REQUEST,
   GET_LIST_SUCCESS,
   DELETE_TEST_REQUEST,
@@ -17,8 +15,6 @@ const initialState = {
 
 export default function listTest(state = initialState.list, action) {
   switch (action.type) {
-    case DELETE_TEST:
-      return state.filter(item => item.id !== action.id);
     case GET_LIST_REQUEST: {
       return state;
     }
@@ -32,13 +28,6 @@ export default function listTest(state = initialState.list, action) {
     case DELETE_TEST_SUCCESS: {
       return state.filter(item => item.id !== action.payload);
     }
-
-    case SAVE_TEST:
-      return state.filter(item => item.id === action.item.id).length !== 0
-        ? state.map(item => item.id === action.item.id
-          ? action.item
-          : item)
-        : [...state, action.item];
 
     case POST_TEST_REQUEST: {
       return state;

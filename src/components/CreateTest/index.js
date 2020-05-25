@@ -36,7 +36,7 @@ const CreateTest = ({
   const [kindModal, setKindModal] = useState('');
   const [isTestName, setTestName] = useState(true);
 
-  const handleClickAddQuestion = () => {
+  const handleAddQuestionClick = () => {
     if (typeQuestion === '') return;
     setCreatingQuestion(true);
     if (typeQuestion === 'Численный ответ') {
@@ -60,7 +60,7 @@ const CreateTest = ({
     return true;
   };
 
-  const handleChangeTestName = (e) => {
+  const handleTestNameChange = (e) => {
     const { value } = e.target;
     addTestNameAction(value);
   };
@@ -72,9 +72,7 @@ const CreateTest = ({
   };
 
   const saveTestConfirm = () => {
-    console.log(isEditTest, 'isEditTest');
     if (isEditTest === true) {
-      console.log('edit');
       setEditTestAction(false);
       putTestRequestAction({
         id: editIdTest,
@@ -83,7 +81,6 @@ const CreateTest = ({
         dateCreate,
       });
     } else {
-      console.log('add');
       postTestRequestAction({
         id: nextIdTest,
         nameTest,
@@ -120,7 +117,7 @@ const CreateTest = ({
               name="nameTest"
               placeholder="Название теста"
               value={nameTest}
-              onChange={handleChangeTestName}
+              onChange={handleTestNameChange}
             />
           </label>
         </div>
@@ -131,7 +128,7 @@ const CreateTest = ({
         />
         <div
           className={styles.btnAddQuestion}
-          onClick={handleClickAddQuestion}
+          onClick={handleAddQuestionClick}
         >
           Добавить вопрос
         </div>

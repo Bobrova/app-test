@@ -76,16 +76,16 @@ const CreateQuestion = ({
     return false;
   };
 
-  const handleChangeTextQuestion = (e) => {
+  const handleTextQuestionChange = (e) => {
     const { value } = e.target;
     addTextQuestionAction(value);
   };
 
-  const handleClickAddAnswer = () => {
+  const handleAddAnswerClick = () => {
     addAnswerAction(nextIdAnswer);
   };
 
-  const handleClickCloseQuestion = () => {
+  const handleCloseQuestionClick = () => {
     clearIntermediateValueQuestionAction();
     if (idQuestionEdit !== -1) {
       setidEditQuestion(-1);
@@ -94,7 +94,7 @@ const CreateQuestion = ({
     }
   };
 
-  const handleCkickSaveQuestion = () => {
+  const handleSaveQuestionClick = () => {
     if (!(validationQuestion()) || !(validationAnswer())) return;
     saveQuestionAction({
       id: idQuestionEdit === -1 ? nextIdQuestion : idQuestionEdit,
@@ -167,7 +167,7 @@ const CreateQuestion = ({
       <textarea
         className={questionClass}
         placeholder="Текст вопроса"
-        onChange={handleChangeTextQuestion}
+        onChange={handleTextQuestionChange}
         value={textQuestion}
       />
       <div className={styles.answerOptions}>
@@ -186,10 +186,10 @@ const CreateQuestion = ({
             )}
           </Droppable>
         </DragDropContext>
-        {typeQuestion !== 'Численный ответ' && <div className={styles.btnAddAnswer} onClick={handleClickAddAnswer}>+</div>}
+        {typeQuestion !== 'Численный ответ' && <div className={styles.btnAddAnswer} onClick={handleAddAnswerClick}>+</div>}
         <div className={styles.blockSaveCancel}>
-          <div className={styles.btnSave} onClick={handleCkickSaveQuestion}>Сохранить</div>
-          <div className={styles.btnCancel} onClick={handleClickCloseQuestion}>Отмена</div>
+          <div className={styles.btnSave} onClick={handleSaveQuestionClick}>Сохранить</div>
+          <div className={styles.btnCancel} onClick={handleCloseQuestionClick}>Отмена</div>
         </div>
       </div>
     </div>
@@ -222,4 +222,3 @@ CreateQuestion.defaultProps = {
 };
 
 export default CreateQuestion;
-//  244

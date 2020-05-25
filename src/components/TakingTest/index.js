@@ -80,7 +80,7 @@ const TakingTest = ({
     return numberCorrectQuestion;
   };
 
-  const handleClickTestCheck = () => {
+  const handleTestCheckClick = () => {
     const takingTestAnswer = takingTest.questionList.map(itemQuestion => ({
       answer: itemQuestion.answerList.map(itemAnswer => itemQuestion.typeQuestion === 'Численный ответ'
         ? itemAnswer.textAnswer
@@ -95,7 +95,7 @@ const TakingTest = ({
     setModalWindow(true);
   };
 
-  const handleClickConfirm = () => {
+  const handleConfirmClick = () => {
     history.push('/main');
   };
 
@@ -123,14 +123,14 @@ const TakingTest = ({
         <div className={styles.test}>
           {test}
         </div>
-        <div className={styles.btnTestCheck} onClick={handleClickTestCheck}>
+        <div className={styles.btnTestCheck} onClick={handleTestCheckClick}>
           Закончить прохождение теста
         </div>
       </div>
       {isModalWindow && <ModalWindow
         title="Результаты теста"
         contentModalWindow={{ text: resultTest }}
-        clickConfirm={handleClickConfirm}
+        clickConfirm={handleConfirmClick}
         typeModalWindow="Результаты"
         setModalWindow={setModalWindow}
       />}
