@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import CreateQuestionContainer from 'containers/CreateQuestionContainer';
@@ -6,13 +6,14 @@ import Question from 'components/CreateTest/QuestionList/Question';
 
 import styles from './style.scss';
 
-const CreateTest = ({
+const QuestionList = ({
+  isCreatingQuestion,
   questionList,
   deleteQuestionAction,
   editQuestionAction,
+  idQuestionEdit,
+  setidEditQuestion,
 }) => {
-  const [idQuestionEdit, setidEditQuestion] = useState(-1);
-
   const questions = questionList.map(item => (
     <div key={item.id} className={styles.listItem}>
       {idQuestionEdit === item.id && idQuestionEdit !== -1 ? (
@@ -26,6 +27,8 @@ const CreateTest = ({
           deleteQuestionAction={deleteQuestionAction}
           editQuestionAction={editQuestionAction}
           setidEditQuestion={setidEditQuestion}
+          idQuestionEdit={idQuestionEdit}
+          isCreatingQuestion={isCreatingQuestion}
         />
       )}
     </div>
@@ -35,7 +38,7 @@ const CreateTest = ({
   return (
     <>
       {
-      (isEmptyQuestionList)
+      (isEmptyQuestionList && !isCreatingQuestion)
         ? <div className={styles.emptyList}>Ничего нет</div>
         : questions
       }
@@ -43,10 +46,13 @@ const CreateTest = ({
   );
 };
 
-CreateTest.propTypes = {
+QuestionList.propTypes = {
+  isCreatingQuestion: PropTypes.bool.isRequired,
   questionList: PropTypes.array.isRequired,
+  idQuestionEdit: PropTypes.number.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,
+  setidEditQuestion: PropTypes.func.isRequired,
 };
 
-export default CreateTest;
+export default QuestionList;

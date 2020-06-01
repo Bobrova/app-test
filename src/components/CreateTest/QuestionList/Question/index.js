@@ -7,18 +7,22 @@ import ModalWindow from 'components/ModalWindow';
 import styles from './style.scss';
 
 const Question = ({
-  editQuestionAction,
   item,
+  idQuestionEdit,
+  isCreatingQuestion,
+  editQuestionAction,
   setidEditQuestion,
   deleteQuestionAction,
 }) => {
   const [isModalWindow, setModalWindow] = useState(false);
 
   const handleClickDeleteQuestion = () => {
+    if (idQuestionEdit !== -1 || isCreatingQuestion) return;
     setModalWindow(true);
   };
 
   const handleClickEditQuestion = () => {
+    if (idQuestionEdit !== -1 || isCreatingQuestion) return;
     editQuestionAction(item);
     setidEditQuestion(item.id);
   };
@@ -51,6 +55,8 @@ const Question = ({
 
 Question.propTypes = {
   item: PropTypes.object.isRequired,
+  idQuestionEdit: PropTypes.number.isRequired,
+  isCreatingQuestion: PropTypes.bool.isRequired,
   deleteQuestionAction: PropTypes.func.isRequired,
   editQuestionAction: PropTypes.func.isRequired,
   setidEditQuestion: PropTypes.func.isRequired,

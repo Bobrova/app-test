@@ -35,8 +35,10 @@ const CreateTest = ({
   const [isModalWindow, setModalWindow] = useState(false);
   const [kindModal, setKindModal] = useState('');
   const [isTestName, setTestName] = useState(true);
+  const [idQuestionEdit, setidEditQuestion] = useState(-1);
 
   const handleAddQuestionClick = () => {
+    if (idQuestionEdit !== -1 || isCreatingQuestion) return;
     if (typeQuestion === '') return;
     setCreatingQuestion(true);
     if (typeQuestion === 'Численный ответ') {
@@ -93,11 +95,13 @@ const CreateTest = ({
   };
 
   const handleDeleteTest = () => {
+    if (idQuestionEdit !== -1 || isCreatingQuestion) return;
     setModalWindow(true);
     setKindModal('Delete');
   };
 
   const handleSaveTest = () => {
+    if (idQuestionEdit !== -1 || isCreatingQuestion) return;
     if (!validationCreateTest()) return;
     setModalWindow(true);
     setKindModal('Save');
@@ -127,7 +131,9 @@ const CreateTest = ({
           setTypeQuestion={setTypeQuestion}
         />
         <div
-          className={styles.btnAddQuestion}
+          className={classNames(styles.btnAddQuestion, {
+            [styles.disabled]: idQuestionEdit !== -1 || isCreatingQuestion,
+          })}
           onClick={handleAddQuestionClick}
         >
           Добавить вопрос
@@ -145,10 +151,26 @@ const CreateTest = ({
           deleteQuestionAction={deleteQuestionAction}
           editQuestionAction={editQuestionAction}
           questionList={questionList}
+          setidEditQuestion={setidEditQuestion}
+          idQuestionEdit={idQuestionEdit}
         />
         <div className={styles.blockControlBtn}>
-          <div className={styles.btnSave} onClick={handleSaveTest}>Сохранить</div>
-          <div className={styles.btnDeleteTest} onClick={handleDeleteTest}>Удалить тест</div>
+          <div
+            className={classNames(styles.btnSave, {
+              [styles.disabled]: idQuestionEdit !== -1 || isCreatingQuestion,
+            })}
+            onClick={handleSaveTest}
+          >
+            Сохранить
+          </div>
+          <div
+            className={classNames(styles.btnDeleteTest, {
+              [styles.disabled]: idQuestionEdit !== -1 || isCreatingQuestion,
+            })}
+            onClick={handleDeleteTest}
+          >
+            Удалить тест
+          </div>
         </div>
       </div>
       {isModalWindow && kindModal === 'Delete' && <ModalWindow
