@@ -128,6 +128,7 @@ const CreateTest = ({
         <DropDawn
           isCreatingQuestion={isCreatingQuestion}
           typeQuestion={typeQuestion}
+          idQuestionEdit={idQuestionEdit}
           setTypeQuestion={setTypeQuestion}
         />
         <div

@@ -54,6 +54,7 @@ class Answer extends Component {
           className={answerClass}
           value={item.textAnswer}
           onChange={this.handleChangeTextAnswer}
+          placeholder="Текст ответа"
         />
       </label>
     );

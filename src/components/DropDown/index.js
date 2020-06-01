@@ -4,26 +4,21 @@ import PropTypes from 'prop-types';
 import styles from './style.scss';
 
 const DropDown = ({
+  idQuestionEdit,
   isCreatingQuestion,
   typeQuestion,
   setTypeQuestion,
 }) => {
   const handleOneOfListChoice = () => {
-    if (!isCreatingQuestion) {
-      setTypeQuestion('Один из списка');
-    }
+    setTypeQuestion('Один из списка');
   };
 
   const handleFewFromListChoice = () => {
-    if (!isCreatingQuestion) {
-      setTypeQuestion('Несколько из списка');
-    }
+    setTypeQuestion('Несколько из списка');
   };
 
   const handleNumericalAnswerChoice = () => {
-    if (!isCreatingQuestion) {
-      setTypeQuestion('Численный ответ');
-    }
+    setTypeQuestion('Численный ответ');
   };
 
   return (
@@ -35,31 +30,34 @@ const DropDown = ({
         <div className={styles.dropDown_label}>Выберете тип вопроса</div>
       )
       }
-      <div className={styles.dropDown_content}>
-        <div
-          className={styles.type}
-          onClick={handleOneOfListChoice}
-        >
-          Один из списка
+      {(idQuestionEdit === -1 && !isCreatingQuestion) && (
+        <div className={styles.dropDown_content}>
+          <div
+            className={styles.type}
+            onClick={handleOneOfListChoice}
+          >
+            Один из списка
+          </div>
+          <div
+            className={styles.type}
+            onClick={handleFewFromListChoice}
+          >
+            Несколько из списка
+          </div>
+          <div
+            className={styles.type}
+            onClick={handleNumericalAnswerChoice}
+          >
+            Численный ответ
+          </div>
         </div>
-        <div
-          className={styles.type}
-          onClick={handleFewFromListChoice}
-        >
-          Несколько из списка
-        </div>
-        <div
-          className={styles.type}
-          onClick={handleNumericalAnswerChoice}
-        >
-          Численный ответ
-        </div>
-      </div>
+      )}
     </div>
   );
 };
 
 DropDown.propTypes = {
+  idQuestionEdit: PropTypes.number.isRequired,
   isCreatingQuestion: PropTypes.bool.isRequired,
   typeQuestion: PropTypes.string.isRequired,
   setTypeQuestion: PropTypes.func.isRequired,
