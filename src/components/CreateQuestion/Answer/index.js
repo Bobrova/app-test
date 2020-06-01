@@ -66,7 +66,7 @@ class Answer extends Component {
           value={item.textAnswer}
           onChange={this.handleChangeTextAnswer}
           autoComplete="off"
-          placeholder="Текст ответа"
+          placeholder="Ответ"
         />
       </label>
     );

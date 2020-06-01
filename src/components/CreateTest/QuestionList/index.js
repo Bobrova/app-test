@@ -36,7 +36,7 @@ const CreateTest = ({
     <>
       {
       (isEmptyQuestionList)
-        ? <div className={styles.emptyList}>Добавьте вопросы</div>
+        ? <div className={styles.emptyList}>Ничего нет</div>
         : questions
       }
     </>

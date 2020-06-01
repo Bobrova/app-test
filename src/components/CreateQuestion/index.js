@@ -171,7 +171,9 @@ const CreateQuestion = ({
         value={textQuestion}
       />
       <div className={styles.answerOptions}>
-        <p className={styles.answerOptionsTitle}>Варианты ответов:</p>
+        {typeQuestion === 'Численный ответ'
+          ? <p className={styles.answerOptionsTitle}>Ответ:</p>
+          : <p className={styles.answerOptionsTitle}>Варианты ответов:</p>}
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {provided => (
@@ -186,7 +188,7 @@ const CreateQuestion = ({
             )}
           </Droppable>
         </DragDropContext>
-        {typeQuestion !== 'Численный ответ' && <div className={styles.btnAddAnswer} onClick={handleAddAnswerClick}>+</div>}
+        {typeQuestion !== 'Численный ответ' && <div className={styles.btnAddAnswer} onClick={handleAddAnswerClick}>&#43;</div>}
         <div className={styles.blockSaveCancel}>
           <div className={styles.btnSave} onClick={handleSaveQuestionClick}>Сохранить</div>
           <div className={styles.btnCancel} onClick={handleCloseQuestionClick}>Отмена</div>
