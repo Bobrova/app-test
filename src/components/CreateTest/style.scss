@@ -93,12 +93,12 @@
   padding: 10px;
   border-radius: 5px;
   background: #fff;
-  border: 1px solid #ff4f4f;
+  border: 1px solid #ed5e68;
   color: #000;
   transition: all 0.3s ease;
   &:hover {
     cursor: pointer;
-    background: #ff4f4f;
+    background: #ed5e68;
     color: #fff;
   }
 }
@@ -118,56 +118,6 @@
   border: 1px solid black;
   border-radius: 3px;
   text-overflow: ellipsis;
-}
-
-.dropDown {
-  position: relative;
-  display: inline-block;
-  margin: 0 10px;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.dropDown_content {
-  display: none;
-  position: absolute;
-  top: 38px;
-  left: 0;
-  background-color: #fff;
-  width: 100%;
-  min-width: 105px;
-  z-index: 1;
-  box-sizing: border-box;
-}
-
-.dropDown:hover .dropDown_content {
-  display: block;
-}
-
-.dropDown:hover .dropDown_label {
-  border-bottom: none;
-}
-
-.dropDown_label {
-  min-width: 105px;
-  border-right: 1px solid #88fce5;
-  border-left: 1px solid #88fce5;
-  border-bottom: 2px solid #88fce5;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.type {
-  border-bottom: 1px solid #88fce5;
-  padding: 5px;
-  text-align: center;
-  font-size: 12px;
-}
-
-.type:hover {
-  cursor: pointer;
-  background-color: #f2f2f2;
 }
 
 .questionText {

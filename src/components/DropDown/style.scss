@@ -10,21 +10,16 @@
 .dropDown_content {
   display: none;
   position: absolute;
-  top: 38px;
+  top: 40px;
   left: 0;
   background-color: #fff;
   width: 100%;
-  min-width: 105px;
   z-index: 1;
   box-sizing: border-box;
 }
 
 .root:hover .dropDown_content {
   display: block;
-}
-
-.root:hover .dropDown_label {
-  border-bottom: none;
 }
 
 .dropDown_label {
@@ -41,22 +36,9 @@
   padding: 5px;
   text-align: center;
   font-size: 12px;
-}
 
-.type:hover {
-  cursor: pointer;
-  background-color: #f2f2f2;
-}
-
-.questionText {
-  display: block;
-  padding: 10px;
-  resize: none;
-}
-
-.emptyList {
-  background-color: #fff;
-  padding: 20px;
-  text-align: center;
-  color: gray;
+  &:hover {
+    cursor: pointer;
+    background-color: #f2f2f2;
+  }
 }

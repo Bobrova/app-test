@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import App from 'components/App';
+import Authorization from 'components/Authorization';
 import {
   changeAccessRights,
   addDataUser,
@@ -13,4 +13,4 @@ export default connect(
     changeAccessRights,
     addDataUser,
   },
-)(App);
+)(Authorization);

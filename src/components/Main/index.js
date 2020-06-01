@@ -47,14 +47,14 @@ const Main = ({
     };
 
     changeTakingTest(listWithoutAnswer);
-    const rightAnswer = test.questionList.map((itemQuestion) => ({
+    const rightAnswers = test.questionList.map((itemQuestion) => ({
       answer: itemQuestion.answerList.map((itemAnswer) => itemQuestion.typeQuestion === 'Численный ответ'
         ? itemAnswer.textAnswer
         : itemAnswer.check),
       id: itemQuestion.id,
       typeQuestion: itemQuestion.typeQuestion,
     }));
-    addRightAnswer(rightAnswer);
+    addRightAnswer(rightAnswers);
     validationBlankFieldsAction([]);
     history.push(`/main/test-${test.id}`);
   };

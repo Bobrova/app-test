@@ -8,19 +8,19 @@ const DropDown = ({
   typeQuestion,
   setTypeQuestion,
 }) => {
-  const handleChoiceOneOfList = () => {
+  const handleOneOfListChoice = () => {
     if (!isCreatingQuestion) {
       setTypeQuestion('Один из списка');
     }
   };
 
-  const handleChoiceFewFromList = () => {
+  const handleFewFromListChoice = () => {
     if (!isCreatingQuestion) {
       setTypeQuestion('Несколько из списка');
     }
   };
 
-  const handleChoiceNumericalAnswer = () => {
+  const handleNumericalAnswerChoice = () => {
     if (!isCreatingQuestion) {
       setTypeQuestion('Численный ответ');
     }
@@ -38,19 +38,19 @@ const DropDown = ({
       <div className={styles.dropDown_content}>
         <div
           className={styles.type}
-          onClick={handleChoiceOneOfList}
+          onClick={handleOneOfListChoice}
         >
           Один из списка
         </div>
         <div
           className={styles.type}
-          onClick={handleChoiceFewFromList}
+          onClick={handleFewFromListChoice}
         >
           Несколько из списка
         </div>
         <div
           className={styles.type}
-          onClick={handleChoiceNumericalAnswer}
+          onClick={handleNumericalAnswerChoice}
         >
           Численный ответ
         </div>
